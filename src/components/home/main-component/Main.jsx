@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 
 const Main = () => {
   return (
-    <Col style={mainStyle} md={8}>
+    <Col md={8}>
       <ProfileStrength />
       <Dashboard />
     </Col>
@@ -13,7 +13,3 @@ const Main = () => {
 };
 
 export default Main;
-
-const mainStyle = {
-  background: '#7a7af0',
-};

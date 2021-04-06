@@ -6,9 +6,10 @@ import Side from './side-col/Side';
 export default class Home extends Component {
   state = {
     user: {},
+    viewportSize: window.innerWidth,
   };
 
-  componentDidMount = async () => {
+  fetchUser = async () => {
     const resp = await fetch(
       'https://striveschool-api.herokuapp.com/api/profile/me',
       {
@@ -22,6 +23,10 @@ export default class Home extends Component {
     console.log(data);
 
     this.setState({ user: data });
+  };
+
+  componentDidMount = () => {
+    this.fetchUser();
   };
 
   render() {

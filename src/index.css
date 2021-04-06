@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  background-color: #f3f2ef;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -15,4 +19,8 @@ code {
 :root {
   --color-primary: rgb(10, 102, 194);
   --color-hover: rgb(0, 65, 130);
+}
+
+#root {
+  background: #f3f2ef;
 }
