@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/home/Home";
 
-export default class App extends Component {
-  render() {
-    return <Home />;
-  }
+function App() {
+  return <Home />;
 }
+
+export default App;
