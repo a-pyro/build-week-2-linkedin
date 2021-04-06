@@ -6,13 +6,9 @@ import styled from 'styled-components';
 // https://static-exp1.licdn.com/sc/h/4npmnn7reasq18uq6qp3ojhqn
 
 export default class Dashboard extends Component {
-  state = {
-    currentTab: 1,
-  };
-
   render() {
     return (
-      <StyledContainer className='px-4 py-3 my-3 container-fluid'>
+      <StyledContainer className='px-4 py-3 my-3 container-fluid rounded'>
         <Row className='flex-column'>
           <h5 className='font-weight-normal'>Your Dashboard</h5>
           <p className='font-weight-light font-italic'>Private to you</p>
