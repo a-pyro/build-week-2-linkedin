@@ -15,7 +15,7 @@ export default class ProfileStrength extends Component {
 
   render() {
     return (
-      <StyledDiv className='rounded p-2 px-3'>
+      <StyledDiv className='rounded px-3 py-4'>
         <div className='d-flex justify-content-between'>
           <p>
             Profile Strength:{' '}
@@ -60,7 +60,7 @@ export default class ProfileStrength extends Component {
                 className='mt-3 align-items-center justify-content-between flex'
               >
                 <Col xs={12} lg={4} className='d-flex justify-content-between'>
-                  <span className='mr-3 text-muted p-1'>
+                  <span className='text-muted p-1'>
                     <BsChevronCompactLeft />
                     Previous
                   </span>
