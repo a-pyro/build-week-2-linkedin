@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import {} from "react-router-dom";
 import styled from "styled-components";
+import {BsPencil} from 'react-icons/bs';
 
 const StyledContainer = styled(Container)`
   border-radius: 3px;
@@ -19,7 +20,7 @@ position: relative;
 max-height: 195.5px;
 `;
 
-const DetailsDiv = styled.div `
+const DetailsDiv = styled.div`
 padding-bottom: 24px;
  padding-left: 24px;
 padding-right: 24px;
@@ -37,15 +38,43 @@ border-radius: 50%;
 box-sizing: border-box;
 
 `;
+
+const PencilIcon = styled(BsPencil)`
+align-self: flex-end;
+display: block;
+`
 class PersonalDetails extends React.Component {
-  render() {
+    state= {
+        user: {
+        area: "",
+        bio: "",
+        email:"",
+        image: "",
+        name:"",
+        surname:"",
+        title:"",
+        username:"",
+        }
+    }
+    
+    componentDidMount = async () =>{
+        let response = await fetch ()
+    }
+    render() {
     return (
       <StyledContainer>
         <StyledDiv>
           <HeroImage />
         </StyledDiv>
         <DetailsDiv>
-            <ProfileImage src="https://media-exp1.licdn.com/dms/image/C4D03AQHrd2-LuPm_dA/profile-displayphoto-shrink_200_200/0/1612284608867?e=1623283200&v=beta&t=FbTmMKnbtrexZQFzmWfEi_e3WSWzQ0xEcavfkrxHJsQ"/>
+            <Row style={{display: "flex"}}>
+                <ProfileImage src="https://media-exp1.licdn.com/dms/image/C4D03AQHrd2-LuPm_dA/profile-displayphoto-shrink_200_200/0/1612284608867?e=1623283200&v=beta&t=FbTmMKnbtrexZQFzmWfEi_e3WSWzQ0xEcavfkrxHJsQ"/>
+                <PencilIcon/>
+            </Row>
+            <Row>
+               <span>{}</span> 
+            </Row>
+
         </DetailsDiv>
       </StyledContainer>
     );
