@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Main from './main-component/Main';
 import Side from './side-col/Side';
 
-class Home extends React.Component {
+export default class Home extends Component {
   state = {
     user: {},
   };
@@ -35,5 +35,3 @@ class Home extends React.Component {
     );
   }
 }
-
-export default Home;
