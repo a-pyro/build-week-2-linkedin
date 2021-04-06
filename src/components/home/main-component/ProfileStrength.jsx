@@ -4,7 +4,7 @@ import { BsChevronCompactUp } from 'react-icons/bs';
 import { BsChevronCompactLeft } from 'react-icons/bs';
 import { BsChevronCompactRight } from 'react-icons/bs';
 import styled from 'styled-components';
-import { Col, Container, Form, Row, Button, Badge } from 'react-bootstrap';
+import { Col, Container, Form, Row, Button } from 'react-bootstrap';
 
 export default class ProfileStrength extends Component {
   state = {
@@ -39,7 +39,7 @@ export default class ProfileStrength extends Component {
           <div className='update-section'>
             <Container fluid>
               <Row className='no-gutters'>
-                <Col xs={1} className=''>
+                <Col xs={12} md={1}>
                   <img
                     src='https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1625702400&v=beta&t=3rWOTtMt8Oa6T_gmK3KDVW1m0AsgXMfL-JXwC0n4tXo'
                     alt='strive'
@@ -55,8 +55,11 @@ export default class ProfileStrength extends Component {
                   </p>
                 </Col>
               </Row>
-              <Row className='mt-3 align-items-center justify-content-between'>
-                <div className='d-flex'>
+              <Row
+                noGutters
+                className='mt-3 align-items-center justify-content-between flex'
+              >
+                <Col xs={12} lg={4} className='d-flex justify-content-between'>
                   <span className='mr-3 text-muted p-1'>
                     <BsChevronCompactLeft />
                     Previous
@@ -65,17 +68,20 @@ export default class ProfileStrength extends Component {
                     Next
                     <BsChevronCompactRight />
                   </span>
-                </div>
-                <div className='d-flex align-items-center'>
-                  <span className='mr-3 p-1'>Does not apply</span>
-
+                </Col>
+                <Col
+                  xs={12}
+                  lg={8}
+                  className='d-flex align-items-center justify-content-between justify-content-lg-end'
+                >
+                  <span className='p-1 mr-lg-2'>Does not apply</span>
                   <Button
                     variant='primary'
-                    className='rounded-pill font-weight-bold py-1'
+                    className='rounded-pill font-weight-bold py-1 text-truncate'
                   >
                     Update Education
                   </Button>
-                </div>
+                </Col>
               </Row>
             </Container>
           </div>
@@ -99,9 +105,9 @@ const StyledDiv = styled.div`
   & .update-section {
     transition: 0.5s ease;
 
-    & img {
+    /* & img {
       width: 50px;
-    }
+    } */
 
     & span {
       cursor: pointer;
