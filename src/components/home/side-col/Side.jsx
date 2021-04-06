@@ -15,6 +15,7 @@ const Side = () => {
       <h1>side Component</h1>
       <h1>side Component</h1>
       <h1>side Component</h1>
+      <h1>side Component</h1>
     </Col>
   );
 };
