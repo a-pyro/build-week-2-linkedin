@@ -1,10 +1,11 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import ProfileStrength from './ProfileStrength';
 
 const Main = () => {
   return (
     <Col style={mainStyle} md={8}>
-      <h1>Main Component</h1>
+      <ProfileStrength />
     </Col>
   );
 };
