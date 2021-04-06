@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 
 const Main = () => {
   return (
-    <Col style={mainStyle} md={9}>
+    <Col style={mainStyle} md={8}>
       <h1>Main Component</h1>
     </Col>
   );
