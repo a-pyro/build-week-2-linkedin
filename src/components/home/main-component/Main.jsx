@@ -1,14 +1,16 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 const Main = () => {
   return (
-    <Col md={9}>
-      <Row className='flex-column'>
-        <h1>Main Component</h1>
-      </Row>
+    <Col style={mainStyle} md={9}>
+      <h1>Main Component</h1>
     </Col>
   );
 };
 
 export default Main;
+
+const mainStyle = {
+  background: '#7a7af0',
+};
