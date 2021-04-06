@@ -8,14 +8,14 @@ import { Col, Container, Form, Row, Button } from 'react-bootstrap';
 
 export default class ProfileStrength extends Component {
   state = {
-    isClicked: true,
+    isClicked: false,
   };
 
   handleClick = () => this.setState({ isClicked: !this.state.isClicked });
 
   render() {
     return (
-      <StyledDiv className='rounded px-3 py-4'>
+      <StyledDiv className='rounded px-3 py-4 mt-3'>
         <div className='d-flex justify-content-between'>
           <p>
             Profile Strength:{' '}

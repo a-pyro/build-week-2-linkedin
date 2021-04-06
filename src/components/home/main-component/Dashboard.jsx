@@ -8,7 +8,7 @@ import styled from 'styled-components';
 export default class Dashboard extends Component {
   render() {
     return (
-      <StyledContainer className='px-4 py-3 my-3 container-fluid rounded'>
+      <StyledContainer className='px-4 py-3 mt-3 container-fluid rounded'>
         <Row className='flex-column'>
           <h5 className='font-weight-normal'>Your Dashboard</h5>
           <p className='font-weight-light font-italic'>Private to you</p>
