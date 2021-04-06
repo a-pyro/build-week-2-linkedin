@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import NavBar from "./components/NavBar";
+import Navbar from "./components/NavBar";
 
 export default class App extends Component {
   // componentDidMount = async () => {
@@ -15,6 +17,10 @@ export default class App extends Component {
   //   console.log(data);
   // };
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <NavBar />
+      </div>
+    );
   }
 }
