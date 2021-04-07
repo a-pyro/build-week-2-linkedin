@@ -1,12 +1,11 @@
-import styled from 'styled-components';
 import { Col, Container, Row } from 'react-bootstrap';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
 
 const EditPublicProfile = () => {
   return (
-    <StyledSection
+    <aside
       className='bg-white rounded mt-3'
-      style={{ border: '1px solid #dddcd9' }}
+      style={{ border: '1px solid #dddcd9', cursor: 'pointer' }}
     >
       <Container>
         <Row noGutters>
@@ -26,10 +25,8 @@ const EditPublicProfile = () => {
           </Col>
         </Row>
       </Container>
-    </StyledSection>
+    </aside>
   );
 };
 
 export default EditPublicProfile;
-
-const StyledSection = styled.section``;

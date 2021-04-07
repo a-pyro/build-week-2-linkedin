@@ -76,7 +76,7 @@ export default class Home extends Component {
       <Container>
         <Row>
           <Main user={this.state.user} />
-          <Side />
+          <Side user={this.state.user} />
         </Row>
       </Container>
     );

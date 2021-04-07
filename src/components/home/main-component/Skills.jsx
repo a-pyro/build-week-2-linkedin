@@ -44,7 +44,7 @@ export default class Skills extends Component {
           <Row className='px-4'>
             <Button
               variant='outline-primary'
-              className='rounded-pill px-4 py-1 font-weight-bold my-3'
+              className='rounded-pill px-3 py-0 font-weight-bold my-3'
             >
               Take Skill quiz
             </Button>

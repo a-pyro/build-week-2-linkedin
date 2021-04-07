@@ -77,7 +77,7 @@ export default class ProfileStrength extends Component {
                   <span className='p-1 mr-lg-2'>Does not apply</span>
                   <Button
                     variant='primary'
-                    className='rounded-pill font-weight-bold py-1 text-truncate'
+                    className='rounded-pill font-weight-bold py-0 px-3 text-truncate'
                   >
                     Update Education
                   </Button>
