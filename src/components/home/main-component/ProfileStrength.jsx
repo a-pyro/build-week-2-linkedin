@@ -82,6 +82,7 @@ export default class ProfileStrength extends Component {
                     Update Education
                   </Button>
                 </Col>
+                <styledPara> </styledPara>
               </Row>
             </Container>
           </div>
@@ -90,12 +91,15 @@ export default class ProfileStrength extends Component {
     );
   }
 }
+
 const StyledDiv = styled.div`
   background-color: white;
+  border: 1px solid #dddcd9;
 
   & svg {
     font-size: 1.5rem;
     cursor: pointer;
+
     &:hover {
       background-color: lightgray;
       border-radius: 50%;

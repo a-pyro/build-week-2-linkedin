@@ -8,12 +8,12 @@ import styled from 'styled-components';
 export default class Dashboard extends Component {
   render() {
     return (
-      <StyledContainer className='px-4 py-3 mt-3 container-fluid rounded'>
+      <StyledContainer fluid className='px-4 py-3 mt-3 rounded'>
         <Row className='flex-column'>
           <h5 className='font-weight-normal'>Your Dashboard</h5>
           <p className='font-weight-light font-italic'>Private to you</p>
         </Row>
-        <Row className=''>
+        <Row>
           <Col className='bg-white pt-2 border-right rounded-left'>
             <h4 className='font-weight-normal text-primary'>450</h4>
             <p>Lorem, ipsum dolor.</p>
@@ -29,6 +29,7 @@ export default class Dashboard extends Component {
         </Row>
         <Row className='bg-white mt-3 p-2 rounded my-items'>
           <BsBookmarkFill />
+          <BsBookmarkFill className='second-icon' />
           <div>
             <h6 className='m-0'>My items</h6>
             <p className='m-0'>Keep track of your jobs, courses and articles</p>
@@ -41,6 +42,8 @@ export default class Dashboard extends Component {
 
 const StyledContainer = styled(Container)`
   background-color: #dce6f1;
+  border: 1px solid #dddcd9;
+
   & .col {
     cursor: pointer;
   }

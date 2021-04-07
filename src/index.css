@@ -17,8 +17,9 @@ code {
 }
 
 :root {
-  --color-primary: rgb(10, 102, 194);
-  --color-hover: rgb(0, 65, 130);
+  --color-primary-btn: rgb(10, 102, 194);
+  --color-hover-btn: rgb(0, 65, 130);
+  --color-hover-section: rgba(112, 181, 249, 0.2);
 }
 
 #root {
