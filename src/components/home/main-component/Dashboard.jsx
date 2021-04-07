@@ -3,8 +3,6 @@ import { Row, Container, Col } from 'react-bootstrap';
 import { BsBookmarkFill } from 'react-icons/bs';
 import styled from 'styled-components';
 
-// https://static-exp1.licdn.com/sc/h/4npmnn7reasq18uq6qp3ojhqn
-
 export default class Dashboard extends Component {
   render() {
     return (
@@ -29,7 +27,7 @@ export default class Dashboard extends Component {
         </Row>
         <Row className='bg-white mt-3 p-2 rounded my-items'>
           <BsBookmarkFill />
-          <BsBookmarkFill className='second-icon' />
+
           <div>
             <h6 className='m-0'>My items</h6>
             <p className='m-0'>Keep track of your jobs, courses and articles</p>
