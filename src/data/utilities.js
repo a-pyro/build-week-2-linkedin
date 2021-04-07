@@ -1,4 +1,4 @@
-const usersExtraDetails = {
+export const usersExtraDetails = {
   userEducation: [
     {
       school: 'Strive School',
@@ -50,4 +50,5 @@ const usersExtraDetails = {
   pastPositions: [{}, {}],
 };
 
-export default usersExtraDetails;
+export const ardisToken =
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWEyNzZmZDIyODAwMTUzZmRiYjEiLCJpYXQiOjE2MTc2OTczMTksImV4cCI6MTYxODkwNjkxOX0.bSzAALu5Ose7Gdie6QifObaHxeHflzff7nHtUlrYWfI';

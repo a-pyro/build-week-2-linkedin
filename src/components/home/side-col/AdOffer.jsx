@@ -1,9 +1,8 @@
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 
 const AdOffer = ({ image }) => {
-  console.log(image);
   return (
-    <aside
+    <section
       className='bg-white rounded mt-3 pb-3'
       style={{ border: '1px solid #dddcd9' }}
     >
@@ -46,7 +45,7 @@ const AdOffer = ({ image }) => {
           </Col>
         </Row>
       </Container>
-    </aside>
+    </section>
   );
 };
 

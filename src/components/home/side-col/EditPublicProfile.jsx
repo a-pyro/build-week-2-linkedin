@@ -3,7 +3,7 @@ import { BsFillQuestionCircleFill } from 'react-icons/bs';
 
 const EditPublicProfile = () => {
   return (
-    <aside
+    <section
       className='bg-white rounded mt-3'
       style={{ border: '1px solid #dddcd9', cursor: 'pointer' }}
     >
@@ -25,7 +25,7 @@ const EditPublicProfile = () => {
           </Col>
         </Row>
       </Container>
-    </aside>
+    </section>
   );
 };
 
