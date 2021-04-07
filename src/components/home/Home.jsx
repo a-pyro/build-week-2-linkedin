@@ -10,10 +10,10 @@ export default class Home extends Component {
     isLoading: true,
   };
 
-  fetchUser = async () => {
+  fetchUser = async (personToFetch) => {
     this.setState({ isLoading: true });
     const resp = await fetch(
-      'https://striveschool-api.herokuapp.com/api/profile/me',
+      `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
       {
         headers: {
           Authorization:
@@ -50,7 +50,12 @@ export default class Home extends Component {
   // };
 
   componentDidMount = () => {
-    this.fetchUser();
+    const personToFetch = this.props.match.params.id
+      ? this.props.match.params.id
+      : 'me';
+
+    console.log(personToFetch);
+    this.fetchUser(personToFetch);
   };
 
   componentDidUpdate = (prevProp, prevState) => {
@@ -59,6 +64,8 @@ export default class Home extends Component {
     }
   };
   render() {
+    // console.log(this.props.match.params.id);
+    console.log(this.state.user);
     return (
       <Container>
         <Row>

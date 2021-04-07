@@ -1,16 +1,27 @@
 import { Col, Image, Button, Row } from 'react-bootstrap';
 import styled from 'styled-components';
-const PersonView = ({ _id, name, surname, title, image, idx }) => {
+import { withRouter } from 'react-router-dom';
+
+const PersonView = ({ _id, name, surname, title, image, idx, history }) => {
   const replaceBrokenImg = (e) => {
     console.log('img src not fount, dont worrie, got a fallback :)');
     e.target.src = `https://picsum.photos/100/100?random=${Math.ceil(
       Math.random() * 1000
     )}`;
   };
+
+  // const handleClick = () => {
+  //   console.log(history);
+  //   history.push(`/profile/${_id}`);
+  // };
   // console.log(image);
   return (
     <>
-      <StyledRow noGutters className=' mt-2'>
+      <StyledRow
+        onClick={() => history.push('/profile/' + _id)}
+        noGutters
+        className=' mt-2'
+      >
         <Col md={3} lg={2} className='text-center'>
           <Image onError={replaceBrokenImg} src={image} fluid />
         </Col>
@@ -27,6 +38,7 @@ const PersonView = ({ _id, name, surname, title, image, idx }) => {
           </p>
         </Col>
       </StyledRow>
+
       <div className='text-center text-lg-left'>
         <Button
           variant='outline-secondary'
@@ -39,7 +51,7 @@ const PersonView = ({ _id, name, surname, title, image, idx }) => {
   );
 };
 
-export default PersonView;
+export default withRouter(PersonView);
 const StyledRow = styled(Row)`
   & img {
     width: 100px;

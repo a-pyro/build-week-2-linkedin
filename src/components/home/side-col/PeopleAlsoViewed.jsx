@@ -24,7 +24,7 @@ export default class PeopleAlsoViewed extends Component {
       );
 
       const users = await resp.json();
-      console.log(users);
+      // console.log(users);
 
       this.setState({ users });
       this.setState({ isLoading: false });
