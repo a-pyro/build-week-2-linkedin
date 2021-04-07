@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Footer from "./components/Footer";
 
 export default class App extends Component {
   // componentDidMount = async () => {
@@ -15,6 +16,10 @@ export default class App extends Component {
   //   console.log(data);
   // };
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <Footer />
+      </div>
+    );
   }
 }
