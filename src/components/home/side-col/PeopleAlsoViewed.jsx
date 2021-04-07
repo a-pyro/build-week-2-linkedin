@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Row, Col, Button, Container, Spinner } from 'react-bootstrap';
+import { Row, Col, Container, Spinner } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs';
 import { ardisToken } from 'data/utilities';
+import PersonView from './PersonView';
 
 export default class PeopleAlsoViewed extends Component {
   state = {
@@ -45,44 +46,30 @@ export default class PeopleAlsoViewed extends Component {
 
         {!this.state.isLoading && (
           <>
-            <StyledContainer fluid className='pt-3 mt-3 rounded-top'>
+            <StyledContainer fluid className='py-3 mt-3 rounded-top'>
               <Row className='align-items-center px-2'>
                 <Col>
-                  <h6 className='font-weight-bold'>People also viewed</h6>
+                  <h6 className='font-weight-bold'>{this.props.heading}</h6>
                 </Col>
               </Row>
 
               {!this.state.showMore && (
-                <Row className='px-4'>
-                  {this.state.users.slice(0, 5).map((user) => (
-                    <Col
-                      key={uuidv4()}
-                      xs={12}
-                      className='border-bottom py-2 px-0'
-                    >
-                      <h5 className='font-weight-bold'>{user.name}</h5>
-                      <p className='mb-0'>
-                        Lorem ipsum dolor sit amet consectetur.
-                      </p>
-                    </Col>
-                  ))}
-                </Row>
+                <>
+                  {this.state.users
+                    .slice(this.props.sliceRange[0], this.props.sliceRange[1])
+                    .map((user, idx) => (
+                      <PersonView key={uuidv4()} {...user} idx={idx} />
+                    ))}
+                </>
               )}
               {this.state.showMore && (
-                <Row className='px-4'>
-                  {this.state.users.slice(0, 15).map((user) => (
-                    <Col
-                      key={uuidv4()}
-                      xs={12}
-                      className='border-bottom py-2 px-0'
-                    >
-                      <h5 className='font-weight-bold'>{user.name}</h5>
-                      <p className='mb-0'>
-                        Lorem ipsum dolor sit amet consectetur.
-                      </p>
-                    </Col>
-                  ))}
-                </Row>
+                <>
+                  {this.state.users
+                    .slice(this.props.sliceRange[2], this.props.sliceRange[3])
+                    .map((user, idx) => (
+                      <PersonView key={uuidv4()} {...user} idx={idx} />
+                    ))}
+                </>
               )}
             </StyledContainer>
             <StyledSection
@@ -112,26 +99,6 @@ export default class PeopleAlsoViewed extends Component {
 const StyledContainer = styled(Container)`
   background-color: white;
   border: 1px solid #dddcd9;
-  & .add-skill {
-    cursor: pointer;
-
-    &:hover {
-      background-color: lightgray;
-    }
-  }
-
-  & button:hover {
-    background-color: var(--color-hover-section);
-    color: var(--primary);
-  }
-
-  & .text-container {
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-      border: 1px solid grey;
-    }
-  }
 `;
 
 const StyledSection = styled.section`

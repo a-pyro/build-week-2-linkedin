@@ -10,7 +10,14 @@ const Side = ({ user: { image } }) => {
       <aside>
         <EditPublicProfile />
         <AdOffer image={image} />
-        <PeopleAlsoViewed />
+        <PeopleAlsoViewed
+          heading='People Also Viewed'
+          sliceRange={[0, 5, 5, 15]}
+        />
+        <PeopleAlsoViewed
+          heading='People you may know'
+          sliceRange={[15, 20, 15, 25]}
+        />
       </aside>
     </Col>
   );
