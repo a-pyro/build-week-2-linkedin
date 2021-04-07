@@ -4,6 +4,7 @@ import ProfileStrength from './ProfileStrength';
 import Dashboard from './Dashboard';
 import Activity from './Activity';
 import Interests from './Interests';
+import Skills from './Skills';
 // import Dashboard from 'components/home/main-component/Dashboard';
 
 const Main = () => {
@@ -13,6 +14,8 @@ const Main = () => {
       <Dashboard />
       <Activity />
       <Interests />
+      <Interests />
+      <Skills />
     </Col>
   );
 };
