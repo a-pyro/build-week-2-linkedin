@@ -3,6 +3,7 @@ import { Col } from 'react-bootstrap';
 import ProfileStrength from './ProfileStrength';
 import Dashboard from './Dashboard';
 import Activity from './Activity';
+import Interests from './Interests';
 // import Dashboard from 'components/home/main-component/Dashboard';
 
 const Main = () => {
@@ -11,6 +12,7 @@ const Main = () => {
       <ProfileStrength />
       <Dashboard />
       <Activity />
+      <Interests />
     </Col>
   );
 };

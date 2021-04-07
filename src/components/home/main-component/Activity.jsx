@@ -19,10 +19,10 @@ const Activity = () => {
                 md={9}
                 lg={10}
               >
-                <h6 className='text-truncate '>
+                <h6 className='text-truncate mb-0'>
                   Lorem ipsum dolor sit amet consectetur adipisicing.
                 </h6>
-                <p>Lorem ipsum dolor sit.</p>
+                <p className='text-truncate'>Lorem ipsum dolor sit.</p>
               </Col>
             </Row>
           </Col>
@@ -36,10 +36,10 @@ const Activity = () => {
                 md={9}
                 lg={10}
               >
-                <h6 className='text-truncate '>
+                <h6 className='text-truncate mb-0'>
                   Lorem ipsum dolor sit amet consectetur adipisicing.
                 </h6>
-                <p>Lorem ipsum dolor sit.</p>
+                <p className='text-truncate'>Lorem ipsum dolor sit.</p>
               </Col>
             </Row>
           </Col>
@@ -53,10 +53,10 @@ const Activity = () => {
                 md={9}
                 lg={10}
               >
-                <h6 className='text-truncate '>
+                <h6 className='text-truncate mb-0'>
                   Lorem ipsum dolor sit amet consectetur adipisicing.
                 </h6>
-                <p>Lorem ipsum dolor sit.</p>
+                <p className='text-truncate'>Lorem ipsum dolor sit.</p>
               </Col>
             </Row>
           </Col>
@@ -70,10 +70,10 @@ const Activity = () => {
                 md={9}
                 lg={10}
               >
-                <h6 className='text-truncate '>
+                <h6 className='text-truncate mb-0'>
                   Lorem ipsum dolor sit amet consectetur adipisicing.
                 </h6>
-                <p>Lorem ipsum dolor sit.</p>
+                <p className='text-truncate'>Lorem ipsum dolor sit.</p>
               </Col>
             </Row>
           </Col>
@@ -111,5 +111,9 @@ const StyledSection = styled.section`
   cursor: pointer;
   &:hover {
     background-color: var(--color-hover-section);
+
+    & h6 {
+      color: var(--color-hover-btn) !important;
+    }
   }
 `;
