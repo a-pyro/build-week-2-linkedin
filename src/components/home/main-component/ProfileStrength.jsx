@@ -8,7 +8,7 @@ import { Col, Container, Form, Row, Button } from 'react-bootstrap';
 
 export default class ProfileStrength extends Component {
   state = {
-    isClicked: false,
+    isClicked: true,
   };
 
   handleClick = () => this.setState({ isClicked: !this.state.isClicked });
@@ -82,7 +82,6 @@ export default class ProfileStrength extends Component {
                     Update Education
                   </Button>
                 </Col>
-                <styledPara> </styledPara>
               </Row>
             </Container>
           </div>

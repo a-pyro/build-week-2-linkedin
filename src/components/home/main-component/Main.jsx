@@ -14,7 +14,6 @@ const Main = () => {
       <Dashboard />
       <Activity />
       <Interests />
-      <Interests />
       <Skills />
     </Col>
   );

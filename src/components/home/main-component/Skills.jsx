@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs';
-import { HiPencil } from 'react-icons/hi';
+// import { HiPencil } from 'react-icons/hi';
+import SkillsModal from './SkillsModal';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class Skills extends Component {
   state = {
@@ -22,28 +24,6 @@ export default class Skills extends Component {
     this.setState({ showMore: !this.state.showMore });
   };
 
-  // componentDidMount() {
-  //   const skills = localStorage.getItem('skills');
-  //   if (skills) {
-  //     this.setState({ skills: JSON.parse(skills) });
-  //   } else {
-  //     localStorage.setItem('skills', JSON.stringify(this.state.skills));
-  //   }
-  // }
-
-  // handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   this.setState({skill: [...this.state.skills, newSkill]})
-  // }
-
-  // componentDidUpdate = (prevProp, prevState) => {
-
-  //   localStorage.setItem(
-  //     'skills',
-  //     JSON.stringify(this.state.skills)
-  //   );
-  // };
-
   render() {
     return (
       <>
@@ -54,8 +34,10 @@ export default class Skills extends Component {
             </Col>
             <Col className='d-flex justify-content-end'>
               <div className='add-skill d-flex px-1 pt-2 rounded'>
-                <h6 className='text-right mr-2'>Add a new skill</h6>
-                <HiPencil className='text-primary' />
+                <SkillsModal>
+                  <h6 className='text-right mr-2'>Add a new skill</h6>
+                  {/* <HiPencil className='text-primary' /> */}
+                </SkillsModal>
               </div>
             </Col>
           </Row>
@@ -70,7 +52,7 @@ export default class Skills extends Component {
           {!this.state.showMore && (
             <Row className='px-4'>
               {this.state.skills.slice(0, 3).map((skill) => (
-                <Col xs={12} className='border-bottom py-2 px-0'>
+                <Col key={uuidv4()} xs={12} className='border-bottom py-2 px-0'>
                   <h5 className='font-weight-bold'>{skill}</h5>
                   <p className='mb-0'>
                     Lorem ipsum dolor sit amet consectetur.
@@ -82,7 +64,7 @@ export default class Skills extends Component {
           {this.state.showMore && (
             <Row className='px-4'>
               {this.state.skills.map((skill) => (
-                <Col xs={12} className='border-bottom py-2 px-0'>
+                <Col key={uuidv4()} xs={12} className='border-bottom py-2 px-0'>
                   <h5 className='font-weight-bold'>{skill}</h5>
                   <p className='mb-0'>
                     Lorem ipsum dolor sit amet consectetur.
@@ -96,12 +78,17 @@ export default class Skills extends Component {
           onClick={this.handleClick}
           className='d-flex justify-content-center py-2 px-0 align-items-center rounded-bottom'
         >
-          <h6 className='text-primary m-0 mr-2'>Show more</h6>
           {!this.state.showMore && (
-            <BsChevronCompactDown className='text-primary font-weight-bold' />
+            <>
+              <h6 className='text-primary m-0 mr-2'>Show more</h6>
+              <BsChevronCompactDown className='text-primary font-weight-bold' />
+            </>
           )}
           {this.state.showMore && (
-            <BsChevronCompactUp className='text-primary font-weight-bold' />
+            <>
+              <h6 className='text-primary m-0 mr-2'>Show less</h6>
+              <BsChevronCompactUp className='text-primary font-weight-bold' />
+            </>
           )}
         </StyledSection>
       </>
