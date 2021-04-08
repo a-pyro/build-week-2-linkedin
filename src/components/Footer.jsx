@@ -1,13 +1,20 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import { Container, Dropdown, Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { AiFillQuestionCircle } from "react-icons/ai";
+import { GoGear } from "react-icons/go";
+import logo from "./linkedIn-logo.png";
 
 const Footer = function () {
   return (
     <FooterStyled fluid className="mx-0">
+      <Row>
+        <ul>
+          <li>
+            <img src={logo} alt="logo" />
+          </li>
+        </ul>
+      </Row>
       <Row>
         <Col>
           <ul>
@@ -29,21 +36,41 @@ const Footer = function () {
         <Col>
           <ul>
             <li>
-              <AiFillQuestionCircle />
+              <AiFillQuestionCircle className="icons" />
               Questions?
             </li>
-            <li>Manage your account and privacy</li>
+            <li>
+              <GoGear className="icons" />
+              Manage your account and privacy
+            </li>
           </ul>
         </Col>
         <Col>
           <ul>
-            <li>Select language</li>
+            <li>
+              Select Language
+              <Dropdown>
+                <Dropdown.Toggle variant="light" id="dropdown-basic">
+                  English (English)
+                </Dropdown.Toggle>
+                <Dropdown.Menu style={{ fontSize: "0.9em" }}>
+                  <Dropdown.Item href="#/action-1">French</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">German</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Italian</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Spanish</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </li>
           </ul>
         </Col>
       </Row>
       <Row>
         <Col className="footerText">
-          LinkedIn Corporation <span>&#169;</span> 2021
+          <ul>
+            <li>
+              LinkedIn Corporation <span>&#169;</span> 2021
+            </li>
+          </ul>
         </Col>
       </Row>
     </FooterStyled>
@@ -65,5 +92,20 @@ const FooterStyled = styled(Container)`
   & .footerText {
     font-size: 0.8rem;
     font-weight: bold;
+  }
+
+  & #dropdown-basic {
+    font-size: 0.7rem;
+    border: 1px solid #4b4b4b;
+    align-items: left;
+  }
+  & img {
+    width: 90px;
+    margin: 5px 14px;
+  }
+
+  & .icons {
+    font-size: 1.8em;
+    margin-right: 4px;
   }
 `;
