@@ -5,6 +5,10 @@ import EditModal from './EditModal';
 
 //
 export default class SinglePost extends Component {
+  state = {
+    edited: false,
+  };
+
   handleDeletePost = async () => {
     if (this.props.userLogged._id === this.props.post.user._id) {
       // this.setState({ isLoading: true });
@@ -35,7 +39,7 @@ export default class SinglePost extends Component {
     return (
       <Col xs={6} className='mt-3'>
         <div className='border rounded p-3 bg-white'>
-          <span>{this.props.post.text}</span>
+          {/* <span>{this.props.post.text}</span> */}
           <span>
             {' '}
             by {this.props.post.user.name + ' ' + this.props.post.user.surname}
@@ -49,7 +53,7 @@ export default class SinglePost extends Component {
           >
             X
           </Button>
-          <EditModal>
+          <EditModal text={this.props.post.text}>
             <Button variant='outline-warning' className='rounded-circle'>
               ?
             </Button>
