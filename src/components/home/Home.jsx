@@ -6,7 +6,6 @@ import Side from './side-col/Side';
 export default class Home extends Component {
   state = {
     user: {},
-    userExperciences: {},
     isLoading: true,
   };
 

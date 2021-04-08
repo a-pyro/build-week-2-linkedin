@@ -8,7 +8,7 @@ export default class NewsFeed extends Component {
   state = {
     isLoading: true,
     posts: [],
-    userLogged: 'ardi',
+    userLogged: null,
   };
 
   getPosts = async () => {
@@ -32,12 +32,29 @@ export default class NewsFeed extends Component {
     }
   };
 
+  getUser = async () => {
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/me`,
+      {
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWEyNzZmZDIyODAwMTUzZmRiYjEiLCJpYXQiOjE2MTc2OTczMTksImV4cCI6MTYxODkwNjkxOX0.bSzAALu5Ose7Gdie6QifObaHxeHflzff7nHtUlrYWfI',
+        },
+      }
+    );
+    const userLogged = await resp.json();
+    this.setState({ userLogged });
+  };
+
   componentDidMount = () => {
     this.getPosts();
+    this.getUser();
   };
 
   // componentDidUpdate = (prevProps, prevState) => {
-  //   if (prevState.posts !== this.state.posts) this.getPosts();
+  //   if (prevState.posts !== this.state.posts) {
+
+  //   }
   // };
 
   render() {
@@ -50,6 +67,7 @@ export default class NewsFeed extends Component {
             posts={this.state.posts}
             userLogged={this.state.userLogged}
             getPosts={this.getPosts}
+            isLoading={this.state.isLoading}
           />
         </Container>
       </>

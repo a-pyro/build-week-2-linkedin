@@ -4,12 +4,10 @@ import { ardisToken } from 'data/utilities';
 
 //
 export default class SinglePost extends Component {
-  state = {
-    isLoading: true,
-  };
+  state = {};
 
   handleDeletePost = async () => {
-    if (this.props.userLogged === this.props.post.user.name.toLowerCase()) {
+    if (this.props.userLogged._id === this.props.post.user._id) {
       this.setState({ isLoading: true });
       const resp = await fetch(
         `https://striveschool-api.herokuapp.com/api/posts/${this.props.post._id}`,
@@ -28,9 +26,9 @@ export default class SinglePost extends Component {
   };
 
   render() {
-    console.log(this.props);
-
     // console.log(this.props);
+    // console.log(this.props);
+
     return (
       <div className='d-flex flex-column my-3'>
         <h6>{this.props.post.text}</h6>

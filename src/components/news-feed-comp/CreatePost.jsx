@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Row } from 'react-bootstrap';
 
 export default class CreatePost extends Component {
   render() {
     return (
-      <div>
-        <h2>Create a post with me</h2>
-      </div>
+      <Row>
+        <h1>POSTAREEEEEE PORCO DIO</h1>
+      </Row>
     );
   }
 }
