@@ -1,53 +1,27 @@
-export const usersExtraDetails = {
-  userEducation: [
-    {
-      school: 'Strive School',
-      degree: 'Student',
-      studyField: 'web developement',
-      startDate: 'Feb 2021',
-      endDate: 'Aug 2021',
-      link:
-        'https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1625702400&v=beta&t=3rWOTtMt8Oa6T_gmK3KDVW1m0AsgXMfL-JXwC0n4tXo',
-    },
-  ],
-  certifications: [
-    {
-      name: 'Module 3: Advanced JS',
-      issuingOrg: 'Strive School',
-      issueDate: 'Mar 2021',
-      expDate: null,
-      credentialUrl:
-        'https://strive.school/certificate/605469eb63580c0017eb01ef',
-    },
-    {
-      name: 'Module 2: UX/UI',
-      issuingOrg: 'Strive School',
-      issueDate: 'Mar 2021',
-      expDate: null,
-      credentialUrl:
-        'https://strive.school/certificate/6038b791f957a7001785dfb0',
-    },
-    {
-      name: 'Module 1: Principles of Programming',
-      issuingOrg: 'Strive School',
-      issueDate: 'Feb 2021',
-      expDate: null,
-      credentialUrl:
-        'https://strive.school/certificate/6026513840b26200174a1814',
-    },
-  ],
-  skills: ['Computer Science', 'Programming', 'Frontend Development'],
-  intrests: [
-    {
-      name: 'Javascript',
-      link:
-        'https://www.linkedin.com/company/jseyehunts/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3B%2F7FUC%2F8fSguF8C6ewgd3Mg%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_profile_view_base-interests_company_clicked',
-      image:
-        'https://media-exp1.licdn.com/dms/image/C510BAQFybdyJxnwFQA/company-logo_100_100/0/1552144829593?e=1625702400&v=beta&t=77V4sCI4wmdvKPGNBvAvsjEcka3dlTVDz9eNsL-pR-E',
-    },
-  ],
-  currentPosition: { title: 'unemployed' },
-  pastPositions: [{}, {}],
+export const postDataModel = {
+  _id: '5fc7afa26d9b4c00177b836c',
+  text:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  username: 'Simona Cossai',
+  user: {
+    _id: '5fc54397ed266800170ea3f1',
+    name: 'Simona',
+    surname: 'Cossai',
+    email: 'cossaisimona@gmail.com',
+    username: 'Simona Cossai',
+    title: 'Web Developer | Flutter Learner | Social Media Manager',
+    bio:
+      "I'm a 19 yo web developer from Naples, Italy. I'm currently attending a web development course thanks to strive school and learning using flutter by myself.\n",
+    area: 'Naples, Campania, Italy',
+    image:
+      'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',
+    createdAt: '2020-11-30T19:10:15.824Z',
+    updatedAt: '2020-11-30T19:10:15.824Z',
+    __v: 0,
+  },
+  createdAt: '2020-12-02T15:15:46.709Z',
+  updatedAt: '2020-12-02T15:15:46.709Z',
+  __v: 0,
 };
 
 export const ardisToken =
