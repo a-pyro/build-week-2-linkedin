@@ -62,7 +62,7 @@ export default class NewsFeed extends Component {
       <>
         <Container>
           <h1>it's cool to be feed</h1>
-          <CreatePost />
+          <CreatePost userLogged={this.state.userLogged} />
           <PostList
             posts={this.state.posts}
             userLogged={this.state.userLogged}
