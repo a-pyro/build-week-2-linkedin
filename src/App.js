@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import Footer from "./components/Footer";
+import React, { Component } from 'react';
+import Home from './components/home/Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NewsFeed from 'components/Pages/NewsFeed';
+import TempNavBar from 'components/TempNavBar';
+
+import Footer from './components/Footer';
+
+import NavBar from './components/NavBar';
 
 export default class App extends Component {
-  // componentDidMount = async () => {
-  //   const resp = await fetch(
-  //     'https://striveschool-api.herokuapp.com/api/profile/5fc4ae95b708c200175de88d',
-  //     {
-  //       headers: {
-  //         Authorization:
-  //           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWEyNzZmZDIyODAwMTUzZmRiYjEiLCJpYXQiOjE2MTc2OTczMTksImV4cCI6MTYxODkwNjkxOX0.bSzAALu5Ose7Gdie6QifObaHxeHflzff7nHtUlrYWfI',
-  //       },
-  //     }
-  //   );
-  //   const data = await resp.json();
-  //   console.log(data);
-  // };
   render() {
     return (
-      <div>
+      <Router>
+        <TempNavBar />
+        <NavBar />
+        <Switch>
+          <Route path='/' exact component={NewsFeed} />
+          <Route path='/profile/:id' component={Home} />
+        </Switch>
         <Footer />
-      </div>
+      </Router>
     );
   }
 }
