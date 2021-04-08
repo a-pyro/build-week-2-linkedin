@@ -6,11 +6,15 @@ import Side from './side-col/Side';
 export default class Home extends Component {
   state = {
     user: {},
+
+    userExperciences: {},
+    isLoading: true,
   };
 
-  componentDidMount = async () => {
+  fetchUser = async (personToFetch) => {
+    this.setState({ isLoading: true });
     const resp = await fetch(
-      'https://striveschool-api.herokuapp.com/api/profile/me',
+      `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
       {
         headers: {
           Authorization:
@@ -19,9 +23,23 @@ export default class Home extends Component {
       }
     );
     const data = await resp.json();
-    console.log(data);
-
     this.setState({ user: data });
+    this.setState({ isLoading: false });
+    // console.log(this.state.user);
+  };
+
+  componentDidMount = () => {
+    // console.log(this.props.match);
+    // console.log(this.props.match.params);
+    this.fetchUser(this.props.match.params.id);
+  };
+
+  componentDidUpdate = (prevProp, prevState) => {
+    if (prevProp.match.params !== this.props.match.params) {
+      // console.log(this.props.match);
+      // console.log(this.props.match.params);
+      this.fetchUser(this.props.match.params.id);
+    }
   };
 
   render() {
@@ -29,7 +47,9 @@ export default class Home extends Component {
       <Container>
         <Row>
           <Main user={this.state.user} />
-          <Side />
+
+          <Side user={this.state.user} />
+
         </Row>
       </Container>
     );

@@ -1,19 +1,25 @@
-import React from "react";
-import { Col } from "react-bootstrap";
-import EducationComponent from "./Education";
+
+import React from 'react';
+import { Col } from 'react-bootstrap';
+import ProfileStrength from './ProfileStrength';
+import Dashboard from './Dashboard';
+import Activity from './Activity';
+import Interests from './Interests';
+import Skills from './Skills';
+// import Dashboard from 'components/home/main-component/Dashboard';
 
 const Main = () => {
   return (
-    <>
-      <Col style={mainStyle} md={8}>
-        <EducationComponent />
-      </Col>
-    </>
+    <Col md={8}>
+      <ProfileStrength />
+      <Dashboard />
+      <Activity />
+      <Interests />
+      <Skills />
+    </Col>
+
   );
 };
 
 export default Main;
 
-const mainStyle = {
-  display: "flex",
-};
