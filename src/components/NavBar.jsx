@@ -32,15 +32,15 @@ const NavBar = () => {
         margin: "0px"
     }
     const menu = {
-        fontSize: "1.2rem",
+        fontSize: "1rem",
         fontWeight: "400",
         justifyContent: "center",
-        lineHeight: "1.5",
-        minHeight: "52px",
+        // lineHeight: "1.5",
+        minHeight: "35px",
         minWidth: "40px",
         marginLeft: "20px",
         marginTop: "0",
-        paddingBottom: "20px"
+        marginBottom: "0"
 
     }
     const Icons = {
@@ -213,6 +213,12 @@ const NavBar = () => {
 
 }
 const StyledNavbar = styled(Navbar)`
+    & Form{
+        display: flex;
+        flex-direction:row;
+        flex-wrap:nowrap;
+        
+    }
     & .linkedin{
     color: #0a66c2;
     height: 2.4rem;
