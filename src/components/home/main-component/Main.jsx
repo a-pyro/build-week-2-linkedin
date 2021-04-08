@@ -1,12 +1,12 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import PersonalDetails from "./PersonalDetails";
+import EducationComponent from "./Education";
 
 const Main = () => {
   return (
     <>
       <Col style={mainStyle} md={8}>
-        <PersonalDetails />
+        <EducationComponent />
       </Col>
     </>
   );
