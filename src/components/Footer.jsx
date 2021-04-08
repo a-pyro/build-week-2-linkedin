@@ -1,19 +1,19 @@
-import React from 'react';
-import { Container, Dropdown, Col, Row } from 'react-bootstrap';
-import styled from 'styled-components';
-import { AiFillQuestionCircle } from 'react-icons/ai';
-import { GoGear } from 'react-icons/go';
-import logo from 'images/linkedIn-logo.png';
+import React from "react";
+import { Container, Dropdown, Col, Row } from "react-bootstrap";
+import styled from "styled-components";
+import { AiFillQuestionCircle } from "react-icons/ai";
+import { GoGear } from "react-icons/go";
+import logo from "images/linkedIn-logo.png";
 
 const Footer = function () {
   return (
-    <FooterStyled fluid className='mx-0'>
+    <FooterStyled fluid className="mx-0">
       <Container>
         <Row>
           <ul>
             <li>
-              <a href='#section'>
-                <img src={logo} alt='logo' />
+              <a href="#section">
+                <img src={logo} alt="logo" />
               </a>
             </li>
           </ul>
@@ -22,47 +22,47 @@ const Footer = function () {
           <Col>
             <ul>
               <li>
-                <a href='#section'>About</a>
+                <a href="#section">About</a>
               </li>
               <li>
-                <a href='#section'>Community Guidelines</a>
+                <a href="#section">Community Guidelines</a>
               </li>
               <li>
-                <a href='#section'>Privacy & Terms</a>
+                <a href="#section">Privacy & Terms</a>
               </li>
               <li>
-                <a href='#section'>Sales Solution</a>
+                <a href="#section">Sales Solution</a>
               </li>
               <li>
-                <a href='#section'>Saftey Career</a>
-              </li>
-            </ul>
-          </Col>
-          <Col>
-            <ul>
-              <li>
-                <a href='#section'>Talent Solutions</a>
-              </li>
-              <li>
-                <a href='#section'>Marketing Solutions</a>
-              </li>
-              <li>
-                <a href='#section'>Advertising</a>
-              </li>
-              <li>
-                <a href='#section'>Small Business</a>
+                <a href="#section">Saftey Career</a>
               </li>
             </ul>
           </Col>
           <Col>
             <ul>
               <li>
-                <AiFillQuestionCircle className='icons' />
-                <a href='#section'>Questions?</a>
+                <a href="#section">Talent Solutions</a>
               </li>
               <li>
-                <GoGear className='icons' />
-                <a href='#section'>Manage your account and privacy</a>
+                <a href="#section">Marketing Solutions</a>
+              </li>
+              <li>
+                <a href="#section">Advertising</a>
+              </li>
+              <li>
+                <a href="#section">Small Business</a>
+              </li>
+            </ul>
+          </Col>
+          <Col>
+            <ul>
+              <li>
+                <AiFillQuestionCircle className="icons" />
+                <a href="#section">Questions?</a>
+              </li>
+              <li>
+                <GoGear className="icons" />
+                <a href="#section">Manage your account and privacy</a>
               </li>
             </ul>
           </Col>
@@ -71,14 +71,14 @@ const Footer = function () {
               <li>
                 Select Language
                 <Dropdown>
-                  <Dropdown.Toggle variant='light' id='dropdown-basic'>
+                  <Dropdown.Toggle variant="light" id="dropdown-basic">
                     English (English) 🇬🇧
                   </Dropdown.Toggle>
-                  <Dropdown.Menu style={{ fontSize: '0.9em' }}>
-                    <Dropdown.Item href='#/action-1'>French 🇫🇷</Dropdown.Item>
-                    <Dropdown.Item href='#/action-2'>German 🇩🇪</Dropdown.Item>
-                    <Dropdown.Item href='#/action-3'>Italian 🇮🇹</Dropdown.Item>
-                    <Dropdown.Item href='#/action-3'>Spanish 🇪🇸</Dropdown.Item>
+                  <Dropdown.Menu style={{ fontSize: "0.9em" }}>
+                    <Dropdown.Item href="#/action-1">French 🇫🇷</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">German 🇩🇪</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Italian 🇮🇹</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Spanish 🇪🇸</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </li>
@@ -86,7 +86,7 @@ const Footer = function () {
           </Col>
         </Row>
         <Row>
-          <Col className='footerText'>
+          <Col className="footerText">
             <ul>
               <li>
                 LinkedIn Corporation <span>&#169;</span> 2021
