@@ -71,13 +71,13 @@ const Footer = function () {
               Select Language
               <Dropdown>
                 <Dropdown.Toggle variant="light" id="dropdown-basic">
-                  English (English)
+                  English (English) 🇬🇧
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{ fontSize: "0.9em" }}>
-                  <Dropdown.Item href="#/action-1">French</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">German</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Italian</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Spanish</Dropdown.Item>
+                  <Dropdown.Item href="#/action-1">French 🇫🇷</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">German 🇩🇪</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Italian 🇮🇹</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Spanish 🇪🇸</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </li>
