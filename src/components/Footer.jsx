@@ -11,37 +11,57 @@ const Footer = function () {
       <Row>
         <ul>
           <li>
-            <img src={logo} alt="logo" />
+            <a href="#section">
+              <img src={logo} alt="logo" />
+            </a>
           </li>
         </ul>
       </Row>
       <Row>
         <Col>
           <ul>
-            <li>About</li>
-            <li>Community Guidelines</li>
-            <li>Privacy & Terms</li>
-            <li>Sales Solution</li>
-            <li>Saftey Career</li>
+            <li>
+              <a href="#section">About</a>
+            </li>
+            <li>
+              <a href="#section">Community Guidelines</a>
+            </li>
+            <li>
+              <a href="#section">Privacy & Terms</a>
+            </li>
+            <li>
+              <a href="#section">Sales Solution</a>
+            </li>
+            <li>
+              <a href="#section">Saftey Career</a>
+            </li>
           </ul>
         </Col>
         <Col>
           <ul>
-            <li>Talent Solutions</li>
-            <li>Marketing Solutions</li>
-            <li>Advertising</li>
-            <li>Small Business</li>
+            <li>
+              <a href="#section">Talent Solutions</a>
+            </li>
+            <li>
+              <a href="#section">Marketing Solutions</a>
+            </li>
+            <li>
+              <a href="#section">Advertising</a>
+            </li>
+            <li>
+              <a href="#section">Small Business</a>
+            </li>
           </ul>
         </Col>
         <Col>
           <ul>
             <li>
               <AiFillQuestionCircle className="icons" />
-              Questions?
+              <a href="#section">Questions?</a>
             </li>
             <li>
               <GoGear className="icons" />
-              Manage your account and privacy
+              <a href="#section">Manage your account and privacy</a>
             </li>
           </ul>
         </Col>
@@ -107,5 +127,9 @@ const FooterStyled = styled(Container)`
   & .icons {
     font-size: 1.8em;
     margin-right: 4px;
+  }
+  & a {
+    text-decoration: none;
+    color: #4b4b4b;
   }
 `;
