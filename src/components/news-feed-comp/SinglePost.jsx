@@ -44,6 +44,10 @@ export default class SinglePost extends Component {
   };
 
   handleSave = async () => {
+    //&&implement ask if wanna delete
+    // if (this.state.text.length === 0) {
+    // }
+
     const text = this.state.text;
     console.log('puttttinnnnn');
     const resp = await fetch(
