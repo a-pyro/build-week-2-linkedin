@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import ProfileStrength from './ProfileStrength';
@@ -16,7 +17,9 @@ const Main = () => {
       <Interests />
       <Skills />
     </Col>
+
   );
 };
 
 export default Main;
+
