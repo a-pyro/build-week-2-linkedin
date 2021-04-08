@@ -15,7 +15,10 @@ export default class CreatePost extends Component {
         <Col xs={12}>
           <div className='d-flex align-items-center'>
             <Image fluid roundedCircle src={this.props.userLogged?.image} />
-            <CreateModal userLogged={this.props.userLogged}>
+            <CreateModal
+              getPosts={this.props.getPosts}
+              userLogged={this.props.userLogged}
+            >
               <Button
                 variant='outline-secondary'
                 className='rounded-pill text-left w-100 ml-2 font-weight-bold'

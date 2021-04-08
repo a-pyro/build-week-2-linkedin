@@ -13,7 +13,7 @@ const PostList = ({ posts, userLogged, getPosts, isLoading }) => {
   return (
     <Row>
       <h3>qui vanno tutti i post</h3>
-      {posts.slice(0, 10).map((post) => (
+      {posts.reduce(()).slice(0, 10).map((post) => (
         <SinglePost
           getPosts={getPosts}
           key={uuidv4()}
