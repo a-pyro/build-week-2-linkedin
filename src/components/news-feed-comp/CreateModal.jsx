@@ -80,13 +80,18 @@ const CreateModal = (props) => {
             )}
 
             {loading && (
-              <Spinner className='justify-self-center' animation='grow' />
+              <div className='align-self-center'>
+                <Spinner animation='grow' />
+              </div>
             )}
 
             {successMsg.length > 0 && (
               <>
-                <div className='d-flex align-items-center mb-2'>
-                  <GrStatusGood className='text-success' />
+                <div
+                  style={{ fontSize: '1.3rem' }}
+                  className='d-flex align-items-center text-success mb-2 justify-content-center'
+                >
+                  <GrStatusGood />
                   <span className='ml-2'>{successMsg}</span>
                 </div>
                 <Button

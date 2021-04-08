@@ -6,21 +6,24 @@ const PostList = ({ posts, userLogged, getPosts, isLoading }) => {
   // console.log(userLogged);
   if (isLoading)
     return (
-      <Row className='justify-content-center'>
+      <Row className='justify-content-center mt-3'>
         <Spinner animation='grow' />
       </Row>
     );
   return (
-    <Row>
-      <h3>qui vanno tutti i post</h3>
-      {posts.reduce(()).slice(0, 10).map((post) => (
-        <SinglePost
-          getPosts={getPosts}
-          key={uuidv4()}
-          post={post}
-          userLogged={userLogged}
-        />
-      ))}
+    <Row className='mt-3'>
+      {posts
+        .slice()
+        .reverse()
+        .slice(0, 20)
+        .map((post) => (
+          <SinglePost
+            getPosts={getPosts}
+            key={uuidv4()}
+            post={post}
+            userLogged={userLogged}
+          />
+        ))}
     </Row>
   );
 };

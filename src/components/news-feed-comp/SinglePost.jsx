@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
+import EditModal from './EditModal';
 
 //
 export default class SinglePost extends Component {
-  state = {};
-
   handleDeletePost = async () => {
     if (this.props.userLogged._id === this.props.post.user._id) {
-      this.setState({ isLoading: true });
+      // this.setState({ isLoading: true });
       const resp = await fetch(
         `https://striveschool-api.herokuapp.com/api/posts/${this.props.post._id}`,
         {
@@ -19,20 +18,30 @@ export default class SinglePost extends Component {
         }
       );
       console.log(resp);
-      this.setState({ isLoading: false });
+      // this.setState({ isLoading: false });
+
+      this.props.getPosts();
     } else {
       alert('non puoi toccare i post degli altri');
     }
   };
+
+  // handleEdit = () => {};
 
   render() {
     // console.log(this.props);
     // console.log(this.props);
 
     return (
-      <div className='d-flex flex-column my-3'>
-        <h6>{this.props.post.text}</h6>
-        <div>
+      <Col xs={6} className='mt-3'>
+        <div className='border rounded p-3 bg-white'>
+          <span>{this.props.post.text}</span>
+          <span>
+            {' '}
+            by {this.props.post.user.name + ' ' + this.props.post.user.surname}
+          </span>
+          <p></p>
+
           <Button
             onClick={this.handleDeletePost}
             variant='outline-danger'
@@ -40,11 +49,13 @@ export default class SinglePost extends Component {
           >
             X
           </Button>
-          <Button variant='outline-warning' className='rounded-circle'>
-            ?
-          </Button>
+          <EditModal>
+            <Button variant='outline-warning' className='rounded-circle'>
+              ?
+            </Button>
+          </EditModal>
         </div>
-      </div>
+      </Col>
     );
   }
 }
