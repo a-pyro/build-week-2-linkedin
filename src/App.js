@@ -9,12 +9,6 @@ import Footer from './components/Footer';
 // import NavBar from './components/NavBar';
 
 export default class App extends Component {
-  state = {
-    loggeUser: null,
-  };
-
-  setLoggedUser = (user) => this.setState({ loggeUser: user });
-
   render() {
     return (
       <Router>
