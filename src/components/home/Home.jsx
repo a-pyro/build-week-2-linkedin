@@ -22,50 +22,26 @@ export default class Home extends Component {
       }
     );
     const data = await resp.json();
-    // console.log(data);
+
     this.setState({ user: data });
     this.setState({ isLoading: false });
+    // console.log(this.state.user);
   };
 
-  // fetchExperiences = async () => {
-  //   this.setState({ isLoading: true });
-  //   console.log(this.state.user._id);
-  //   console.log(
-  //     `https://striveschool-api.herokuapp.com/api/profile/${this.state.user._id}/experiences`
-  //   );
-  //   const resp = await fetch(
-  //     `https://striveschool-api.herokuapp.com/api/profile/${this.state.user._id}/experiences`,
-  //     {
-  //       headers: {
-  //         Authorization:
-  //           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWEyNzZmZDIyODAwMTUzZmRiYjEiLCJpYXQiOjE2MTc2OTczMTksImV4cCI6MTYxODkwNjkxOX0.bSzAALu5Ose7Gdie6QifObaHxeHflzff7nHtUlrYWfI',
-  //       },
-  //     }
-  //   );
-  //   // console.log(resp);
-  //   const data = await resp.json();
-  //   // console.log(data);
-  //   this.setState({ userExperciences: data });
-  //   this.setState({ isLoading: false });
-  // };
-
   componentDidMount = () => {
-    const personToFetch = this.props.match.params.id
-      ? this.props.match.params.id
-      : 'me';
-
-    console.log(personToFetch);
-    this.fetchUser(personToFetch);
+    // console.log(this.props.match);
+    // console.log(this.props.match.params);
+    this.fetchUser(this.props.match.params.id);
   };
 
   componentDidUpdate = (prevProp, prevState) => {
-    if (prevState.user !== this.state.user) {
-      // this.fetchExperiences();
+    if (prevProp.match.params !== this.props.match.params) {
+      // console.log(this.props.match);
+      // console.log(this.props.match.params);
+      this.fetchUser(this.props.match.params.id);
     }
   };
   render() {
-    // console.log(this.props.match.params.id);
-    console.log(this.state.user);
     return (
       <Container>
         <Row>

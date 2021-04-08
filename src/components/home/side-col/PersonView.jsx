@@ -10,18 +10,14 @@ const PersonView = ({ _id, name, surname, title, image, idx, history }) => {
     )}`;
   };
 
-  // const handleClick = () => {
-  //   console.log(history);
-  //   history.push(`/profile/${_id}`);
-  // };
+  const handleClick = () => {
+    // console.log(history);
+    history.push(`/profile/${_id}`);
+  };
   // console.log(image);
   return (
     <>
-      <StyledRow
-        onClick={() => history.push('/profile/' + _id)}
-        noGutters
-        className=' mt-2'
-      >
+      <StyledRow onClick={handleClick} noGutters className=' mt-2'>
         <Col md={3} lg={2} className='text-center'>
           <Image onError={replaceBrokenImg} src={image} fluid />
         </Col>
