@@ -5,6 +5,7 @@ import { HiOutlinePhotograph } from 'react-icons/hi';
 import { RiVideoFill } from 'react-icons/ri';
 import { RiCalendarEventFill } from 'react-icons/ri';
 import { GrArticle } from 'react-icons/gr';
+import CreateModal from './CreateModal';
 
 export default class CreatePost extends Component {
   render() {
@@ -12,14 +13,16 @@ export default class CreatePost extends Component {
     return (
       <StyledRow className='rounded p-2 py-3'>
         <Col xs={12}>
-          <div className='d-flex'>
+          <div className='d-flex align-items-center'>
             <Image fluid roundedCircle src={this.props.userLogged?.image} />
-            <Button
-              variant='outline-secondary'
-              className='rounded-pill w-100 text-left ml-2 font-weight-bold'
-            >
-              Start a post
-            </Button>
+            <CreateModal>
+              <Button
+                variant='outline-secondary'
+                className='rounded-pill text-left w-100 ml-2 font-weight-bold'
+              >
+                Start a post
+              </Button>{' '}
+            </CreateModal>
           </div>
         </Col>
         <Col xs={12} className='mt-3'>
