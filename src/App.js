@@ -17,7 +17,7 @@ export default class App extends Component {
         <Switch>
           <Route path='/' exact component={NewsFeed} />
           {/* <Route path='/profile/:id' component={Home} /> */}
-          <Route path='/profile/:id' render={Home} />
+          <Route path='/profile/:id' component={Home} />
         </Switch>
         <Footer />
       </Router>

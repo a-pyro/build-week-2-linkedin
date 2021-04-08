@@ -25,6 +25,7 @@ export default class Home extends Component {
 
     this.setState({ user: data });
     this.setState({ isLoading: false });
+    // console.log(data);
     // console.log(this.state.user);
   };
 

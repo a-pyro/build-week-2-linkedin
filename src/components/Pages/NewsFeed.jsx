@@ -8,6 +8,7 @@ export default class NewsFeed extends Component {
   state = {
     isLoading: true,
     posts: [],
+    userLogged: 'ardi',
   };
 
   getPosts = async () => {
@@ -23,6 +24,7 @@ export default class NewsFeed extends Component {
       );
       const posts = await resp.json();
       console.log(posts[0]);
+      this.setState({ posts });
       this.setState({ isLoading: false });
     } catch (error) {
       console.log(error);
@@ -34,13 +36,21 @@ export default class NewsFeed extends Component {
     this.getPosts();
   };
 
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   if (prevState.posts !== this.state.posts) this.getPosts();
+  // };
+
   render() {
     return (
       <>
         <Container>
           <h1>it's cool to be feed</h1>
           <CreatePost />
-          <PostList />
+          <PostList
+            posts={this.state.posts}
+            userLogged={this.state.userLogged}
+            getPosts={this.getPosts}
+          />
         </Container>
       </>
     );
