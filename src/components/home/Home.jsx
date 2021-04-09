@@ -20,6 +20,7 @@ export default class Home extends Component {
         },
       }
     );
+
     const data = await resp.json();
     this.setState({ user: data });
     this.setState({ isLoading: false });
