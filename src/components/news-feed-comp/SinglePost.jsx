@@ -99,19 +99,19 @@ export default class SinglePost extends Component {
               <Button
                 onClick={this.handleDeletePost}
                 variant='outline-danger'
-                className='rounded-circle'
+                className='rounded-pill'
               >
                 X
               </Button>
               {/* <EditModal text={this.props.post.text}>
-                <Button variant='outline-warning' className='rounded-circle'>
+                <Button variant='outline-warning' className='rounded-pill'>
                   ?
                 </Button>
               </EditModal>{' '} */}
               <Button
                 onClick={this.handleEdit}
                 variant='outline-warning'
-                className='rounded-circle'
+                className='rounded-pill'
               >
                 Edit
               </Button>
@@ -141,19 +141,19 @@ export default class SinglePost extends Component {
               <Button
                 onClick={this.handleDeletePost}
                 variant='outline-danger'
-                className='rounded-circle'
+                className='rounded-pill'
               >
                 X
               </Button>
               {/* <EditModal text={this.props.post.text}>
-                <Button variant='outline-warning' className='rounded-circle'>
+                <Button variant='outline-warning' className='rounded-pill'>
                   ?
                 </Button>
               </EditModal>{' '} */}
               <Button
                 onClick={this.handleSave}
                 variant='outline-info'
-                className='rounded-circle'
+                className='rounded-pill'
               >
                 Save
               </Button>
