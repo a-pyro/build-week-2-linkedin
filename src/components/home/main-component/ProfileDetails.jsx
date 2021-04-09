@@ -1,8 +1,8 @@
-import React from "react";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
-import {} from "react-router-dom";
-import styled from "styled-components";
-import { BsPencil } from "react-icons/bs";
+import React from 'react';
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import {} from 'react-router-dom';
+import styled from 'styled-components';
+import { BsPencil } from 'react-icons/bs';
 
 const StyledContainer = styled(Container)`
   border-radius: 3px;
@@ -54,7 +54,7 @@ class PersonalDetails extends React.Component {
   };
 
   replaceBrokenImg = (e) => {
-    console.log("img src not fount, dont worrie, got a fallback :)");
+    console.log('img src not fount, dont worrie, got a fallback :)');
     e.target.src = `https://picsum.photos/100/100?random=${Math.ceil(
       Math.random() * 1000
     )}`;
@@ -62,23 +62,22 @@ class PersonalDetails extends React.Component {
 
   fetchUser = async () => {
     let response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/me ",
+      'https://striveschool-api.herokuapp.com/api/profile/me ',
       {
-        method: "GET",
+        method: 'GET',
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwMTQzODUxZmFhYTAwMTViYWRmZGYiLCJpYXQiOjE2MTc5NTc5NDUsImV4cCI6MTYxOTE2NzU0NX0.yjLY9UryAgaHA9UblurFwQBEiZJJFT4DIsYWIsZ6KQE",
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwMTQzODUxZmFhYTAwMTViYWRmZGYiLCJpYXQiOjE2MTc5NTc5NDUsImV4cCI6MTYxOTE2NzU0NX0.yjLY9UryAgaHA9UblurFwQBEiZJJFT4DIsYWIsZ6KQE',
         },
       }
     );
     let data = response.json();
-    data.
+
     this.setState({ user: data });
-    
   };
-  
-  componentDidUpdate(){
-      console.log(this.state.user)
+
+  componentDidUpdate() {
+    console.log(this.state.user);
   }
   componentDidMount() {
     this.fetchUser();
@@ -91,41 +90,41 @@ class PersonalDetails extends React.Component {
         </StyledDiv>
         <DetailsDiv>
           <Row>
-            <FlexColRow className="col-12">
+            <FlexColRow className='col-12'>
               <ProfileImage
                 onError={this.replaceBrokenImg}
                 src={this.state.user.image}
               />
-              <BsPencil className="mt-2" />
+              <BsPencil className='mt-2' />
             </FlexColRow>
           </Row>
           <Row>
-            <FlexColRow className="col-7 mt-3">
+            <FlexColRow className='col-7 mt-3'>
               <h4>
                 {this.state.user.name} {this.state.user.surname}
               </h4>
             </FlexColRow>
-            <Col style={{ display: "flex" }} className="col-5 mt-3">
+            <Col style={{ display: 'flex' }} className='col-5 mt-3'>
               <img
-                alt="education"
-                width="32px"
-                height="32px"
-                src="https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1625702400&v=beta&t=3rWOTtMt8Oa6T_gmK3KDVW1m0AsgXMfL-JXwC0n4tXo"
+                alt='education'
+                width='32px'
+                height='32px'
+                src='https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1625702400&v=beta&t=3rWOTtMt8Oa6T_gmK3KDVW1m0AsgXMfL-JXwC0n4tXo'
               />
-              <h6 style={{ margin: "6px 0 0 2px" }}>Strive School</h6>
+              <h6 style={{ margin: '6px 0 0 2px' }}>Strive School</h6>
             </Col>
           </Row>
           <Row>
             <FlexColColumn>
               <h6>Full-Stack Software Engineering at Strive School</h6>
               <h6>
-                {this.state.user.area} -<a href="">56 connections</a> -
-                <a href="">Contact info</a>
+                {this.state.user.area} -<a href=''>56 connections</a> -
+                <a href=''>Contact info</a>
               </h6>
             </FlexColColumn>
           </Row>
           <Row>
-            <Col className="col-12 mt-3">
+            <Col className='col-12 mt-3'>
               <Button>Open to</Button>
               <Button>Add profile section</Button>
               <Button>More...</Button>
