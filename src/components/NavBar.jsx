@@ -21,8 +21,8 @@ import { AiFillMessage } from "react-icons/ai";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { CgMenuGridR } from "react-icons/cg";
-import fine from "./images/fine2.jpg";
-import fined from "./images/fine4.jpg";
+import fine from "images/fine2.jpg";
+import fined from "images/fine4.jpg";
 import styled from "styled-components";
 import NavListItem from "./navbar-stuff/NavListItem";
 class NavBar extends React.Component {
@@ -415,7 +415,7 @@ const StyledNavbar = styled(Navbar)`
     padding: 10;
 
     display: "inline-block";
-    background-image: url("./images/fine4.jpg");
+    background-image: url("images/fine4.jpg");
     border-radius: "50%";
     width: 15;
     height: 15;
@@ -428,7 +428,7 @@ const StyledNavbar = styled(Navbar)`
   & .circle {
     padding: 10;
     display: "inline-block";
-    background-image: url("./images/fine2.jpg");
+    background-image: url("images/fine2.jpg");
     border-radius: "50%";
     width: 35;
     height: 35;
