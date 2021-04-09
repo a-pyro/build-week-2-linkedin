@@ -57,30 +57,7 @@ class PersonalDetails extends React.Component {
     )}`;
   };
 
-  // fetchUser = async () => {
-  //   let response = await fetch(
-  //     'https://striveschool-api.herokuapp.com/api/profile/me ',
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         Authorization:
-  //           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwMTQzODUxZmFhYTAwMTViYWRmZGYiLCJpYXQiOjE2MTc5NTc5NDUsImV4cCI6MTYxOTE2NzU0NX0.yjLY9UryAgaHA9UblurFwQBEiZJJFT4DIsYWIsZ6KQE',
-  //       },
-  //     }
-  //   );
-  //   let data = response.json();
-
-  //   this.setState({ user: data });
-  // };
-
-  // componentDidUpdate() {
-  //   console.log(this.props.user);
-  // }
-  // componentDidMount() {
-  //   this.fetchUser();
-  // }
   render() {
-    console.log(this.props.user);
     return (
       <StyledContainer>
         <StyledDiv>

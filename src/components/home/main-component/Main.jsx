@@ -9,13 +9,18 @@ import Education from './Education';
 import PersonalDetails from './ProfileDetails';
 // import Dashboard from 'components/home/main-component/Dashboard';
 
-const Main = ({ user }) => {
+const Main = ({ user, userLogged, experiences }) => {
+  console.log('exp in main', experiences);
   return (
     <Col md={8}>
       <PersonalDetails user={user} />
       <ProfileStrength />
       <Dashboard />
-      <Education />
+      <Education
+        experiences={experiences}
+        userLogged={userLogged}
+        user={user}
+      />
       <Activity />
       <Interests />
       <Skills />
