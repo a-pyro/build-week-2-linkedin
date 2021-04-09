@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import Home from './components/home/Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -6,16 +7,17 @@ import TempNavBar from 'components/TempNavBar';
 
 import Footer from './components/Footer';
 
-import NavBar from './components/NavBar';
+// import NavBar from './components/NavBar';
 
 export default class App extends Component {
   render() {
     return (
       <Router>
         <TempNavBar />
-        <NavBar />
+        {/* <NavBar /> */}
         <Switch>
           <Route path='/' exact component={NewsFeed} />
+          {/* <Route path='/profile/:id' component={Home} /> */}
           <Route path='/profile/:id' component={Home} />
         </Switch>
         <Footer />

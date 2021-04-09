@@ -6,7 +6,6 @@ import Side from './side-col/Side';
 export default class Home extends Component {
   state = {
     user: {},
-    userExperciences: {},
     isLoading: true,
   };
 
@@ -22,15 +21,16 @@ export default class Home extends Component {
       }
     );
     const data = await resp.json();
-
     this.setState({ user: data });
     this.setState({ isLoading: false });
+    // console.log(data);
     // console.log(this.state.user);
   };
 
   componentDidMount = () => {
     // console.log(this.props.match);
     // console.log(this.props.match.params);
+
     this.fetchUser(this.props.match.params.id);
   };
 
@@ -41,11 +41,13 @@ export default class Home extends Component {
       this.fetchUser(this.props.match.params.id);
     }
   };
+
   render() {
     return (
       <Container>
         <Row>
           <Main user={this.state.user} />
+
           <Side user={this.state.user} />
         </Row>
       </Container>

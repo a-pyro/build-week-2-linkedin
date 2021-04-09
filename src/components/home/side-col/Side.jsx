@@ -24,3 +24,4 @@ const Side = ({ user: { image } }) => {
 };
 
 export default Side;
+
