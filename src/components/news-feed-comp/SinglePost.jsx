@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Col } from 'react-bootstrap';
+import { Button, Col, Card } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
 // import EditModal from './EditModal';
+
+import { BsFillTrashFill } from 'react-icons/bs';
+import { AiTwotoneEdit } from 'react-icons/ai';
+import { GrStatusGood } from 'react-icons/gr';
 
 //
 export default class SinglePost extends Component {
@@ -71,12 +75,16 @@ export default class SinglePost extends Component {
     // console.log(this.props);
 
     return (
-      <Col xs={6} className='mt-3'>
-        <div className='border rounded p-3 bg-white'>
-          {/* <span>{this.props.post.text}</span> */}
+      <Col xs={12} className='mt-3 px-0'>
+        <Card className='border rounded p-3 px-4 bg-white'>
           {!this.state.editMode && (
             <>
               {' '}
+              <h6 className='font-weight-bold mt-3'>
+                {' '}
+                by{' '}
+                {this.props.post.user.name + ' ' + this.props.post.user.surname}
+              </h6>
               <textarea
                 style={{
                   color: 'black',
@@ -84,82 +92,66 @@ export default class SinglePost extends Component {
                   outline: 'none',
                   border: 'none',
                   background: 'unset',
+                  minHeight: '5vh',
+                  maxHeight: '15vh',
                 }}
-                // type='text'
                 disabled
-                // value={this.props.post.text}
                 value={this.state.text}
               />
-              <span>
-                {' '}
-                by{' '}
-                {this.props.post.user.name + ' ' + this.props.post.user.surname}
-              </span>
-              <p></p>
-              <Button
-                onClick={this.handleDeletePost}
-                variant='outline-danger'
-                className='rounded-circle'
-              >
-                X
-              </Button>
-              {/* <EditModal text={this.props.post.text}>
-                <Button variant='outline-warning' className='rounded-circle'>
-                  ?
-                </Button>
-              </EditModal>{' '} */}
-              <Button
-                onClick={this.handleEdit}
-                variant='outline-warning'
-                className='rounded-circle'
-              >
-                Edit
-              </Button>
+              <div className='d-flex align-items-center mt-3'>
+                <BsFillTrashFill
+                  onClick={this.handleDeletePost}
+                  style={{ cursor: 'pointer', fontSize: '1.3rem' }}
+                  className='mr-3'
+                />
+
+                <AiTwotoneEdit
+                  style={{ cursor: 'pointer', fontSize: '1.5rem' }}
+                  onClick={this.handleEdit}
+                />
+              </div>
             </>
           )}
           {this.state.editMode && (
             <>
               {' '}
+              <h6 className='font-weight-bold'>
+                {' '}
+                by{' '}
+                {this.props.post.user.name + ' ' + this.props.post.user.surname}
+              </h6>
               <textarea
                 style={{
                   resize: 'none',
                   outline: 'none',
                   border: 'none',
                   background: 'unset',
+                  minHeight: '5vh',
+                  maxHeight: '15vh',
                 }}
-                // type='text'
                 onChange={this.handleChange}
                 value={this.state.text}
                 autoFocus
               />
-              <span>
-                {' '}
-                by{' '}
-                {this.props.post.user.name + ' ' + this.props.post.user.surname}
-              </span>
-              <p></p>
-              <Button
-                onClick={this.handleDeletePost}
-                variant='outline-danger'
-                className='rounded-circle'
-              >
-                X
-              </Button>
-              {/* <EditModal text={this.props.post.text}>
-                <Button variant='outline-warning' className='rounded-circle'>
-                  ?
-                </Button>
-              </EditModal>{' '} */}
-              <Button
-                onClick={this.handleSave}
-                variant='outline-info'
-                className='rounded-circle'
-              >
-                Save
-              </Button>
+              <div className='d-flex align-items-center mt-3'>
+                <BsFillTrashFill
+                  onClick={this.handleDeletePost}
+                  style={{ cursor: 'pointer', fontSize: '1.3rem' }}
+                  className='mr-3'
+                />
+
+                <GrStatusGood
+                  style={{
+                    cursor: 'pointer',
+                    fontSize: '1.5rem',
+                    color: 'green',
+                  }}
+                  onClick={this.handleSave}
+                />
+              </div>
             </>
           )}
-        </div>
+        </Card>
       </Col>
     );
   }
