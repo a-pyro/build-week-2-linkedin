@@ -59,6 +59,11 @@ export default class NewsFeed extends Component {
   // };
 
   render() {
+    // console.log(
+    //   this.state.posts.filter(
+    //     (post) => post.user && post.user.name.toLowerCase() === 'slavko'
+    //   )
+    // );
     // console.log(this.state.userLogged);
     return (
       <>

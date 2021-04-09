@@ -26,9 +26,11 @@ export default class SinglePost extends Component {
           },
         }
       );
-      console.log(resp);
+      // console.log(resp);
       // this.setState({ isLoading: false });
-
+      if (!resp.ok) {
+        // console.log(resp);
+      }
       this.props.getPosts();
     } else {
       alert('non puoi toccare i post degli altri 💩');
@@ -65,8 +67,10 @@ export default class SinglePost extends Component {
         },
       }
     );
+    if (!resp.ok) {
+      // console.log(resp);
+    }
 
-    console.log(resp);
     this.setState({ editMode: false });
   };
 
@@ -79,16 +83,20 @@ export default class SinglePost extends Component {
         <Card className='border rounded p-3 px-4 bg-white'>
           {!this.state.editMode && (
             <>
-              <Image
-                style={{ width: '70px' }}
-                roundedCircle
-                src={this.props.post.user.image}
-              />{' '}
-              <h6 className='font-weight-bold mt-3'>
-                {' '}
-                by{' '}
-                {this.props.post.user.name + ' ' + this.props.post.user.surname}
-              </h6>
+              <div className='mb-3'>
+                <Image
+                  style={{ width: '70px' }}
+                  roundedCircle
+                  src={this.props.post.user.image}
+                />{' '}
+                <span className='font-weight-bold ml-3'>
+                  {' '}
+                  by{' '}
+                  {this.props.post.user.name +
+                    ' ' +
+                    this.props.post.user.surname}
+                </span>
+              </div>
               <textarea
                 style={{
                   color: 'black',
@@ -102,6 +110,16 @@ export default class SinglePost extends Component {
                 disabled
                 value={this.state.text}
               />
+              {this.props.post.image && (
+                <Image
+                  style={{
+                    // width: '100%',
+                    maxHeight: '30vh',
+                    objectFit: 'contain',
+                  }}
+                  src={this.props.post.image}
+                />
+              )}
               {this.props.userLogged._id === this.props.post.user._id && (
                 <div className='d-flex align-items-center mt-3'>
                   <BsFillTrashFill
@@ -143,6 +161,16 @@ export default class SinglePost extends Component {
                 value={this.state.text}
                 autoFocus
               />
+              {this.props.post.image && (
+                <Image
+                  style={{
+                    // width: '100%',
+                    maxHeight: '30vh',
+                    objectFit: 'contain',
+                  }}
+                  src={this.props.post.image}
+                />
+              )}
               <div className='d-flex align-items-center mt-3'>
                 <BsFillTrashFill
                   onClick={this.handleDeletePost}
