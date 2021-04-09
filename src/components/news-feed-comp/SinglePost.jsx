@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Card, Image } from 'react-bootstrap';
+import { Col, Card, Image } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
 // import EditModal from './EditModal';
 

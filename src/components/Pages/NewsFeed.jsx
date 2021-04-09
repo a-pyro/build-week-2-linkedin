@@ -24,7 +24,7 @@ export default class NewsFeed extends Component {
         }
       );
       const posts = await resp.json();
-      console.log(posts[0]);
+      // console.log(posts[0]);
       this.setState({ posts });
       this.setState({ isLoading: false });
     } catch (error) {
@@ -59,12 +59,12 @@ export default class NewsFeed extends Component {
   // };
 
   render() {
-    console.log(this.state.userLogged);
+    // console.log(this.state.userLogged);
     return (
       <>
         <Container className='mt-4 px-4'>
           <Row>
-            <Col md={8}>
+            <Col md={8} className='mt-3'>
               <CreatePost
                 userLogged={this.state.userLogged}
                 getPosts={this.getPosts}

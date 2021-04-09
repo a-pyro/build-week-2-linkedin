@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Image, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { BsPencil } from 'react-icons/bs';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { withRouter } from 'react-router-dom';
@@ -57,15 +57,15 @@ const SingleExperience = ({
 
 export default withRouter(SingleExperience);
 
-const ProfileImage = styled(Image)`
-  margin-top: -104px;
-  z-index: 4;
-  width: 160px;
-  height: 160px;
-  background-clip: content-box;
-  border-radius: 50%;
-  box-sizing: border-box;
-`;
+// const ProfileImage = styled(Image)`
+//   margin-top: -104px;
+//   z-index: 4;
+//   width: 160px;
+//   height: 160px;
+//   background-clip: content-box;
+//   border-radius: 50%;
+//   box-sizing: border-box;
+// `;
 const FlexColColumn = styled(Col)`
   display: flex;
   flex-direction: column;

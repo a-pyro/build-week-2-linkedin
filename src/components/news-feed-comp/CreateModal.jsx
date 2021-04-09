@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Modal, Button, Form, Image, Spinner } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
 import { GrStatusGood } from 'react-icons/gr';
@@ -8,14 +8,20 @@ const CreateModal = (props) => {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
-
+  const areaRef = useRef();
   const handleClose = () => {
     setShow(false);
     setText('');
     setSuccessMsg('');
     props.getPosts();
   };
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+
+    setTimeout(() => {
+      areaRef.current.focus();
+    }, 2);
+  };
 
   const handleSubmit = async (e) => {
     console.log('ci speri');
@@ -75,6 +81,7 @@ const CreateModal = (props) => {
                   value={text}
                   placeholder='what do you want to talk about?'
                   rows={3}
+                  ref={areaRef}
                 />
               </Form.Group>
             )}

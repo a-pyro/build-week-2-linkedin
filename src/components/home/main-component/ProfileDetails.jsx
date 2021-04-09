@@ -106,8 +106,8 @@ class PersonalDetails extends React.Component {
             <FlexColColumn>
               <h6>{this.props.user.title}</h6>
               <h6>
-                {this.props.user.area} -<a href=''>56 connections</a> -
-                <a href=''>Contact info</a>
+                {this.props.user.area} - <span>56 connections</span> -{' '}
+                <span>Contact info</span>
               </h6>
             </FlexColColumn>
           </Row>
