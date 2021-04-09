@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { ardisToken } from 'data/utilities';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import CreatePost from 'components/news-feed-comp/CreatePost';
 import PostList from 'components/news-feed-comp/PostList';
+import Side from 'components/home/side-col/Side';
 
 export default class NewsFeed extends Component {
   state = {
@@ -58,19 +59,25 @@ export default class NewsFeed extends Component {
   // };
 
   render() {
+    console.log(this.state.userLogged);
     return (
       <>
         <Container className='mt-4 px-4'>
-          <CreatePost
-            userLogged={this.state.userLogged}
-            getPosts={this.getPosts}
-          />
-          <PostList
-            posts={this.state.posts}
-            userLogged={this.state.userLogged}
-            getPosts={this.getPosts}
-            isLoading={this.state.isLoading}
-          />
+          <Row>
+            <Col md={8}>
+              <CreatePost
+                userLogged={this.state.userLogged}
+                getPosts={this.getPosts}
+              />
+              <PostList
+                posts={this.state.posts}
+                userLogged={this.state.userLogged}
+                getPosts={this.getPosts}
+                isLoading={this.state.isLoading}
+              />
+            </Col>
+            <Side user={this.state.userLogged} />
+          </Row>
         </Container>
       </>
     );

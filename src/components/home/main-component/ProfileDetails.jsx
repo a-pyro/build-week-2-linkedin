@@ -51,18 +51,17 @@ const FlexColColumn = styled(Col)`
 `;
 
 const OpenToButton = styled(Button)`
-border-radius: 30px;
-background-color: rgb(10 102 194);
-margin-right: 8px;
-
-`
+  border-radius: 30px;
+  background-color: rgb(10 102 194);
+  margin-right: 8px;
+`;
 const OtherButtons = styled(Button)`
-border-radius: 30px;
-background: none;
-color: grey;
-margin-right: 8px;
-border: 1px solid grey;
-`
+  border-radius: 30px;
+  background: none;
+  color: grey;
+  margin-right: 8px;
+  border: 1px solid grey;
+`;
 class PersonalDetails extends React.Component {
   replaceBrokenImg = (e) => {
     console.log('img src not fount, dont worrie, got a fallback :)');
@@ -73,7 +72,7 @@ class PersonalDetails extends React.Component {
 
   render() {
     return (
-      <StyledContainer>
+      <StyledContainer className='mt-3'>
         <StyledDiv>
           <HeroImage />
         </StyledDiv>

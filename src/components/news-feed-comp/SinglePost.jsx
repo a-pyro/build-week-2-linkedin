@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Card } from 'react-bootstrap';
+import { Button, Col, Card, Image } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
 // import EditModal from './EditModal';
 
@@ -79,7 +79,11 @@ export default class SinglePost extends Component {
         <Card className='border rounded p-3 px-4 bg-white'>
           {!this.state.editMode && (
             <>
-              {' '}
+              <Image
+                style={{ width: '70px' }}
+                roundedCircle
+                src={this.props.post.user.image}
+              />{' '}
               <h6 className='font-weight-bold mt-3'>
                 {' '}
                 by{' '}
@@ -116,7 +120,11 @@ export default class SinglePost extends Component {
           )}
           {this.state.editMode && (
             <>
-              {' '}
+              <Image
+                style={{ width: '70px' }}
+                roundedCircle
+                src={this.props.post.user.image}
+              />{' '}
               <h6 className='font-weight-bold'>
                 {' '}
                 by{' '}

@@ -13,6 +13,10 @@ const PersonView = ({ _id, name, surname, title, image, idx, history }) => {
   const handleClick = () => {
     // console.log(history);
     history.push(`/profile/${_id}`);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
   // console.log(image);
   return (
