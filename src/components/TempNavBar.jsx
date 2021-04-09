@@ -11,32 +11,30 @@ import {
 import { Link, withRouter } from 'react-router-dom';
 
 class TempNavBar extends Component {
-  makeLinkActive = () => {
-    switch (this.props.location.pathname) {
-      case '/':
-        return 'active';
-      case '/profile/me':
-        return 'active';
-      default:
-        return '';
-    }
-  };
-
   render() {
     return (
       <Navbar bg='light' expand='lg' className='mb-3'>
         <Container>
-          <Navbar.Brand href='#home'>React-Bootstrap</Navbar.Brand>
+          <Link to='/' className='navbar-brand pb-2 font-weight-bold'>
+            Fakedin
+          </Link>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='mr-auto'>
               {/* <Nav.Link href='#home'>Home</Nav.Link>
               <Nav.Link href='#link'>Me</Nav.Link> */}
-              <Link className={`nav-link ${this.makeLinkActive}`} to='/'>
+              <Link
+                className={`p-0 m-2 nav-link ${
+                  this.props.location.pathname === '/' ? 'active' : ''
+                }`}
+                to='/'
+              >
                 Home
               </Link>
               <Link
-                className={`nav-link ${this.makeLinkActive}`}
+                className={`p-0 m-2 nav-link ${
+                  this.props.location.pathname === '/profile/me' ? 'active' : ''
+                }`}
                 to='/profile/me'
               >
                 Me

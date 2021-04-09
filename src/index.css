@@ -26,3 +26,7 @@ code {
 #root {
   background: #f3f2ef;
 }
+
+.nav-link.active {
+  border-bottom: 5px solid var(--color-hover-btn);
+}
