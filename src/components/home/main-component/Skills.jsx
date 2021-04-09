@@ -76,7 +76,7 @@ export default class Skills extends Component {
         </StyledContainer>
         <StyledSection
           onClick={this.handleClick}
-          className='d-flex justify-content-center py-2 px-0 align-items-center rounded-bottom'
+          className='d-flex justify-content-center py-2 mb-3 px-0 align-items-center rounded-bottom'
         >
           {!this.state.showMore && (
             <>

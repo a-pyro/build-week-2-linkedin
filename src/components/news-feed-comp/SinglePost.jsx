@@ -98,18 +98,20 @@ export default class SinglePost extends Component {
                 disabled
                 value={this.state.text}
               />
-              <div className='d-flex align-items-center mt-3'>
-                <BsFillTrashFill
-                  onClick={this.handleDeletePost}
-                  style={{ cursor: 'pointer', fontSize: '1.3rem' }}
-                  className='mr-3'
-                />
+              {this.props.userLogged._id === this.props.post.user._id && (
+                <div className='d-flex align-items-center mt-3'>
+                  <BsFillTrashFill
+                    onClick={this.handleDeletePost}
+                    style={{ cursor: 'pointer', fontSize: '1.3rem' }}
+                    className='mr-3'
+                  />
 
-                <AiTwotoneEdit
-                  style={{ cursor: 'pointer', fontSize: '1.5rem' }}
-                  onClick={this.handleEdit}
-                />
-              </div>
+                  <AiTwotoneEdit
+                    style={{ cursor: 'pointer', fontSize: '1.5rem' }}
+                    onClick={this.handleEdit}
+                  />
+                </div>
+              )}
             </>
           )}
           {this.state.editMode && (
@@ -123,9 +125,9 @@ export default class SinglePost extends Component {
               <textarea
                 style={{
                   resize: 'none',
-                  outline: 'none',
-                  border: 'none',
-                  background: 'unset',
+                  // outline: 'none',
+                  // border: 'none',
+                  // background: 'unset',
                   minHeight: '5vh',
                   maxHeight: '15vh',
                 }}

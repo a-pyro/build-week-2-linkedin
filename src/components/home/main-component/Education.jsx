@@ -10,7 +10,7 @@ import CustomModal from './CustomModal';
 
 const StyledContainer = styled(Container)`
   border-radius: 3px;
-  background-color: white; 
+  background-color: white;
   border: 1px solid #dddcd9;
   padding: 0 0 24px;
 `;
@@ -78,7 +78,7 @@ class EducationComponent extends React.Component {
   render() {
     console.log('loggedin', this.props.experiences);
     return (
-      <StyledContainer>
+      <StyledContainer className='mt-3'>
         <StyledDiv>
           <FlexColRow>
             <h4>Experiences</h4>

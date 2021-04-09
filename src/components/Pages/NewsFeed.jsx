@@ -60,8 +60,7 @@ export default class NewsFeed extends Component {
   render() {
     return (
       <>
-        <Container>
-          <h1>it's cool to be feed</h1>
+        <Container className='mt-4 px-4'>
           <CreatePost
             userLogged={this.state.userLogged}
             getPosts={this.getPosts}

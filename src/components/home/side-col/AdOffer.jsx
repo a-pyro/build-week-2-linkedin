@@ -1,4 +1,5 @@
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import { RiSuitcaseFill } from 'react-icons/ri';
 
 const AdOffer = ({ image }) => {
   return (
@@ -22,11 +23,14 @@ const AdOffer = ({ image }) => {
             <Image style={{ width: '70px' }} fluid roundedCircle src={image} />
           </Col>
           <Col xs={6} className='text-left pl-2 mb-3'>
-            <Image
+            {/* <Image
               fluid
               rounded
               src='https://media-exp1.licdn.com/dms/image/C4E0EAQHi7DEqCGnhRg/rightRail-logo-shrink_200_200/0/1599153620577?e=1617901200&v=beta&t=JCmtOB0pxQaGPnVCOYmXfzLMjPHtmpdvZkCcs1pcE6A'
               style={{ width: '70px' }}
+            /> */}
+            <RiSuitcaseFill
+              style={{ fontSize: '3.8rem', color: 'steelblue' }}
             />
           </Col>
 
