@@ -3,7 +3,10 @@ import { Modal, Button } from 'react-bootstrap';
 
 export default class CustomModal extends Component {
   state = {
-    fields: {},
+    area: '',
+    company: '',
+    role: '',
+    description: '',
   };
 
   PostData = async () => {
@@ -12,11 +15,12 @@ export default class CustomModal extends Component {
         `https://striveschool-api.herokuapp.com/api/profile/${'userId'}/experiences`,
         {
           method: this.props.method,
-          body: JSON.stringify(this.state.fields),
+          body: JSON.stringify(this.state),
         }
       );
     } catch (error) {}
   };
+
   componentDidMount = () => {
     if (this.props.exp) {
       this.setState({ fields: this.props.exp });
@@ -26,6 +30,10 @@ export default class CustomModal extends Component {
     if (prevProps.exp !== this.props.exp && this.props.exp) {
       this.setState({ fields: this.props.exp });
     }
+  };
+  handleChange = (e) => {
+    const value = e.target.value;
+    this.setState({ ...this.state.fields, [e.target.name]: value });
   };
 
   render() {
@@ -43,13 +51,42 @@ export default class CustomModal extends Component {
             <Modal.Title>Modal title</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <input value={this.state.fields.role} />
+            <label>Area</label>
+            <input
+              className='d-block'
+              onChange={this.handleChange}
+              name='area'
+              value={this.state.area}
+            />
+            <label> company</label>
+            <input
+              className='d-block'
+              onChange={this.handleChange}
+              name='company'
+              value={this.state.company}
+            />
+            <label>role </label>
+            <input
+              className='d-block'
+              onChange={this.handleChange}
+              name='role'
+              value={this.state.role}
+            />
+            <label>description </label>
+            <input
+              className='d-block'
+              onChange={this.handleChange}
+              name='description'
+              value={this.state.description}
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={this.props.handleClose}>
               Close
             </Button>
-            <Button variant='primary'>Understood</Button>
+            <Button variant='primary' onClick={this.PostData}>
+              go!
+            </Button>
           </Modal.Footer>
         </Modal>
       </>
