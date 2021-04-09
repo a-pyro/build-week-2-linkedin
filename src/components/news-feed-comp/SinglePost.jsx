@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Col, Card } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
 // import EditModal from './EditModal';
-import styled from 'styled-components';
+
 import { BsFillTrashFill } from 'react-icons/bs';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import { GrStatusGood } from 'react-icons/gr';
@@ -75,7 +75,7 @@ export default class SinglePost extends Component {
     // console.log(this.props);
 
     return (
-      <StyledCol xs={12} className='mt-3 px-0'>
+      <Col xs={12} className='mt-3 px-0'>
         <Card className='border rounded p-3 px-4 bg-white'>
           {!this.state.editMode && (
             <>
@@ -92,18 +92,13 @@ export default class SinglePost extends Component {
                   outline: 'none',
                   border: 'none',
                   background: 'unset',
+                  minHeight: '5vh',
+                  maxHeight: '15vh',
                 }}
                 disabled
                 value={this.state.text}
               />
-              {/* <Button
-                  onClick={this.handleDeletePost}
-                  variant='outline-danger'
-                  className='rounded-pill mt-2'
-                >
-                  🚮
-                </Button> */}
-              <div className='d-flex align-items-center'>
+              <div className='d-flex align-items-center mt-3'>
                 <BsFillTrashFill
                   onClick={this.handleDeletePost}
                   style={{ cursor: 'pointer', fontSize: '1.3rem' }}
@@ -114,14 +109,6 @@ export default class SinglePost extends Component {
                   style={{ cursor: 'pointer', fontSize: '1.5rem' }}
                   onClick={this.handleEdit}
                 />
-
-                {/* <Button
-                  onClick={this.handleEdit}
-                  variant='outline-warning'
-                  className='rounded-pill mt-2'
-                >
-                  Edit
-                </Button> */}
               </div>
             </>
           )}
@@ -139,12 +126,14 @@ export default class SinglePost extends Component {
                   outline: 'none',
                   border: 'none',
                   background: 'unset',
+                  minHeight: '5vh',
+                  maxHeight: '15vh',
                 }}
                 onChange={this.handleChange}
                 value={this.state.text}
                 autoFocus
               />
-              <div className='d-flex align-items-center'>
+              <div className='d-flex align-items-center mt-3'>
                 <BsFillTrashFill
                   onClick={this.handleDeletePost}
                   style={{ cursor: 'pointer', fontSize: '1.3rem' }}
@@ -163,16 +152,7 @@ export default class SinglePost extends Component {
             </>
           )}
         </Card>
-      </StyledCol>
+      </Col>
     );
   }
 }
-
-const StyledCol = styled(Col)`
-  color: #4b4b4b;
-  border: none;
-
-  /* & div {
-    padding: 10px;
-  } */
-`;
