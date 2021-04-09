@@ -6,7 +6,8 @@ import { BsPencil } from 'react-icons/bs';
 
 const StyledContainer = styled(Container)`
   border-radius: 3px;
-  border: solid grey 0.5px;
+  background-color: white;
+  border: 1px solid #dddcd9;
   padding: 0;
 `;
 const StyledDiv = styled.div`
@@ -15,7 +16,7 @@ const StyledDiv = styled.div`
   padding-bottom: 25%;
 `;
 const HeroImage = styled(Image)`
-  background-image: url(https://i.stack.imgur.com/y9DpT.jpg);
+  background-image: url(https://www.snsmarketing.es/blog/wp-content/uploads/2018/10/linkedin.png);
   position: relative;
   width: 100%;
   min-height: 195.5px;
@@ -49,6 +50,19 @@ const FlexColColumn = styled(Col)`
   flex-direction: column;
 `;
 
+const OpenToButton = styled(Button)`
+border-radius: 30px;
+background-color: rgb(10 102 194);
+margin-right: 8px;
+
+`
+const OtherButtons = styled(Button)`
+border-radius: 30px;
+background: none;
+color: grey;
+margin-right: 8px;
+border: 1px solid grey;
+`
 class PersonalDetails extends React.Component {
   replaceBrokenImg = (e) => {
     console.log('img src not fount, dont worrie, got a fallback :)');
@@ -100,9 +114,9 @@ class PersonalDetails extends React.Component {
           </Row>
           <Row>
             <Col className='col-12 mt-3'>
-              <Button>Open to</Button>
-              <Button>Add profile section</Button>
-              <Button>More...</Button>
+              <OpenToButton>Open to</OpenToButton>
+              <OtherButtons>Add profile section</OtherButtons>
+              <OtherButtons>More...</OtherButtons>
             </Col>
           </Row>
         </DetailsDiv>

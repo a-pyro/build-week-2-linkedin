@@ -10,7 +10,8 @@ import CustomModal from './CustomModal';
 
 const StyledContainer = styled(Container)`
   border-radius: 3px;
-  border: solid grey 0.5px;
+  background-color: white; 
+  border: 1px solid #dddcd9;
   padding: 0 0 24px;
 `;
 const StyledDiv = styled.div`
