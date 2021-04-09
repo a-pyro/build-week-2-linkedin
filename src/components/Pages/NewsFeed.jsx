@@ -24,7 +24,7 @@ export default class NewsFeed extends Component {
         }
       );
       const posts = await resp.json();
-      // console.log(posts[0]);
+      console.log(posts[0]);
       this.setState({ posts });
       this.setState({ isLoading: false });
     } catch (error) {
