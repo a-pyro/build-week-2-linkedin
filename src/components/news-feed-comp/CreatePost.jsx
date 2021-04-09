@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Form, Image, Row } from 'react-bootstrap';
+import { Button, Col, Image, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import { HiOutlinePhotograph } from 'react-icons/hi';
 import { RiVideoFill } from 'react-icons/ri';
@@ -15,7 +15,10 @@ export default class CreatePost extends Component {
         <Col xs={12}>
           <div className='d-flex align-items-center'>
             <Image fluid roundedCircle src={this.props.userLogged?.image} />
-            <CreateModal>
+            <CreateModal
+              getPosts={this.props.getPosts}
+              userLogged={this.props.userLogged}
+            >
               <Button
                 variant='outline-secondary'
                 className='rounded-pill text-left w-100 ml-2 font-weight-bold'
@@ -83,15 +86,3 @@ const StyledIcons = styled.div`
     background-color: lightgray;
   }
 `;
-
-{
-  /* <Form>
-  <Form.Group controlId='formBasicEmail'>
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type='email' placeholder='Enter email' />
-    <Form.Text className='text-muted'>
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
-</Form>; */
-}
