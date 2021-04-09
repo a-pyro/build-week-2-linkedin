@@ -48,11 +48,8 @@ const FlexColColumn = styled(Col)`
   display: flex;
   flex-direction: column;
 `;
-class PersonalDetails extends React.Component {
-  state = {
-    user: {},
-  };
 
+class PersonalDetails extends React.Component {
   replaceBrokenImg = (e) => {
     console.log('img src not fount, dont worrie, got a fallback :)');
     e.target.src = `https://picsum.photos/100/100?random=${Math.ceil(
@@ -60,29 +57,30 @@ class PersonalDetails extends React.Component {
     )}`;
   };
 
-  fetchUser = async () => {
-    let response = await fetch(
-      'https://striveschool-api.herokuapp.com/api/profile/me ',
-      {
-        method: 'GET',
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwMTQzODUxZmFhYTAwMTViYWRmZGYiLCJpYXQiOjE2MTc5NTc5NDUsImV4cCI6MTYxOTE2NzU0NX0.yjLY9UryAgaHA9UblurFwQBEiZJJFT4DIsYWIsZ6KQE',
-        },
-      }
-    );
-    let data = response.json();
+  // fetchUser = async () => {
+  //   let response = await fetch(
+  //     'https://striveschool-api.herokuapp.com/api/profile/me ',
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         Authorization:
+  //           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwMTQzODUxZmFhYTAwMTViYWRmZGYiLCJpYXQiOjE2MTc5NTc5NDUsImV4cCI6MTYxOTE2NzU0NX0.yjLY9UryAgaHA9UblurFwQBEiZJJFT4DIsYWIsZ6KQE',
+  //       },
+  //     }
+  //   );
+  //   let data = response.json();
 
-    this.setState({ user: data });
-  };
+  //   this.setState({ user: data });
+  // };
 
-  componentDidUpdate() {
-    console.log(this.state.user);
-  }
-  componentDidMount() {
-    this.fetchUser();
-  }
+  // componentDidUpdate() {
+  //   console.log(this.props.user);
+  // }
+  // componentDidMount() {
+  //   this.fetchUser();
+  // }
   render() {
+    console.log(this.props.user);
     return (
       <StyledContainer>
         <StyledDiv>
@@ -93,7 +91,7 @@ class PersonalDetails extends React.Component {
             <FlexColRow className='col-12'>
               <ProfileImage
                 onError={this.replaceBrokenImg}
-                src={this.state.user.image}
+                src={this.props.user.image}
               />
               <BsPencil className='mt-2' />
             </FlexColRow>
@@ -101,7 +99,7 @@ class PersonalDetails extends React.Component {
           <Row>
             <FlexColRow className='col-7 mt-3'>
               <h4>
-                {this.state.user.name} {this.state.user.surname}
+                {this.props.user.name} {this.props.user.surname}
               </h4>
             </FlexColRow>
             <Col style={{ display: 'flex' }} className='col-5 mt-3'>
@@ -116,9 +114,9 @@ class PersonalDetails extends React.Component {
           </Row>
           <Row>
             <FlexColColumn>
-              <h6>Full-Stack Software Engineering at Strive School</h6>
+              <h6>{this.props.user.title}</h6>
               <h6>
-                {this.state.user.area} -<a href=''>56 connections</a> -
+                {this.props.user.area} -<a href=''>56 connections</a> -
                 <a href=''>Contact info</a>
               </h6>
             </FlexColColumn>
