@@ -15,6 +15,7 @@ const SingleExperience = ({
   userLoggedID,
   match,
   _id,
+  location,
 }) => {
   console.log(userLoggedID);
   return (
@@ -28,7 +29,7 @@ const SingleExperience = ({
         {area && <p className='m-0'>Area: {area}</p>}
         {description && <p className='m-0'>Description: {description}</p>}
 
-        {userLoggedID === match.params.id && (
+        {location.pathname === '/profile/me' && (
           <div>
             <BsPencil
               style={{ cursor: 'pointer' }}

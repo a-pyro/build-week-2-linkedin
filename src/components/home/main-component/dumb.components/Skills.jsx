@@ -13,10 +13,10 @@ export default class Skills extends Component {
       'Computer Science',
       'Programming',
       'Frontend Development',
-      'Frontend Development',
-      'Frontend Development',
-      'Frontend Development',
-      'Frontend Development',
+      'React Dev',
+      'Css hater/lover ',
+      'Great sleeper',
+      'Cat lover',
     ],
   };
 

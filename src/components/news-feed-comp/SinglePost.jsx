@@ -110,7 +110,7 @@ export default class SinglePost extends Component {
                 disabled
                 value={this.state.text}
               />
-              {this.props.post.image && (
+              {this.props.post?.image && (
                 <Image
                   style={{
                     // width: '100%',
@@ -120,7 +120,7 @@ export default class SinglePost extends Component {
                   src={this.props.post.image}
                 />
               )}
-              {this.props.userLogged._id === this.props.post.user._id && (
+              {this.props.userLogged?._id === this.props.post.user._id && (
                 <div className='d-flex align-items-center mt-3'>
                   <BsFillTrashFill
                     onClick={this.handleDeletePost}

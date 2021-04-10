@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import Main from './main-component/Main';
-import Side from './side-col/Side';
+import Main from '../home/main-component/Main';
+import Side from '../home/side-col/Side';
+import { ardisToken } from 'data/utilities';
 
 export default class Home extends Component {
   state = {
     user: {},
     isLoading: true,
     userLogged: null,
-    experiences:[]
+    experiences: [],
   };
   fetchExp = async (id) => {
     // console.log(this.props);
@@ -24,14 +25,13 @@ export default class Home extends Component {
       `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences`,
       {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWEyNzZmZDIyODAwMTUzZmRiYjEiLCJpYXQiOjE2MTc2OTczMTksImV4cCI6MTYxODkwNjkxOX0.bSzAALu5Ose7Gdie6QifObaHxeHflzff7nHtUlrYWfI',
+          Authorization: ardisToken,
         },
       }
     );
 
     const data = await resp.json();
-    console.log(data);
+    // console.log(data);
     this.setState({ experiences: data });
   };
 
@@ -41,8 +41,7 @@ export default class Home extends Component {
       `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
       {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWEyNzZmZDIyODAwMTUzZmRiYjEiLCJpYXQiOjE2MTc2OTczMTksImV4cCI6MTYxODkwNjkxOX0.bSzAALu5Ose7Gdie6QifObaHxeHflzff7nHtUlrYWfI',
+          Authorization: ardisToken,
         },
       }
     );
@@ -50,7 +49,7 @@ export default class Home extends Component {
     const data = await resp.json();
     this.setState({ user: data });
     this.setState({ isLoading: false });
-    this.fetchExp(data._id)
+    this.fetchExp(data._id);
     // console.log(data);
     // console.log(this.state.user);
   };
@@ -60,8 +59,7 @@ export default class Home extends Component {
       `https://striveschool-api.herokuapp.com/api/profile/me`,
       {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWEyNzZmZDIyODAwMTUzZmRiYjEiLCJpYXQiOjE2MTc2OTczMTksImV4cCI6MTYxODkwNjkxOX0.bSzAALu5Ose7Gdie6QifObaHxeHflzff7nHtUlrYWfI',
+          Authorization: ardisToken,
         },
       }
     );
