@@ -7,6 +7,9 @@ export default class CustomModal extends Component {
     company: '',
     role: '',
     description: '',
+    image: '',
+    startDate: '',
+    endDate: '',
   };
 
   PostData = async () => {
@@ -26,11 +29,11 @@ export default class CustomModal extends Component {
       this.setState({ fields: this.props.exp });
     }
   };
-  componentDidUpdate = (prevProps) => {
-    if (prevProps.exp !== this.props.exp && this.props.exp) {
-      this.setState({ fields: this.props.exp });
-    }
-  };
+  // componentDidUpdate = (prevProps) => {
+  //   if (prevProps.exp !== this.props.exp && this.props.exp) {
+  //     this.setState({ fields: this.props.exp });
+  //   }
+  // };
   handleChange = (e) => {
     const value = e.target.value;
     this.setState({ ...this.state.fields, [e.target.name]: value });
@@ -78,6 +81,30 @@ export default class CustomModal extends Component {
               onChange={this.handleChange}
               name='description'
               value={this.state.description}
+            />
+            <label>startDate </label>
+            <input
+              className='d-block'
+              onChange={this.handleChange}
+              name='startDate'
+              value={this.state.startDate}
+              type='date'
+            />
+            <label>endDate </label>
+            <input
+              className='d-block'
+              onChange={this.handleChange}
+              name='endDate'
+              value={this.state.endDate}
+              type='date'
+            />
+            <label>image </label>
+            <input
+              className='d-block'
+              onChange={this.handleChange}
+              name='image'
+              value={this.state.image}
+              type='file'
             />
           </Modal.Body>
           <Modal.Footer>
