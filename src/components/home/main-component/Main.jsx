@@ -17,7 +17,7 @@ const Main = ({ user, userLogged, experiences }) => {
       <ProfileStrength />
       <Dashboard />
       <Education
-        experiences={experiences}
+        //!trryexp experiences={experiences}
         userLogged={userLogged}
         user={user}
       />

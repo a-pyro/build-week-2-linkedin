@@ -9,31 +9,31 @@ export default class Home extends Component {
     user: {},
     isLoading: true,
     userLogged: null,
-    experiences: [],
+    // experiences: [],
   };
-  fetchExp = async (id) => {
-    // console.log(this.props);
-    // console.log(this.props.userLogged);
-    // console.log(this.props.match.params.id);
+  //!tryexp fetchExp = async (id) => {
+  //   // console.log(this.props);
+  //   // console.log(this.props.userLogged);
+  //   // console.log(this.props.match.params.id);
 
-    // const idToFetch =
-    //   this.props.match.params.id === 'me'
-    //     ? this.props.userLogged._id
-    //     : this.props.match.params.id;
+  //   // const idToFetch =
+  //   //   this.props.match.params.id === 'me'
+  //   //     ? this.props.userLogged._id
+  //   //     : this.props.match.params.id;
 
-    const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences`,
-      {
-        headers: {
-          Authorization: ardisToken,
-        },
-      }
-    );
+  //   const resp = await fetch(
+  //     `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences`,
+  //     {
+  //       headers: {
+  //         Authorization: ardisToken,
+  //       },
+  //     }
+  //   );
 
-    const data = await resp.json();
-    // console.log(data);
-    this.setState({ experiences: data });
-  };
+  //   const data = await resp.json();
+  //   // console.log(data);
+  //   this.setState({ experiences: data });
+  // };
 
   fetchUser = async (personToFetch) => {
     this.setState({ isLoading: true });
@@ -49,7 +49,7 @@ export default class Home extends Component {
     const data = await resp.json();
     this.setState({ user: data });
     this.setState({ isLoading: false });
-    this.fetchExp(data._id);
+    //!tryexp this.fetchExp(data._id);
     // console.log(data);
     // console.log(this.state.user);
   };
@@ -90,7 +90,7 @@ export default class Home extends Component {
           <Main
             userLogged={this.state.userLogged?._id}
             user={this.state.user}
-            experiences={this.state.experiences}
+            //!tryexp experiences={this.state.experiences}
           />
           <Side user={this.state.user} />
         </Row>

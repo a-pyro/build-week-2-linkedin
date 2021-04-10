@@ -6,38 +6,83 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { withRouter } from 'react-router-dom';
 import SingleExperience from './SingleExperience';
 import CustomModal from './CustomModal';
+import { ardisToken } from 'data/utilities';
 
 class EducationComponent extends React.Component {
   state = {
-    show: false,
-    exp: null,
+    user: {},
+    experiences: [],
   };
 
-  // componentDidMount() {
-  //   // this.fetchExp(this.props.match.params.id);
-  //   //this.fetchExp();
-  // }
+  postExperience = async (newExp) => {
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${this.state.user._id}/experiences,`,
+      {
+        method: 'POST',
+        body: JSON.stringify(newExp),
+        headers: {
+          'Content-Type': 'application-json',
+          Authorization: ardisToken,
+        },
+      }
+    );
+    console.log(resp);
+  };
 
-  // componentDidUpdate = (prevProp, prevState) => {
-  //   if (
-  //     prevProp.match.params !== this.props.match.params &&
-  //     this.props.userLogged
-  //   ) {
+  fetchExperiences = async (id) => {
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences`,
+      {
+        headers: {
+          Authorization: ardisToken,
+        },
+      }
+    );
+    const experiences = await resp.json();
+    this.setState({ experiences });
+  };
+  fetchUser = async (personToFetch) => {
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
+      {
+        headers: {
+          Authorization: ardisToken,
+        },
+      }
+    );
 
-  //   }
+    const data = await resp.json();
+    this.setState({ user: data });
+    //!tryexp this.fetchExp(data._id);
+    // console.log(data);
+    this.fetchExperiences(data._id);
+
+    // console.log(data);
+    // console.log(this.state.user);
+  };
+
+  componentDidMount = () => {
+    this.fetchUser(this.props.match.params.id);
+  };
+  componentDidUpdate = (prevProp) => {
+    if (prevProp.match.params !== this.props.match.params) {
+      // console.log(this.props.match);
+      // console.log(this.props.match.params);
+      this.fetchUser(this.props.match.params.id);
+    }
+  };
+
+  // handleModalOpen = (exp) => {
+  //   this.setState({ show: true, exp: exp });
   // };
 
-  handleModalOpen = (exp) => {
-    this.setState({ show: true, exp: exp });
-  };
-
-  handleClose = () => {
-    this.setState({ show: false });
-  };
+  // handleClose = () => {
+  //   this.setState({ show: false });
+  // };
 
   render() {
     // console.log(this.props.location.pathname);
-    console.log('experiences of:', this.props.experiences);
+    // console.log('experiences of:', this.props.experiences);
 
     return (
       <StyledContainer className='mt-3'>
@@ -45,29 +90,19 @@ class EducationComponent extends React.Component {
           <FlexColRow>
             <h4>Experiences</h4>
             {this.props.location.pathname === '/profile/me' && (
-              <CustomModal
-                show={this.state.show}
-                method='POST'
-                exp={this.state.exp}
-                handleClose={this.handleClose}
-              >
+              <CustomModal postExperience={this.postExperience}>
                 <PlusButton
                   style={{ cursor: 'pointer' }}
-                  onClick={() => this.setState({ show: true })}
+                  // onClick={() => this.setState({ show: true })}
                 />
               </CustomModal>
             )}
           </FlexColRow>
           <FlexColRow>
             <ul className='p-0'>
-              {this.props.experiences.length > 0 &&
-                this.props.experiences.map((exp) => (
-                  <SingleExperience
-                    userLoggedID={this.state.userLogged?._id}
-                    key={exp._id}
-                    {...exp}
-                    handleModalOpen={this.handleModalOpen}
-                  />
+              {this.state.experiences.length > 0 &&
+                this.state.experiences.map((exp) => (
+                  <SingleExperience key={exp._id} {...exp} />
                 ))}
             </ul>
           </FlexColRow>

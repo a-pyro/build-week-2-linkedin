@@ -17,7 +17,6 @@ const SingleExperience = ({
   _id,
   location,
 }) => {
-  console.log(userLoggedID);
   return (
     <ListItem>
       <LogoImage className='mr-3' src={image} />
