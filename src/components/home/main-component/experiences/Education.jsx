@@ -7,26 +7,12 @@ import { withRouter } from 'react-router-dom';
 import SingleExperience from './SingleExperience';
 import CustomModal from './CustomModal';
 import { ardisToken } from 'data/utilities';
+import { GrCatalogOption } from 'react-icons/gr';
 
 class EducationComponent extends React.Component {
   state = {
     user: {},
     experiences: [],
-  };
-
-  postExperience = async (newExp) => {
-    const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${this.state.user._id}/experiences,`,
-      {
-        method: 'POST',
-        body: JSON.stringify(newExp),
-        headers: {
-          'Content-Type': 'application-json',
-          Authorization: ardisToken,
-        },
-      }
-    );
-    console.log(resp);
   };
 
   fetchExperiences = async (id) => {
@@ -38,37 +24,44 @@ class EducationComponent extends React.Component {
         },
       }
     );
-    const experiences = await resp.json();
-    this.setState({ experiences });
+    const exp = await resp.json();
+    this.setState({ experiences: exp });
   };
-  fetchUser = async (personToFetch) => {
-    const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
-      {
-        headers: {
-          Authorization: ardisToken,
-        },
-      }
-    );
 
-    const data = await resp.json();
-    this.setState({ user: data });
-    //!tryexp this.fetchExp(data._id);
-    // console.log(data);
-    this.fetchExperiences(data._id);
+  //&& fetchUser = async (personToFetch) => {
+  //   const resp = await fetch(
+  //     `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
+  //     {
+  //       headers: {
+  //         Authorization: ardisToken,
+  //       },
+  //     }
+  //   );
 
-    // console.log(data);
-    // console.log(this.state.user);
-  };
+  //   const data = await resp.json();
+  //   this.setState({ user: data });
+  //   //!tryexp this.fetchExp(data._id);
+  //   // console.log(data);
+  //   this.fetchExperiences(data._id);
+
+  //   // console.log(data);
+  //   // console.log(this.state.user);
+  // };
 
   componentDidMount = () => {
-    this.fetchUser(this.props.match.params.id);
+    //&& this.fetchUser(this.props.match.params.id);
+    if (this.props.user._id) this.fetchExperiences(this.props.user._id);
   };
-  componentDidUpdate = (prevProp) => {
-    if (prevProp.match.params !== this.props.match.params) {
-      // console.log(this.props.match);
-      // console.log(this.props.match.params);
-      this.fetchUser(this.props.match.params.id);
+
+  componentDidUpdate = (prevProps, prevState) => {
+    // if (prevProps.match.params !== this.props.match.params) {
+    //   // console.log(this.props.match);
+    //   // console.log(this.props.match.params);
+    //   //&& this.fetchUser(this.props.match.params.id);
+    //   this.fetchExperiences(this.props.user._id);
+    // }
+    if (prevProps.user._id !== this.props.user._id) {
+      this.fetchExperiences(this.props.user._id);
     }
   };
 
@@ -81,6 +74,9 @@ class EducationComponent extends React.Component {
   // };
 
   render() {
+    // console.log(this.props.user, 'in education');
+    // console.log(this.state.experiences);
+    // console.log(this.state.experiences);
     // console.log(this.props.location.pathname);
     // console.log('experiences of:', this.props.experiences);
 
@@ -90,7 +86,7 @@ class EducationComponent extends React.Component {
           <FlexColRow>
             <h4>Experiences</h4>
             {this.props.location.pathname === '/profile/me' && (
-              <CustomModal postExperience={this.postExperience}>
+              <CustomModal fetchExperiences={this.fetchExperiences}>
                 <PlusButton
                   style={{ cursor: 'pointer' }}
                   // onClick={() => this.setState({ show: true })}
@@ -101,9 +97,10 @@ class EducationComponent extends React.Component {
           <FlexColRow>
             <ul className='p-0'>
               {this.state.experiences.length > 0 &&
-                this.state.experiences.map((exp) => (
-                  <SingleExperience key={exp._id} {...exp} />
-                ))}
+                this.state.experiences
+                  .slice()
+                  .reverse()
+                  .map((exp) => <SingleExperience key={exp._id} {...exp} />)}
             </ul>
           </FlexColRow>
         </StyledDiv>

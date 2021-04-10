@@ -15,6 +15,8 @@ export default class CreatePost extends Component {
         <Col xs={12}>
           <div className='d-flex align-items-center'>
             <Image fluid roundedCircle src={this.props.userLogged?.image} />
+
+            {/* modal to create a post */}
             <CreateModal
               getPosts={this.props.getPosts}
               userLogged={this.props.userLogged}

@@ -9,8 +9,9 @@ import Education from './experiences/Education';
 import PersonalDetails from './dumb.components/ProfileDetails';
 // import Dashboard from 'components/home/main-component/Dashboard';
 
-const Main = ({ user, userLogged, experiences }) => {
+const Main = ({ user }) => {
   // console.log('exp in main', experiences);
+  // console.log(user, 'in main');
   return (
     <Col md={8}>
       <PersonalDetails user={user} />
@@ -18,8 +19,8 @@ const Main = ({ user, userLogged, experiences }) => {
       <Dashboard />
       <Education
         //!trryexp experiences={experiences}
-        userLogged={userLogged}
         user={user}
+        // userLogged={userLogged}
       />
       <Activity />
       <Interests />

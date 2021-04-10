@@ -8,7 +8,7 @@ export default class Home extends Component {
   state = {
     user: {},
     isLoading: true,
-    userLogged: null,
+    // userLogged: null,
     // experiences: [],
   };
   //!tryexp fetchExp = async (id) => {
@@ -54,19 +54,19 @@ export default class Home extends Component {
     // console.log(this.state.user);
   };
 
-  getUserLogged = async () => {
-    const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/me`,
-      {
-        headers: {
-          Authorization: ardisToken,
-        },
-      }
-    );
-    const userLogged = await resp.json();
-    this.setState({ userLogged });
-    // console.log(userLogged, 'logged in!!');
-  };
+  // getUserLogged = async () => {
+  //   const resp = await fetch(
+  //     `https://striveschool-api.herokuapp.com/api/profile/me`,
+  //     {
+  //       headers: {
+  //         Authorization: ardisToken,
+  //       },
+  //     }
+  //   );
+  //   const userLogged = await resp.json();
+  //   this.setState({ userLogged });
+  //   // console.log(userLogged, 'logged in!!');
+  // };
 
   componentDidMount = () => {
     // console.log(this.props.match);
@@ -88,7 +88,7 @@ export default class Home extends Component {
       <Container>
         <Row>
           <Main
-            userLogged={this.state.userLogged?._id}
+            // userLogged={this.state.userLogged?._id}
             user={this.state.user}
             //!tryexp experiences={this.state.experiences}
           />
