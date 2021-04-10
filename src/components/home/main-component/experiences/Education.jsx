@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import SingleExperience from './SingleExperience';
 import CustomModal from './CustomModal';
 import { ardisToken } from 'data/utilities';
-import { GrCatalogOption } from 'react-icons/gr';
+// import { GrCatalogOption } from 'react-icons/gr';
 
 class EducationComponent extends React.Component {
   state = {
