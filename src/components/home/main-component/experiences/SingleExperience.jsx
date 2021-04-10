@@ -3,6 +3,7 @@ import { Col } from 'react-bootstrap';
 import { BsPencil } from 'react-icons/bs';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { withRouter } from 'react-router-dom';
+import { ardisToken } from 'data/utilities';
 
 const SingleExperience = ({
   area,
@@ -12,11 +13,23 @@ const SingleExperience = ({
   role,
   startDate,
   endDate,
-  userLoggedID,
-  match,
-  _id,
   location,
+  _id,
+  userID,
+  fetchExperiences,
 }) => {
+  const handleDelete = async () => {
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${_id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: ardisToken,
+        },
+      }
+    );
+  };
+
   return (
     <ListItem>
       <LogoImage className='mr-3' src={image} />
@@ -30,24 +43,11 @@ const SingleExperience = ({
 
         {location.pathname === '/profile/me' && (
           <div>
-            <BsPencil
+            <BsPencil style={{ cursor: 'pointer' }} />
+            <BsFillTrashFill
+              onClick={handleDelete}
               style={{ cursor: 'pointer' }}
-              onClick={() =>
-                this.props.handleModalOpen({
-                  area,
-                  company,
-                  description,
-                  image,
-                  role,
-                  startDate,
-                  endDate,
-                  userLoggedID,
-                  match,
-                  _id,
-                })
-              }
             />
-            <BsFillTrashFill style={{ cursor: 'pointer' }} />
           </div>
         )}
       </FlexColColumn>

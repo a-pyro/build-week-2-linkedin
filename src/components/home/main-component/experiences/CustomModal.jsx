@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
 import { Modal, Button, Spinner } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
-
-const CustomModal = ({ children, fetchExperiences, userID }) => {
+// & add validation for startDate
+const CustomModal = ({
+  children,
+  fetchExperiences,
+  userID,
+  area,
+  company,
+  role,
+  description,
+  startDate,
+  endDate,
+  method,
+}) => {
   const initialFields = {
-    area: '',
-    company: '',
-    role: '',
-    description: '',
-    startDate: '',
-    endDate: '',
+    area: area ?? '',
+    company: company ?? '',
+    role: role ?? '',
+    description: description ?? '',
+    startDate: startDate ?? '',
+    endDate: endDate ?? '',
   };
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -35,7 +46,8 @@ const CustomModal = ({ children, fetchExperiences, userID }) => {
     fetchExperiences(body.user);
   };
   const handleSubmit = () => {
-    postExperience(fields);
+    if (method === 'POST') postExperience(fields);
+    // if (method === 'PUT') editExperience()
     handleClose();
   };
 

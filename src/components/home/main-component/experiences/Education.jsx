@@ -28,7 +28,7 @@ class EducationComponent extends React.Component {
     this.setState({ experiences: exp });
   };
 
-  //&& fetchUser = async (personToFetch) => {
+  //% fetchUser = async (personToFetch) => {
   //   const resp = await fetch(
   //     `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
   //     {
@@ -86,7 +86,10 @@ class EducationComponent extends React.Component {
           <FlexColRow>
             <h4>Experiences</h4>
             {this.props.location.pathname === '/profile/me' && (
-              <CustomModal fetchExperiences={this.fetchExperiences}>
+              <CustomModal
+                method='POST'
+                fetchExperiences={this.fetchExperiences}
+              >
                 <PlusButton
                   style={{ cursor: 'pointer' }}
                   // onClick={() => this.setState({ show: true })}
@@ -100,7 +103,14 @@ class EducationComponent extends React.Component {
                 this.state.experiences
                   .slice()
                   .reverse()
-                  .map((exp) => <SingleExperience key={exp._id} {...exp} />)}
+                  .map((exp) => (
+                    <SingleExperience
+                      key={exp._id}
+                      fetchExperiences={this.fetchExperiences}
+                      userID={this.state.user._id}
+                      {...exp}
+                    />
+                  ))}
             </ul>
           </FlexColRow>
         </StyledDiv>
