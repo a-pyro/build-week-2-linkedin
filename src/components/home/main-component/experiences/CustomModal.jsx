@@ -27,6 +27,23 @@ const CustomModal = ({
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [fields, setFields] = useState(initialFields);
+  const [expPic, setExpPic] = useState(null);
+
+  const handleUpload = async (userID, experienceID) => {
+    const formData = new FormData();
+    formData.append('experience', expPic, expPic.name);
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${experienceID}/picture`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: ardisToken,
+        },
+        body: formData,
+      }
+    );
+    console.log(resp);
+  };
 
   const postExperience = async (newExp) => {
     setLoading(true);
@@ -45,6 +62,8 @@ const CustomModal = ({
     setLoading(false);
     setFields(initialFields);
     console.log(body);
+    // aspetto che finisca di caricare e poi fetcho
+    await handleUpload(body.user, body._id);
     fetchExperiences(body.user);
   };
 
@@ -67,8 +86,7 @@ const CustomModal = ({
     console.log(body);
     fetchExperiences(body.user);
   };
-  // console.log(format(new Date(parseISO(startDate)), 'yyyy/MM/dd'));
-  // const
+
   const handleSubmit = () => {
     if (method === 'POST') {
       postExperience(fields);
@@ -87,6 +105,14 @@ const CustomModal = ({
   const handleChange = (e) => {
     const value = e.target.value;
     setFields({ ...fields, [e.target.name]: value });
+  };
+
+  // file upload
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    console.log(e.target.files[0]);
+    setExpPic(selectedFile);
+    console.log(expPic);
   };
 
   return (
@@ -154,6 +180,8 @@ const CustomModal = ({
                 value={fields.endDate}
                 type='date'
               />
+              <input type='file' onChange={handleFileChange} className='mt-3' />
+              <p className='mt-3'>{expPic?.name ?? 'selected image'}</p>
             </>
           )}
           {/* <label>image </label>

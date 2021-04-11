@@ -45,7 +45,9 @@ class PersonalDetails extends React.Component {
       }
     );
     console.log(resp);
-    this.props.fetchUser('me');
+    const body = await resp.json();
+    console.log(body);
+    await this.props.fetchUser('me');
     this.setState({ isLoading: false });
   };
 

@@ -28,58 +28,18 @@ class EducationComponent extends React.Component {
     this.setState({ experiences: exp });
   };
 
-  //% fetchUser = async (personToFetch) => {
-  //   const resp = await fetch(
-  //     `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
-  //     {
-  //       headers: {
-  //         Authorization: ardisToken,
-  //       },
-  //     }
-  //   );
-
-  //   const data = await resp.json();
-  //   this.setState({ user: data });
-  //   //!tryexp this.fetchExp(data._id);
-  //   // console.log(data);
-  //   this.fetchExperiences(data._id);
-
-  //   // console.log(data);
-  //   // console.log(this.state.user);
-  // };
-
   componentDidMount = () => {
     //&& this.fetchUser(this.props.match.params.id);
     if (this.props.user._id) this.fetchExperiences(this.props.user._id);
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    // if (prevProps.match.params !== this.props.match.params) {
-    //   // console.log(this.props.match);
-    //   // console.log(this.props.match.params);
-    //   //&& this.fetchUser(this.props.match.params.id);
-    //   this.fetchExperiences(this.props.user._id);
-    // }
     if (prevProps.user._id !== this.props.user._id) {
       this.fetchExperiences(this.props.user._id);
     }
   };
 
-  // handleModalOpen = (exp) => {
-  //   this.setState({ show: true, exp: exp });
-  // };
-
-  // handleClose = () => {
-  //   this.setState({ show: false });
-  // };
-
   render() {
-    // console.log(this.props.user, 'in education');
-    // console.log(this.state.experiences);
-    // console.log(this.state.experiences);
-    // console.log(this.props.location.pathname);
-    // console.log('experiences of:', this.props.experiences);
-
     return (
       <StyledContainer className='mt-3'>
         <StyledDiv>
@@ -90,10 +50,7 @@ class EducationComponent extends React.Component {
                 method='POST'
                 fetchExperiences={this.fetchExperiences}
               >
-                <PlusButton
-                  style={{ cursor: 'pointer' }}
-                  // onClick={() => this.setState({ show: true })}
-                />
+                <PlusButton style={{ cursor: 'pointer' }} />
               </CustomModal>
             )}
           </FlexColRow>
