@@ -89,8 +89,13 @@ const CustomModal = ({
     const body = await resp.json();
     setLoading(false);
 
-    console.log(body);
-    fetchExperiences(body.user);
+    if (expPic) {
+      await handleUpload(body.user, body._id);
+      fetchExperiences(body.user);
+      setExpPic(null);
+    } else {
+      fetchExperiences(body.user);
+    }
   };
 
   const handleSubmit = () => {
@@ -105,6 +110,7 @@ const CustomModal = ({
 
   const handleClose = () => {
     setShow(false);
+    setExpPic(null);
   };
   const handleShow = () => setShow(true);
 
@@ -187,17 +193,9 @@ const CustomModal = ({
                 type='date'
               />
               <input type='file' onChange={handleFileChange} className='my-3' />
-              <Image fluid rounded src={image} />
+              {/* <Image fluid rounded src={image} /> */}
             </>
           )}
-          {/* <label>image </label>
-            <input
-              className='d-block'
-              onChange={handleChange}
-              name='image'
-              value={fields.image}
-              type='file'
-            /> */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
