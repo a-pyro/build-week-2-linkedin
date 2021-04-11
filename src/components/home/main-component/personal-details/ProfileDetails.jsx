@@ -1,16 +1,64 @@
 import React from 'react';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Image, Button, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 import { BsPencil } from 'react-icons/bs';
 import { withRouter } from 'react-router-dom';
 import EditDetailsModal from './EditDetailsModal';
+import { ardisToken } from 'data/utilities';
 
 class PersonalDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fileField = React.createRef();
+    this.state = {
+      profilePic: null,
+      isLoading: false,
+    };
+  }
+
   replaceBrokenImg = (e) => {
     console.log('img src not fount, dont worrie, got a fallback :)');
     e.target.src = `https://picsum.photos/100/100?random=${Math.ceil(
       Math.random() * 1000
     )}`;
+  };
+  handleChangePofPic = () => {
+    this.fileField.current.click();
+  };
+
+  uploadFile = async () => {
+    this.setState({ isLoading: true });
+    const formData = new FormData();
+    formData.append(
+      'profile',
+      this.state.profilePic,
+      this.state.profilePic.name
+    );
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${this.props.user._id}/picture`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: ardisToken,
+        },
+        body: formData,
+      }
+    );
+    console.log(resp);
+    this.props.fetchUser('me');
+    this.setState({ isLoading: false });
+  };
+
+  fileSelectHandler = (e) => {
+    console.log(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    this.setState({ profilePic: selectedFile });
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.profilePic !== this.state.profilePic) {
+      this.uploadFile();
+    }
   };
 
   render() {
@@ -22,10 +70,31 @@ class PersonalDetails extends React.Component {
         <DetailsDiv>
           <Row>
             <FlexColRow className='col-12'>
-              <ProfileImage
-                onError={this.replaceBrokenImg}
-                src={this.props.user.image}
-              />
+              <div className='pic-container'>
+                {(this.state.isLoading && <Spinner animation='grow' />) || (
+                  <ProfileImage
+                    onError={this.replaceBrokenImg}
+                    src={this.props.user.image}
+                  />
+                )}
+                {this.props.location.pathname === '/profile/me' && (
+                  <>
+                    <input
+                      onChange={this.fileSelectHandler}
+                      type='file'
+                      name='change-picture'
+                      ref={this.fileField}
+                      className='d-none'
+                    />
+                    <BsPencil
+                      onClick={this.handleChangePofPic}
+                      style={{ cursor: 'pointer' }}
+                      className='mt-2'
+                    />
+                  </>
+                )}
+              </div>
+
               {/* show pencil to edit only on my profile */}
               {this.props.location.pathname === '/profile/me' && (
                 <EditDetailsModal
@@ -33,7 +102,8 @@ class PersonalDetails extends React.Component {
                   user={this.props.user}
                 >
                   {' '}
-                  <BsPencil style={{ cursor: 'pointer' }} className='mt-2' />
+                  <BsPencil style={{ cursor: 'pointer' }} className=' ml-5' />
+                  <span style={{ cursor: 'pointer' }}>edit prof info</span>
                 </EditDetailsModal>
               )}
             </FlexColRow>

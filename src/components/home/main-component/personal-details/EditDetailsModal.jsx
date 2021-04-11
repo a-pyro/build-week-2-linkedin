@@ -40,13 +40,16 @@ const EditDetailsModal = ({
       }
     );
 
-    console.log(resp);
-    fetchUser('me');
+    if (resp.ok) {
+      fetchUser('me');
+    } else {
+      console.log('error in the put');
+    }
   };
 
   return (
     <>
-      <span onClick={handleShow}>{children}</span>
+      <div onClick={handleShow}>{children}</div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
