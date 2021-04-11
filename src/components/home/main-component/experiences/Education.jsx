@@ -29,7 +29,6 @@ class EducationComponent extends React.Component {
   };
 
   componentDidMount = () => {
-    //&& this.fetchUser(this.props.match.params.id);
     if (this.props.user._id) this.fetchExperiences(this.props.user._id);
   };
 
