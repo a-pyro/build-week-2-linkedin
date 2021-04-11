@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Spinner } from 'react-bootstrap';
+import { Modal, Button, Spinner, Image } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
 import { format, parseISO } from 'date-fns';
 // & add validation for startDate
@@ -15,6 +15,7 @@ const CustomModal = ({
   description,
   startDate,
   endDate,
+  image,
 }) => {
   const initialFields = {
     area: area ?? '',
@@ -63,8 +64,13 @@ const CustomModal = ({
     setFields(initialFields);
     console.log(body);
     // aspetto che finisca di caricare e poi fetcho
-    await handleUpload(body.user, body._id);
-    fetchExperiences(body.user);
+    if (expPic) {
+      await handleUpload(body.user, body._id);
+      fetchExperiences(body.user);
+      setExpPic(null);
+    } else {
+      fetchExperiences(body.user);
+    }
   };
 
   const editExperience = async (exp) => {
@@ -180,8 +186,8 @@ const CustomModal = ({
                 value={fields.endDate}
                 type='date'
               />
-              <input type='file' onChange={handleFileChange} className='mt-3' />
-              <p className='mt-3'>{expPic?.name ?? 'selected image'}</p>
+              <input type='file' onChange={handleFileChange} className='my-3' />
+              <Image fluid rounded src={image} />
             </>
           )}
           {/* <label>image </label>

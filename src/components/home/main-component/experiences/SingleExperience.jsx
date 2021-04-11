@@ -67,6 +67,7 @@ const SingleExperience = ({
               description={description}
               startDate={startDate}
               endDate={endDate}
+              image={image}
             >
               <BsPencil className='mr-3' style={{ cursor: 'pointer' }} />
             </CustomModal>
