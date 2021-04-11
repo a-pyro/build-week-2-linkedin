@@ -42,6 +42,7 @@ const SingleExperience = ({
       <FlexColColumn className='p-0 '>
         {company && <p className='m-0'>Company: {company}</p>}
         {role && <p className='m-0'>Role: {role}</p>}
+        {area && <p className='m-0'>Area: {area}</p>}
         {startDate && (
           <p className='m-0'>
             Started: {format(parseISO(startDate), 'yyyy-MM-dd')}
@@ -52,7 +53,6 @@ const SingleExperience = ({
             Ended: {format(parseISO(endDate), 'yyyy-MM-dd')}
           </p>
         )}
-        {area && <p className='m-0'>Area: {area}</p>}
         {description && <p className='m-0'>Description: {description}</p>}
 
         {location.pathname === '/profile/me' && (

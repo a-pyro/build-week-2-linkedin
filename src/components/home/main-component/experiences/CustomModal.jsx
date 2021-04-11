@@ -48,15 +48,40 @@ const CustomModal = ({
     fetchExperiences(body.user);
   };
 
+  const editExperience = async (exp) => {
+    setLoading(true);
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${expID}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(exp),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: ardisToken,
+        },
+      }
+    );
+    const body = await resp.json();
+    setLoading(false);
+
+    console.log(body);
+    fetchExperiences(body.user);
+  };
   // console.log(format(new Date(parseISO(startDate)), 'yyyy/MM/dd'));
   // const
   const handleSubmit = () => {
-    if (method === 'POST') postExperience(fields);
-    // if (method === 'PUT') editExperience()
+    if (method === 'POST') {
+      postExperience(fields);
+    }
+    if (method === 'PUT') {
+      editExperience(fields);
+    }
     handleClose();
   };
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+  };
   const handleShow = () => setShow(true);
 
   const handleChange = (e) => {
@@ -84,26 +109,26 @@ const CustomModal = ({
           {!loading && (
             <>
               {' '}
-              <label>Area</label>
-              <input
-                className='d-block'
-                onChange={handleChange}
-                name='area'
-                value={fields.area}
-              />
               <label> company</label>
               <input
                 className='d-block'
                 onChange={handleChange}
                 name='company'
                 value={fields.company}
-              />
+              />{' '}
               <label>role </label>
               <input
                 className='d-block'
                 onChange={handleChange}
                 name='role'
                 value={fields.role}
+              />
+              <label>Area</label>
+              <input
+                className='d-block'
+                onChange={handleChange}
+                name='area'
+                value={fields.area}
               />
               <label>description </label>
               <input
