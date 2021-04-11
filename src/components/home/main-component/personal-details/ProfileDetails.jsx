@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { BsPencil } from 'react-icons/bs';
+import { withRouter } from 'react-router-dom';
+import EditDetailsModal from './EditDetailsModal';
 
 class PersonalDetails extends React.Component {
   replaceBrokenImg = (e) => {
@@ -24,7 +26,16 @@ class PersonalDetails extends React.Component {
                 onError={this.replaceBrokenImg}
                 src={this.props.user.image}
               />
-              <BsPencil className='mt-2' />
+              {/* show pencil to edit only on my profile */}
+              {this.props.location.pathname === '/profile/me' && (
+                <EditDetailsModal
+                  fetchUser={this.props.fetchUser}
+                  user={this.props.user}
+                >
+                  {' '}
+                  <BsPencil style={{ cursor: 'pointer' }} className='mt-2' />
+                </EditDetailsModal>
+              )}
             </FlexColRow>
           </Row>
           <Row>
@@ -53,6 +64,16 @@ class PersonalDetails extends React.Component {
             </FlexColColumn>
           </Row>
           <Row>
+            <Col xs={12}>
+              <span>{this.props.user.email}</span>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <p>{this.props.user.bio}</p>
+            </Col>
+          </Row>
+          <Row>
             <Col className='col-12 mt-3'>
               <OpenToButton>Open to</OpenToButton>
               <OtherButtons>Add profile section</OtherButtons>
@@ -65,7 +86,8 @@ class PersonalDetails extends React.Component {
   }
 }
 
-export default PersonalDetails;
+export default withRouter(PersonalDetails);
+
 const StyledContainer = styled(Container)`
   border-radius: 3px;
   background-color: white;
