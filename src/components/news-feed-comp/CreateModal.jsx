@@ -8,12 +8,39 @@ const CreateModal = (props) => {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
+  const [picture, setPicture] = useState(null);
+
   const areaRef = useRef();
+
+  // pic upload
+  const handleFileSelect = (e) => {
+    const newFile = e.target.files[0];
+    setPicture(newFile);
+  };
+
+  const uploadPic = async (postId) => {
+    const formData = new FormData();
+    formData.append('post', picture, picture.name);
+    const resp = await fetch(
+      `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: ardisToken,
+        },
+        body: formData,
+      }
+    );
+    console.log(resp);
+    setPicture(null);
+  };
+
   const handleClose = () => {
     setShow(false);
     setText('');
     setSuccessMsg('');
     props.getPosts();
+    setPicture(null);
   };
   const handleShow = () => {
     setShow(true);
@@ -40,9 +67,13 @@ const CreateModal = (props) => {
       }
     );
 
+    const data = await resp.json();
+    if (picture) {
+      await uploadPic(data._id);
+    }
+
     // console.log(resp);
     setLoading(false);
-
     if (resp.ok) {
       setSuccessMsg('Congrats! Your post in on da line!');
       setText('');
@@ -122,16 +153,9 @@ const CreateModal = (props) => {
                 Post!
               </Button>
             )}
+            <input type='file' onChange={handleFileSelect} className='mt-3' />
           </Form>
         </Modal.Body>
-        {/* <Modal.Footer>
-           <Button variant='secondary' onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant='primary' onClick={handleClose}>
-            Save Changes
-          </Button> 
-        </Modal.Footer> */}
       </Modal>
     </>
   );

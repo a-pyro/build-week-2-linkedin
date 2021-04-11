@@ -20,7 +20,12 @@ const AdOffer = ({ image }) => {
           </Col>
 
           <Col xs={6} className='text-right pr-2'>
-            <Image style={{ width: '70px' }} fluid roundedCircle src={image} />
+            <Image
+              style={{ width: '70px', height: '70px' }}
+              fluid
+              roundedCircle
+              src={image}
+            />
           </Col>
           <Col xs={6} className='text-left pl-2 mb-3'>
             {/* <Image

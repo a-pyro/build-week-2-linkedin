@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Spinner, Image } from 'react-bootstrap';
+import { Modal, Button, Spinner } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
 import { format, parseISO } from 'date-fns';
 // & add validation for startDate
@@ -30,7 +30,15 @@ const CustomModal = ({
   const [fields, setFields] = useState(initialFields);
   const [expPic, setExpPic] = useState(null);
 
-  const handleUpload = async (userID, experienceID) => {
+  // file upload
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    // console.log(e.target.files[0]);
+    setExpPic(selectedFile);
+    // console.log(expPic);
+  };
+
+  const uploadPic = async (userID, experienceID) => {
     const formData = new FormData();
     formData.append('experience', expPic, expPic.name);
     const resp = await fetch(
@@ -65,7 +73,7 @@ const CustomModal = ({
     console.log(body);
     // aspetto che finisca di caricare e poi fetcho
     if (expPic) {
-      await handleUpload(body.user, body._id);
+      await uploadPic(body.user, body._id);
       fetchExperiences(body.user);
       setExpPic(null);
     } else {
@@ -90,7 +98,7 @@ const CustomModal = ({
     setLoading(false);
 
     if (expPic) {
-      await handleUpload(body.user, body._id);
+      await uploadPic(body.user, body._id);
       fetchExperiences(body.user);
       setExpPic(null);
     } else {
@@ -117,14 +125,6 @@ const CustomModal = ({
   const handleChange = (e) => {
     const value = e.target.value;
     setFields({ ...fields, [e.target.name]: value });
-  };
-
-  // file upload
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    console.log(e.target.files[0]);
-    setExpPic(selectedFile);
-    console.log(expPic);
   };
 
   return (
