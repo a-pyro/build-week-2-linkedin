@@ -6,7 +6,7 @@ import { ardisToken } from 'data/utilities';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import { GrStatusGood } from 'react-icons/gr';
-
+import { format, parseISO } from 'date-fns';
 //
 export default class SinglePost extends Component {
   state = {
@@ -96,6 +96,10 @@ export default class SinglePost extends Component {
                     ' ' +
                     this.props.post.user.surname}
                 </span>
+                <p>{`created at ${format(
+                  parseISO(this.props.post.user.createdAt),
+                  'yyyy-MMM-dd | HH:mm'
+                )}`}</p>
               </div>
               <textarea
                 style={{
