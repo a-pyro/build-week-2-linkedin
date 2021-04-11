@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import { Modal, Button, Spinner } from 'react-bootstrap';
 import { ardisToken } from 'data/utilities';
+import { format, parseISO } from 'date-fns';
 // & add validation for startDate
 const CustomModal = ({
   children,
   fetchExperiences,
   userID,
+  method,
+  expID,
   area,
   company,
   role,
   description,
   startDate,
   endDate,
-  method,
 }) => {
   const initialFields = {
     area: area ?? '',
     company: company ?? '',
     role: role ?? '',
     description: description ?? '',
-    startDate: startDate ?? '',
-    endDate: endDate ?? '',
+    startDate: (startDate && format(parseISO(startDate), 'yyyy-MM-dd')) || '',
+    endDate: (endDate && format(parseISO(endDate), 'yyyy-MM-dd')) || '',
   };
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,6 +47,9 @@ const CustomModal = ({
     console.log(body);
     fetchExperiences(body.user);
   };
+
+  // console.log(format(new Date(parseISO(startDate)), 'yyyy/MM/dd'));
+  // const
   const handleSubmit = () => {
     if (method === 'POST') postExperience(fields);
     // if (method === 'PUT') editExperience()
@@ -61,7 +66,9 @@ const CustomModal = ({
 
   return (
     <>
-      <div onClick={handleShow}>{children}</div>
+      <div className='d-inline-block' onClick={handleShow}>
+        {children}
+      </div>
 
       <Modal
         show={show}

@@ -7,11 +7,11 @@ import { withRouter } from 'react-router-dom';
 import SingleExperience from './SingleExperience';
 import CustomModal from './CustomModal';
 import { ardisToken } from 'data/utilities';
+
 // import { GrCatalogOption } from 'react-icons/gr';
 
 class EducationComponent extends React.Component {
   state = {
-    user: {},
     experiences: [],
   };
 
@@ -107,7 +107,7 @@ class EducationComponent extends React.Component {
                     <SingleExperience
                       key={exp._id}
                       fetchExperiences={this.fetchExperiences}
-                      userID={this.state.user._id}
+                      userID={this.props.user._id}
                       {...exp}
                     />
                   ))}

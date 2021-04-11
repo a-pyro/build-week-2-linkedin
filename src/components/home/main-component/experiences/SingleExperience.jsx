@@ -4,6 +4,8 @@ import { BsPencil } from 'react-icons/bs';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { withRouter } from 'react-router-dom';
 import { ardisToken } from 'data/utilities';
+import CustomModal from './CustomModal';
+import { format, parseISO } from 'date-fns';
 
 const SingleExperience = ({
   area,
@@ -28,7 +30,11 @@ const SingleExperience = ({
         },
       }
     );
+
+    console.log(resp);
+    fetchExperiences(userID);
   };
+  const data = endDate && format(parseISO(endDate), 'yyyy-MM-dd');
 
   return (
     <ListItem>
@@ -36,14 +42,35 @@ const SingleExperience = ({
       <FlexColColumn className='p-0 '>
         {company && <p className='m-0'>Company: {company}</p>}
         {role && <p className='m-0'>Role: {role}</p>}
-        {startDate && <p className='m-0'>Started: {startDate}</p>}
-        {endDate && <p className='m-0'>Ended: {endDate}</p>}
+        {startDate && (
+          <p className='m-0'>
+            Started: {format(parseISO(startDate), 'yyyy-MM-dd')}
+          </p>
+        )}
+        {endDate && (
+          <p className='m-0'>
+            Ended: {format(parseISO(endDate), 'yyyy-MM-dd')}
+          </p>
+        )}
         {area && <p className='m-0'>Area: {area}</p>}
         {description && <p className='m-0'>Description: {description}</p>}
 
         {location.pathname === '/profile/me' && (
           <div>
-            <BsPencil style={{ cursor: 'pointer' }} />
+            <CustomModal
+              expID={_id}
+              userID={userID}
+              method='PUT'
+              fetchExperiences={fetchExperiences}
+              area={area}
+              company={company}
+              role={role}
+              description={description}
+              startDate={startDate}
+              endDate={endDate}
+            >
+              <BsPencil className='mr-3' style={{ cursor: 'pointer' }} />
+            </CustomModal>
             <BsFillTrashFill
               onClick={handleDelete}
               style={{ cursor: 'pointer' }}
