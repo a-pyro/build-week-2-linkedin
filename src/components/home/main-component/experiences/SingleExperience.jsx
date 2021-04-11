@@ -34,7 +34,6 @@ const SingleExperience = ({
     console.log(resp);
     fetchExperiences(userID);
   };
-  const data = endDate && format(parseISO(endDate), 'yyyy-MM-dd');
 
   return (
     <ListItem>
