@@ -90,7 +90,7 @@ const StyledDiv = styled.div`
 // const HeroImage = styled(Image)`
 //   background-image: url(https://i.stack.imgur.com/y9DpT.jpg);
 //   position: relative;
-//   width: 100%;
+//   width: 100fff%;
 //   min-height: 195.5px;
 //   max-height: 195.5px;
 // `;
