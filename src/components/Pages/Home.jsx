@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Main from '../home/main-component/Main';
 import Side from '../home/side-col/Side';
+import { withRouter } from 'react-router-dom';
+
 import { ardisToken } from 'data/utilities';
 
-export default class Home extends Component {
+class Home extends Component {
   state = {
     user: {},
     isLoading: true,
@@ -41,6 +43,7 @@ export default class Home extends Component {
   render() {
     return (
       <Container>
+        {this.props.children}
         <Row>
           <Main fetchUser={this.fetchUser} user={this.state.user} />
           <Side user={this.state.user} />
@@ -49,3 +52,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default withRouter(Home);

@@ -13,7 +13,7 @@ const TempNavBar = ({ location }) => {
   return (
     <Navbar bg='light' expand='lg' className='mb-3'>
       <Container>
-        <Link to='/' className='navbar-brand pb-2 font-weight-bold'>
+        <Link to='/newsfeed' className='navbar-brand pb-2 font-weight-bold'>
           Fakedin
         </Link>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -23,11 +23,11 @@ const TempNavBar = ({ location }) => {
               <Nav.Link href='#link'>Me</Nav.Link> */}
             <Link
               className={`p-0 m-2 nav-link ${
-                location.pathname === '/' ? 'active' : ''
+                location.pathname === '/newsfeed' ? 'active' : ''
               }`}
-              to='/'
+              to='/newsfeed'
             >
-              Home
+              Newsfeed
             </Link>
             <Link
               className={`p-0 m-2 nav-link ${
