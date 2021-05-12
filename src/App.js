@@ -6,6 +6,8 @@ import TempNavBar from 'components/shared/TempNavBar';
 
 import Footer from './components/shared/Footer';
 import Landing from 'components/Pages/registration/Landing';
+import Login from 'components/Pages/registration/Login';
+import Register from 'components/Pages/registration/Register';
 
 // import NavBar from './components/NavBar';
 
@@ -24,6 +26,8 @@ export default class App extends Component {
       <Router>
         <Switch>
           <Route path='/' exact component={Landing} />
+          <Route path='/login' exact component={Login} />
+          <Route path='/register' exact component={Register} />
           {/* <Route
             path='/newsfeed'
             render={(routerProps) => {
