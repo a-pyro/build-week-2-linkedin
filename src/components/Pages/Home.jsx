@@ -4,8 +4,6 @@ import Main from '../home/main-component/Main';
 import Side from '../home/side-col/Side';
 import { withRouter } from 'react-router-dom';
 
-import { ardisToken } from 'data/utilities';
-
 class Home extends Component {
   state = {
     user: {},
@@ -15,12 +13,13 @@ class Home extends Component {
   };
 
   fetchUser = async (personToFetch) => {
+    const token = localStorage.getItem('token');
     this.setState({ isLoading: true });
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${personToFetch}`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${personToFetch}`,
       {
         headers: {
-          Authorization: ardisToken,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

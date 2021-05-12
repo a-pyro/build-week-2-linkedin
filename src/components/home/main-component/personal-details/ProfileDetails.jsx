@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { BsPencil } from 'react-icons/bs';
 import { withRouter } from 'react-router-dom';
 import EditDetailsModal from './EditDetailsModal';
-import { ardisToken } from 'data/utilities';
 
 class PersonalDetails extends React.Component {
   constructor(props) {
@@ -35,12 +34,10 @@ class PersonalDetails extends React.Component {
       this.state.profilePic.name
     );
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${this.props.user._id}/picture`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user._id}/picture`,
       {
         method: 'POST',
-        headers: {
-          Authorization: ardisToken,
-        },
+
         body: formData,
       }
     );

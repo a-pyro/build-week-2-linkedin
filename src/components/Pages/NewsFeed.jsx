@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ardisToken } from 'data/utilities';
+
 import { Container, Row, Col } from 'react-bootstrap';
 import CreatePost from 'components/news-feed-comp/CreatePost';
 import PostList from 'components/news-feed-comp/PostList';
@@ -15,16 +15,10 @@ export default class NewsFeed extends Component {
   getPosts = async () => {
     this.setState({ isLoading: true });
     try {
-      const resp = await fetch(
-        'https://striveschool-api.herokuapp.com/api/posts/',
-        {
-          headers: {
-            Authorization: ardisToken,
-          },
-        }
-      );
+      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts/`);
       const posts = await resp.json();
-      console.log(posts[0]);
+
+      console.log(posts);
       this.setState({ posts });
       this.setState({ isLoading: false });
     } catch (error) {
@@ -34,12 +28,12 @@ export default class NewsFeed extends Component {
   };
 
   getUser = async () => {
+    const token = localStorage.getItem('token');
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/me`,
+      `${process.env.REACT_APP_API_URL}/api/profile/me`,
       {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWEyNzZmZDIyODAwMTUzZmRiYjEiLCJpYXQiOjE2MTc2OTczMTksImV4cCI6MTYxODkwNjkxOX0.bSzAALu5Ose7Gdie6QifObaHxeHflzff7nHtUlrYWfI',
+          Authorization: `Bearer ${token}`,
         },
       }
     );

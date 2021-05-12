@@ -1,4 +1,3 @@
-import { ardisToken } from 'data/utilities';
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
@@ -28,17 +27,13 @@ const EditDetailsModal = ({
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const resp = await fetch(
-      'https://striveschool-api.herokuapp.com/api/profile/',
-      {
-        method: 'PUT',
-        body: JSON.stringify(fields),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: ardisToken,
-        },
-      }
-    );
+    const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/profile/`, {
+      method: 'PUT',
+      body: JSON.stringify(fields),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
     if (resp.ok) {
       fetchUser('me');

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Spinner } from 'react-bootstrap';
-import { ardisToken } from 'data/utilities';
+
 import { format, parseISO } from 'date-fns';
 // & add validation for startDate
 const CustomModal = ({
@@ -42,12 +42,9 @@ const CustomModal = ({
     const formData = new FormData();
     formData.append('experience', expPic, expPic.name);
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${experienceID}/picture`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${userID}/experiences/${experienceID}/picture`,
       {
         method: 'POST',
-        headers: {
-          Authorization: ardisToken,
-        },
         body: formData,
       }
     );
@@ -57,13 +54,12 @@ const CustomModal = ({
   const postExperience = async (newExp) => {
     setLoading(true);
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${userID}/experiences`,
       {
         method: 'POST',
         body: JSON.stringify(newExp),
         headers: {
           'Content-Type': 'application/json',
-          Authorization: ardisToken,
         },
       }
     );
@@ -84,13 +80,12 @@ const CustomModal = ({
   const editExperience = async (exp) => {
     setLoading(true);
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${expID}`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${userID}/experiences/${expID}`,
       {
         method: 'PUT',
         body: JSON.stringify(exp),
         headers: {
           'Content-Type': 'application/json',
-          Authorization: ardisToken,
         },
       }
     );

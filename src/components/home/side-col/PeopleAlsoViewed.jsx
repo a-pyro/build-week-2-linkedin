@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Row, Col, Container, Spinner } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs';
-import { ardisToken } from 'data/utilities';
 import PersonView from './PersonView';
 
 export default class PeopleAlsoViewed extends Component {
@@ -18,10 +17,7 @@ export default class PeopleAlsoViewed extends Component {
   componentDidMount = async () => {
     this.setState({ isLoading: true });
     try {
-      const resp = await fetch(
-        'https://striveschool-api.herokuapp.com/api/profile/',
-        { headers: { Authorization: ardisToken } }
-      );
+      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/profile`);
 
       const users = await resp.json();
       // console.log(users);

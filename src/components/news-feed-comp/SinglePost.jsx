@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Card, Image } from 'react-bootstrap';
-import { ardisToken } from 'data/utilities';
+
 // import EditModal from './EditModal';
 
 import { BsFillTrashFill } from 'react-icons/bs';
@@ -18,12 +18,9 @@ export default class SinglePost extends Component {
     if (this.props.userLogged._id === this.props.post.user._id) {
       // this.setState({ isLoading: true });
       const resp = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/${this.props.post._id}`,
+        `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post._id}`,
         {
           method: 'DELETE',
-          headers: {
-            Authorization: ardisToken,
-          },
         }
       );
       // console.log(resp);
@@ -57,13 +54,12 @@ export default class SinglePost extends Component {
     const text = this.state.text;
     console.log('puttttinnnnn');
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/posts/${this.props.post._id}`,
+      `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post._id}`,
       {
         method: 'PUT',
         body: JSON.stringify({ text }),
         headers: {
           'Content-Type': 'application/json',
-          Authorization: ardisToken,
         },
       }
     );
@@ -87,17 +83,17 @@ export default class SinglePost extends Component {
                 <Image
                   style={{ width: '70px' }}
                   roundedCircle
-                  src={this.props.post.user.image}
+                  src={this.props.post.profile.image}
                 />{' '}
                 <span className='font-weight-bold ml-3'>
                   {' '}
                   by{' '}
-                  {this.props.post.user.name +
+                  {this.props.post.profile.name +
                     ' ' +
-                    this.props.post.user.surname}
+                    this.props.post.profile.surname}
                 </span>
                 <p>{`created at ${format(
-                  parseISO(this.props.post.user.createdAt),
+                  parseISO(this.props.post.createdAt),
                   'yyyy-MMM-dd | HH:mm'
                 )}`}</p>
               </div>
@@ -124,7 +120,7 @@ export default class SinglePost extends Component {
                   src={this.props.post.image}
                 />
               )}
-              {this.props.userLogged?._id === this.props.post.user._id && (
+              {this.props.userLogged?._id === this.props.post._id && (
                 <div className='d-flex align-items-center mt-3'>
                   <BsFillTrashFill
                     onClick={this.handleDeletePost}

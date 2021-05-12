@@ -6,7 +6,6 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { withRouter } from 'react-router-dom';
 import SingleExperience from './SingleExperience';
 import CustomModal from './CustomModal';
-import { ardisToken } from 'data/utilities';
 
 // import { GrCatalogOption } from 'react-icons/gr';
 
@@ -17,12 +16,7 @@ class EducationComponent extends React.Component {
 
   fetchExperiences = async (id) => {
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences`,
-      {
-        headers: {
-          Authorization: ardisToken,
-        },
-      }
+      `${process.env.REACT_APP_API_URL}/api/profile/${id}/experiences`
     );
     const exp = await resp.json();
     this.setState({ experiences: exp });

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Modal, Button, Form, Image, Spinner } from 'react-bootstrap';
-import { ardisToken } from 'data/utilities';
+
 import { GrStatusGood } from 'react-icons/gr';
 
 const CreateModal = (props) => {
@@ -22,12 +22,10 @@ const CreateModal = (props) => {
     const formData = new FormData();
     formData.append('post', picture, picture.name);
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+      `${process.env.REACT_APP_API_URL}/api/posts/${postId}`,
       {
         method: 'POST',
-        headers: {
-          Authorization: ardisToken,
-        },
+
         body: formData,
       }
     );
@@ -55,17 +53,13 @@ const CreateModal = (props) => {
     e.preventDefault();
     setSuccessMsg('');
     setLoading(true);
-    const resp = await fetch(
-      'https://striveschool-api.herokuapp.com/api/posts/',
-      {
-        method: 'POST',
-        body: JSON.stringify({ text }),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: ardisToken,
-        },
-      }
-    );
+    const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts/`, {
+      method: 'POST',
+      body: JSON.stringify({ text }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
     const data = await resp.json();
     if (picture) {

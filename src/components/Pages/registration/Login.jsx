@@ -21,16 +21,19 @@ class Login extends Component {
     e.preventDefault();
     try {
       this.setState({ loading: true });
-      const resp = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
-        }),
-      });
+      const resp = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/auth/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.state.email,
+            password: this.state.password,
+          }),
+        }
+      );
       const data = await resp.json();
       if (resp.ok) {
         localStorage.setItem('token', data.token);

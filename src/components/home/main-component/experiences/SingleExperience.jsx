@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 import { BsPencil } from 'react-icons/bs';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { withRouter } from 'react-router-dom';
-import { ardisToken } from 'data/utilities';
+
 import CustomModal from './CustomModal';
 import { format, parseISO } from 'date-fns';
 
@@ -22,12 +22,9 @@ const SingleExperience = ({
 }) => {
   const handleDelete = async () => {
     const resp = await fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences/${_id}`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${userID}/experiences/${_id}`,
       {
         method: 'DELETE',
-        headers: {
-          Authorization: ardisToken,
-        },
       }
     );
 
