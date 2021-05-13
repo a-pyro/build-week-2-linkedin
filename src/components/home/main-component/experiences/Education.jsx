@@ -63,7 +63,7 @@ class EducationComponent extends React.Component {
           <FlexColRow>
             <h4>Experiences</h4>
             {this.props.location.pathname === '/profile/me' && (
-              <>
+              <div className='d-flex'>
                 <CustomModal
                   method='POST'
                   fetchExperiences={this.fetchExperiences}
@@ -72,18 +72,20 @@ class EducationComponent extends React.Component {
                   <PlusButton style={{ cursor: 'pointer' }} />
                 </CustomModal>
                 <div
+                  className='ml-3'
                   style={{ cursor: 'pointer' }}
                   onClick={this.handleDownloadPdf}
                 >
                   ⬇️ PDF CV
                 </div>
                 <div
+                  className='ml-3'
                   style={{ cursor: 'pointer' }}
                   onClick={this.handleDownloadCsv}
                 >
                   ⬇️ EXP CSV
                 </div>
-              </>
+              </div>
             )}
           </FlexColRow>
           <FlexColRow>
