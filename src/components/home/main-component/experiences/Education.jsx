@@ -14,6 +14,27 @@ class EducationComponent extends React.Component {
     experiences: [],
   };
 
+  handleDownloadCsv = async () => {
+    try {
+      const resp = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user._id}/experiences/CSV`
+      );
+      console.log(resp);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  handleDownloadPdf = async () => {
+    try {
+      const resp = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/profile/${this.props.user._id}/CV`
+      );
+
+      console.log(resp);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   fetchExperiences = async (id) => {
     const resp = await fetch(
       `${process.env.REACT_APP_API_URL}/api/profile/${id}/experiences`
@@ -42,13 +63,27 @@ class EducationComponent extends React.Component {
           <FlexColRow>
             <h4>Experiences</h4>
             {this.props.location.pathname === '/profile/me' && (
-              <CustomModal
-                method='POST'
-                fetchExperiences={this.fetchExperiences}
-                user={this.props.user}
-              >
-                <PlusButton style={{ cursor: 'pointer' }} />
-              </CustomModal>
+              <>
+                <CustomModal
+                  method='POST'
+                  fetchExperiences={this.fetchExperiences}
+                  user={this.props.user}
+                >
+                  <PlusButton style={{ cursor: 'pointer' }} />
+                </CustomModal>
+                <div
+                  style={{ cursor: 'pointer' }}
+                  onClick={this.handleDownloadPdf}
+                >
+                  ⬇️ PDF CV
+                </div>
+                <div
+                  style={{ cursor: 'pointer' }}
+                  onClick={this.handleDownloadCsv}
+                >
+                  ⬇️ EXP CSV
+                </div>
+              </>
             )}
           </FlexColRow>
           <FlexColRow>
