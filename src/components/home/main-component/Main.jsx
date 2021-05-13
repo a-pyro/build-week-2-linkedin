@@ -14,9 +14,9 @@ const Main = ({ user, fetchUser }) => {
   return (
     <Col md={8}>
       <PersonalDetails user={user} fetchUser={fetchUser} />
+      <Education fetchUser={fetchUser} user={user} />
       <ProfileStrength />
       <Dashboard />
-      <Education user={user} />
       <Activity />
       <Interests />
       <Skills />

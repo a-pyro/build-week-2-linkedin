@@ -115,12 +115,15 @@ class PersonalDetails extends React.Component {
             </FlexColRow>
             <Col style={{ display: 'flex' }} className='col-5 mt-3'>
               <img
+                className='d-none'
                 alt='education'
                 width='32px'
                 height='32px'
                 src='https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1625702400&v=beta&t=3rWOTtMt8Oa6T_gmK3KDVW1m0AsgXMfL-JXwC0n4tXo'
               />
-              <h6 style={{ margin: '6px 0 0 2px' }}>Strive School</h6>
+              <h6 className='d-none' style={{ margin: '6px 0 0 2px' }}>
+                Strive School
+              </h6>
             </Col>
           </Row>
           <Row>

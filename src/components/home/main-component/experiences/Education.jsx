@@ -19,7 +19,8 @@ class EducationComponent extends React.Component {
       `${process.env.REACT_APP_API_URL}/api/profile/${id}/experiences`
     );
     const exp = await resp.json();
-    this.setState({ experiences: exp });
+    console.log(exp);
+    this.setState({ experiences: exp.data });
   };
 
   componentDidMount = () => {
@@ -27,6 +28,8 @@ class EducationComponent extends React.Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
+    console.log(this.props.user);
+
     if (prevProps.user._id !== this.props.user._id) {
       this.fetchExperiences(this.props.user._id);
     }
@@ -42,6 +45,7 @@ class EducationComponent extends React.Component {
               <CustomModal
                 method='POST'
                 fetchExperiences={this.fetchExperiences}
+                user={this.props.user}
               >
                 <PlusButton style={{ cursor: 'pointer' }} />
               </CustomModal>

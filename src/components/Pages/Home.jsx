@@ -49,11 +49,13 @@ class Home extends Component {
     return (
       <Container>
         {this.props.children}
-        <Row>
+        <Row className='justify-content-center'>
           {this.state.isUnauthorized && (
-            <Link to='/login'>
-              <h1>👉🏻 Please login ✍🏻</h1>
-            </Link>
+            <div className='min-vh-100'>
+              <Link to='/login'>
+                <h1>👉🏻 Please login ✍🏻</h1>
+              </Link>
+            </div>
           )}
           {!this.state.isUnauthorized && (
             <>

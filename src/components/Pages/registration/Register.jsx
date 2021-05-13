@@ -41,6 +41,7 @@ export default class Register extends Component {
       console.log(data);
       if (resp.ok) {
         localStorage.setItem('token', data.token);
+        this.setState({ loading: false });
         this.props.history.push('/profile/me');
       } else {
         console.log(data);
@@ -48,8 +49,6 @@ export default class Register extends Component {
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      this.setState({ loading: false });
     }
   };
 

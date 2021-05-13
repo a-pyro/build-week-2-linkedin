@@ -37,6 +37,7 @@ class Login extends Component {
       const data = await resp.json();
       if (resp.ok) {
         localStorage.setItem('token', data.token);
+        this.setState({ loading: false });
         this.props.history.push('/newsfeed');
       } else {
         console.log(data);
@@ -44,8 +45,6 @@ class Login extends Component {
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      this.setState({ loading: false });
     }
   };
 

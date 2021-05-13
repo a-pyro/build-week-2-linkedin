@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Spinner } from 'react-bootstrap';
+import { Modal, Button, Spinner, Image } from 'react-bootstrap';
 
 import { format, parseISO } from 'date-fns';
 // & add validation for startDate
@@ -16,6 +16,7 @@ const CustomModal = ({
   startDate,
   endDate,
   image,
+  user,
 }) => {
   const initialFields = {
     area: area ?? '',
@@ -29,11 +30,13 @@ const CustomModal = ({
   const [loading, setLoading] = useState(false);
   const [fields, setFields] = useState(initialFields);
   const [expPic, setExpPic] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
 
   // file upload
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    // console.log(e.target.files[0]);
+    setFilePreview(URL.createObjectURL(e.target.files[0]));
+
     setExpPic(selectedFile);
     // console.log(expPic);
   };
@@ -54,7 +57,7 @@ const CustomModal = ({
   const postExperience = async (newExp) => {
     setLoading(true);
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${profileId}/experiences`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${user._id}/experiences`,
       {
         method: 'POST',
         body: JSON.stringify(newExp),
@@ -64,6 +67,7 @@ const CustomModal = ({
       }
     );
     const body = await resp.json();
+    console.log(body);
     setLoading(false);
     setFields(initialFields);
     console.log(body);
@@ -73,7 +77,7 @@ const CustomModal = ({
       fetchExperiences(body.user);
       setExpPic(null);
     } else {
-      fetchExperiences(body.user);
+      fetchExperiences(user._id);
     }
   };
 
@@ -91,13 +95,14 @@ const CustomModal = ({
     );
     const body = await resp.json();
     setLoading(false);
+    console.log(body);
 
     if (expPic) {
       await uploadPic(body.user, body._id);
-      fetchExperiences(body.user);
+      fetchExperiences(body.profileId);
       setExpPic(null);
     } else {
-      fetchExperiences(body.user);
+      fetchExperiences(body.profileId);
     }
   };
 
@@ -188,7 +193,7 @@ const CustomModal = ({
                 type='date'
               />
               <input type='file' onChange={handleFileChange} className='my-3' />
-              {/* <Image fluid rounded src={image} /> */}
+              <Image fluid src={filePreview} />
             </>
           )}
         </Modal.Body>
