@@ -9,18 +9,20 @@ const CreateModal = (props) => {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [picture, setPicture] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
 
   const areaRef = useRef();
 
   // pic upload
   const handleFileSelect = (e) => {
     const newFile = e.target.files[0];
+    setFilePreview(URL.createObjectURL(e.target.files[0]));
     setPicture(newFile);
   };
 
   const uploadPic = async (postId) => {
     const formData = new FormData();
-    formData.append('post', picture, picture.name);
+    formData.append('picture', picture, picture.name);
     const resp = await fetch(
       `${process.env.REACT_APP_API_URL}/api/posts/${postId}`,
       {
@@ -31,14 +33,16 @@ const CreateModal = (props) => {
     );
     console.log(resp);
     setPicture(null);
+    setFilePreview(null);
   };
 
   const handleClose = () => {
     setShow(false);
     setText('');
     setSuccessMsg('');
-    props.getPosts();
+    // props.getPosts();
     setPicture(null);
+    setFilePreview(null);
   };
   const handleShow = () => {
     setShow(true);
@@ -55,13 +59,14 @@ const CreateModal = (props) => {
     setLoading(true);
     const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts/`, {
       method: 'POST',
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ text, profileId: props.userLogged._id }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
     const data = await resp.json();
+
     if (picture) {
       await uploadPic(data._id);
     }
@@ -71,6 +76,7 @@ const CreateModal = (props) => {
     if (resp.ok) {
       setSuccessMsg('Congrats! Your post in on da line!');
       setText('');
+      props.getPosts();
     }
   };
 
@@ -148,6 +154,7 @@ const CreateModal = (props) => {
               </Button>
             )}
             <input type='file' onChange={handleFileSelect} className='mt-3' />
+            <Image fluid src={filePreview} />
           </Form>
         </Modal.Body>
       </Modal>

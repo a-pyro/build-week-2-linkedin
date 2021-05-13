@@ -28,22 +28,6 @@ export default class App extends Component {
           <Route path='/' exact component={Landing} />
           <Route path='/login' exact component={Login} />
           <Route path='/register' exact component={Register} />
-          {/* <Route
-            path='/newsfeed'
-            render={(routerProps) => {
-              <NewsFeed {...routerProps}>
-                <TempNavBar />
-              </NewsFeed>;
-            }}
-          />
-          <Route
-            path='/profile/:id'
-            render={(routerProps) => {
-              <Home {...routerProps}>
-                <TempNavBar />
-              </Home>;
-            }}
-          /> */}
           <Route path='/newsfeed'>
             <NewsFeed>
               <TempNavBar />

@@ -73,8 +73,8 @@ const CustomModal = ({
     console.log(body);
     // aspetto che finisca di caricare e poi fetcho
     if (expPic) {
-      await uploadPic(body.user, body._id);
-      fetchExperiences(body.user);
+      await uploadPic(body.profileId, body._id);
+      fetchExperiences(user._id);
       setExpPic(null);
     } else {
       fetchExperiences(user._id);
@@ -98,7 +98,7 @@ const CustomModal = ({
     console.log(body);
 
     if (expPic) {
-      await uploadPic(body.user, body._id);
+      await uploadPic(body.profileId, body._id);
       fetchExperiences(body.profileId);
       setExpPic(null);
     } else {

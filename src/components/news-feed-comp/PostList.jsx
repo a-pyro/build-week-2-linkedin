@@ -4,26 +4,24 @@ import { Row, Spinner } from 'react-bootstrap';
 
 const PostList = ({ posts, userLogged, getPosts, isLoading }) => {
   // console.log(userLogged);
+  // console.log(posts);
   if (isLoading)
     return (
       <Row className='justify-content-center mt-3'>
         <Spinner animation='grow' />
       </Row>
     );
+  console.log(posts);
   return (
     <Row className='mt-3'>
-      {posts
-        .slice()
-        .reverse()
-        .slice(0, 20)
-        .map((post) => (
-          <SinglePost
-            getPosts={getPosts}
-            key={uuidv4()}
-            post={post}
-            userLogged={userLogged}
-          />
-        ))}
+      {posts.map((post) => (
+        <SinglePost
+          getPosts={getPosts}
+          key={uuidv4()}
+          post={post}
+          userLogged={userLogged}
+        />
+      ))}
     </Row>
   );
 };

@@ -15,7 +15,7 @@ export default class SinglePost extends Component {
   };
 
   handleDeletePost = async () => {
-    if (this.props.userLogged._id === this.props.post.user._id) {
+    if (this.props.userLogged._id === this.props.post.profile._id) {
       // this.setState({ isLoading: true });
       const resp = await fetch(
         `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post._id}`,
@@ -35,7 +35,7 @@ export default class SinglePost extends Component {
   };
 
   handleEdit = () => {
-    if (this.props.userLogged._id === this.props.post.user._id) {
+    if (this.props.userLogged._id === this.props.post.profile._id) {
       this.setState({ editMode: !this.state.editMode });
     } else {
       alert('non puoi toccare i post degli altri 💩');
@@ -71,8 +71,8 @@ export default class SinglePost extends Component {
   };
 
   render() {
-    // console.log(this.props);
-    // console.log(this.props);
+    // console.log(this.props.userLogged);
+    // console.log(this.props.post);
 
     return (
       <Col xs={12} className='mt-3 px-0'>
@@ -81,7 +81,7 @@ export default class SinglePost extends Component {
             <>
               <div className='mb-3'>
                 <Image
-                  style={{ width: '70px' }}
+                  style={{ width: '70px', height: '70px' }}
                   roundedCircle
                   src={this.props.post.profile.image}
                 />{' '}
@@ -120,7 +120,7 @@ export default class SinglePost extends Component {
                   src={this.props.post.image}
                 />
               )}
-              {this.props.userLogged?._id === this.props.post._id && (
+              {this.props.userLogged?._id === this.props.post.profile._id && (
                 <div className='d-flex align-items-center mt-3'>
                   <BsFillTrashFill
                     onClick={this.handleDeletePost}
@@ -141,12 +141,14 @@ export default class SinglePost extends Component {
               <Image
                 style={{ width: '70px' }}
                 roundedCircle
-                src={this.props.post.user.image}
+                src={this.props.post.profile.image}
               />{' '}
               <h6 className='font-weight-bold'>
                 {' '}
                 by{' '}
-                {this.props.post.user.name + ' ' + this.props.post.user.surname}
+                {this.props.post.profile.name +
+                  ' ' +
+                  this.props.post.profile.surname}
               </h6>
               <textarea
                 style={{

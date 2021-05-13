@@ -15,7 +15,7 @@ export default class NewsFeed extends Component {
   getPosts = async () => {
     this.setState({ isLoading: true });
     try {
-      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts/`);
+      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts`);
       const posts = await resp.json();
 
       console.log(posts);
@@ -39,6 +39,7 @@ export default class NewsFeed extends Component {
     );
     const userLogged = await resp.json();
     this.setState({ userLogged });
+    console.log('user logged: ', userLogged);
   };
 
   componentDidMount = () => {
@@ -51,6 +52,9 @@ export default class NewsFeed extends Component {
 
   //   }
   // };
+  componentDidUpdate = () => {
+    console.log(this.state.posts);
+  };
 
   render() {
     // console.log(
