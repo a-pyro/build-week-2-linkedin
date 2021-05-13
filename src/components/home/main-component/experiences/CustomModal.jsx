@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns';
 const CustomModal = ({
   children,
   fetchExperiences,
-  userID,
+  profileId,
   method,
   expID,
   area,
@@ -38,11 +38,11 @@ const CustomModal = ({
     // console.log(expPic);
   };
 
-  const uploadPic = async (userID, experienceID) => {
+  const uploadPic = async (profileId, experienceID) => {
     const formData = new FormData();
-    formData.append('experience', expPic, expPic.name);
+    formData.append('picture', expPic, expPic.name);
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${userID}/experiences/${experienceID}/picture`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${profileId}/experiences/${experienceID}/picture`,
       {
         method: 'POST',
         body: formData,
@@ -54,7 +54,7 @@ const CustomModal = ({
   const postExperience = async (newExp) => {
     setLoading(true);
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${userID}/experiences`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${profileId}/experiences`,
       {
         method: 'POST',
         body: JSON.stringify(newExp),
@@ -80,7 +80,7 @@ const CustomModal = ({
   const editExperience = async (exp) => {
     setLoading(true);
     const resp = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${userID}/experiences/${expID}`,
+      `${process.env.REACT_APP_API_URL}/api/profile/${profileId}/experiences/${expID}`,
       {
         method: 'PUT',
         body: JSON.stringify(exp),

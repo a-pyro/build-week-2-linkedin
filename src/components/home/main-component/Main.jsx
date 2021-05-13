@@ -7,7 +7,6 @@ import Interests from './dumb.components/Interests';
 import Skills from './dumb.components/Skills';
 import Education from './experiences/Education';
 import PersonalDetails from './personal-details/ProfileDetails';
-// import Dashboard from 'components/home/main-component/Dashboard';
 
 const Main = ({ user, fetchUser }) => {
   // console.log('exp in main', experiences);

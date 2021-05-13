@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Main from '../home/main-component/Main';
 import Side from '../home/side-col/Side';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class Home extends Component {
   state = {
@@ -10,6 +10,7 @@ class Home extends Component {
     isLoading: true,
     // userLogged: null,
     // experiences: [],
+    isUnauthorized: false,
   };
 
   fetchUser = async (personToFetch) => {
@@ -25,8 +26,13 @@ class Home extends Component {
     );
 
     const data = await resp.json();
-    this.setState({ user: data });
-    this.setState({ isLoading: false });
+    if (resp.status === 401) {
+      this.setState({ isUnauthorized: true });
+    } else {
+      this.setState({ isUnauthorized: false });
+      this.setState({ user: data });
+      this.setState({ isLoading: false });
+    }
   };
 
   componentDidMount = () => {
@@ -44,8 +50,17 @@ class Home extends Component {
       <Container>
         {this.props.children}
         <Row>
-          <Main fetchUser={this.fetchUser} user={this.state.user} />
-          <Side user={this.state.user} />
+          {this.state.isUnauthorized && (
+            <Link to='/login'>
+              <h1>👉🏻 Please login ✍🏻</h1>
+            </Link>
+          )}
+          {!this.state.isUnauthorized && (
+            <>
+              <Main fetchUser={this.fetchUser} user={this.state.user} />
+              <Side user={this.state.user} />
+            </>
+          )}
         </Row>
       </Container>
     );

@@ -7,9 +7,14 @@ import {
   NavDropdown,
   Container,
 } from 'react-bootstrap';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 
 const TempNavBar = ({ location }) => {
+  const history = useHistory();
+  const handleLogout = () => {
+    localStorage.clear();
+    history.push('/');
+  };
   return (
     <Navbar bg='light' expand='lg' className='mb-3'>
       <Container>
@@ -37,6 +42,13 @@ const TempNavBar = ({ location }) => {
             >
               Me
             </Link>
+            <span
+              style={{ cursor: 'pointer' }}
+              className='p-0 m-2 nav-link'
+              onClick={handleLogout}
+            >
+              Logout
+            </span>
             <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
               <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
               <NavDropdown.Item href='#action/3.2'>

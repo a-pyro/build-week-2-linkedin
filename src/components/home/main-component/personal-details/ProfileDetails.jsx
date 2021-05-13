@@ -29,7 +29,7 @@ class PersonalDetails extends React.Component {
     this.setState({ isLoading: true });
     const formData = new FormData();
     formData.append(
-      'profile',
+      'picture',
       this.state.profilePic,
       this.state.profilePic.name
     );

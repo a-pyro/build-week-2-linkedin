@@ -3,19 +3,19 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 const EditDetailsModal = ({
   children,
-  user: { name, title, surname, area, email, bio },
+  user: { name, title, surname, area, email, bio, _id },
   fetchUser,
 }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [fields, setFields] = useState({
-    name,
-    title,
-    surname,
-    area,
-    email,
-    bio,
+    name: name || '',
+    title: title || '',
+    surname: surname || '',
+    area: area || '',
+    email: email || '',
+    bio: bio || '',
   });
 
   useEffect(() => {
@@ -27,13 +27,16 @@ const EditDetailsModal = ({
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/profile/`, {
-      method: 'PUT',
-      body: JSON.stringify(fields),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const resp = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/profile/${_id}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(fields),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
 
     if (resp.ok) {
       fetchUser('me');
