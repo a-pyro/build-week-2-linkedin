@@ -1,34 +1,33 @@
-import React, { Component } from "react";
-import { Col, Card, Image, ListGroup, ListGroupItem } from "react-bootstrap";
+import React, { Component } from 'react';
+import { Col, Card, Image, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 // import EditModal from './EditModal';
 
 // react icons
-import { BsFillTrashFill } from "react-icons/bs";
-import { AiTwotoneEdit } from "react-icons/ai";
-import { AiOutlineLike } from "react-icons/ai";
-import { BiMessageRoundedDetail } from "react-icons/bi";
-import { BsArrow90DegRight } from "react-icons/bs";
-import { RiSendPlaneFill } from "react-icons/ri";
-import { GrStatusGood } from "react-icons/gr";
+import { BsFillTrashFill } from 'react-icons/bs';
+import { AiTwotoneEdit } from 'react-icons/ai';
+import { AiOutlineLike } from 'react-icons/ai';
+import { BiMessageRoundedDetail } from 'react-icons/bi';
+import { BsArrow90DegRight } from 'react-icons/bs';
+import { RiSendPlaneFill } from 'react-icons/ri';
 
 // packages
-import styled from "styled-components";
-import { format, parseISO } from "date-fns";
+import styled from 'styled-components';
+import { format, parseISO } from 'date-fns';
 
-import CreateModal from "./CreateModal";
+import CreateModal from './CreateModal';
 //
 
 const iconStyles = {
-  marginRight: "5px",
-  fontSize: "25px",
+  marginRight: '5px',
+  fontSize: '25px',
 };
 
 export default class SinglePost extends Component {
   state = {
     editMode: false,
     text: this.props.post.text,
-    comment: "",
+    comment: '',
   };
 
   handleDeletePost = async () => {
@@ -37,7 +36,7 @@ export default class SinglePost extends Component {
       const resp = await fetch(
         `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post._id}`,
         {
-          method: "DELETE",
+          method: 'DELETE',
         }
       );
       // console.log(resp);
@@ -47,7 +46,7 @@ export default class SinglePost extends Component {
       }
       this.props.getPosts();
     } else {
-      alert("non puoi toccare i post degli altri 💩");
+      alert('non puoi toccare i post degli altri 💩');
     }
   };
 
@@ -55,7 +54,7 @@ export default class SinglePost extends Component {
     if (this.props.userLogged._id === this.props.post.profile._id) {
       this.setState({ editMode: !this.state.editMode });
     } else {
-      alert("non puoi toccare i post degli altri 💩");
+      alert('non puoi toccare i post degli altri 💩');
     }
   };
 
@@ -74,14 +73,15 @@ export default class SinglePost extends Component {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post._id}/comments`,
       {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           comment: this.state.comment,
           userWhoCommented: this.props.userLogged._id,
         }),
       }
     );
+    console.log(response);
     this.props.getPosts();
   };
 
@@ -91,14 +91,14 @@ export default class SinglePost extends Component {
     // }
 
     const text = this.state.text;
-    console.log("puttttinnnnn");
+    console.log('puttttinnnnn');
     const resp = await fetch(
       `${process.env.REACT_APP_API_URL}/api/posts/${this.props.post._id}`,
       {
-        method: "PUT",
+        method: 'PUT',
         body: JSON.stringify({ text }),
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
@@ -114,38 +114,39 @@ export default class SinglePost extends Component {
     console.log(this.props.post);
 
     return (
-      <Col xs={12} className="mt-3 px-0">
-        <Card className="border rounded pt-3 px-4 bg-white">
-          <div className="mb-3 d-flex align-items-center">
+      <Col xs={12} className='mt-3 px-0'>
+        <Card className='border rounded pt-3 px-4 bg-white'>
+          <div className='mb-3 d-flex align-items-center'>
             <Image
-              style={{ width: "70px", height: "70px" }}
+              alt='hi'
+              style={{ width: '70px', height: '70px' }}
               roundedCircle
               src={this.props.post.profile.image}
-            />{" "}
-            <span className="font-weight-bold ml-3">
-              {" "}
-              by{" "}
+            />{' '}
+            <span className='font-weight-bold ml-3'>
+              {' '}
+              by{' '}
               {this.props.post.profile.name +
-                " " +
+                ' ' +
                 this.props.post.profile.surname}
             </span>
             {this.props.userLogged?._id === this.props.post.profile._id && (
-              <div className="d-flex align-items-center  ml-auto">
+              <div className='d-flex align-items-center  ml-auto'>
                 <div>
                   <BsFillTrashFill
                     onClick={this.handleDeletePost}
-                    style={{ cursor: "pointer", fontSize: "1.3rem" }}
-                    className="mr-3"
+                    style={{ cursor: 'pointer', fontSize: '1.3rem' }}
+                    className='mr-3'
                   />
                 </div>
                 <CreateModal
                   getPosts={this.props.getPosts}
-                  method="PUT"
+                  method='PUT'
                   userLogged={this.props.userLogged}
                   post={this.props.post}
                 >
                   <AiTwotoneEdit
-                    style={{ cursor: "pointer", fontSize: "1.5rem" }}
+                    style={{ cursor: 'pointer', fontSize: '1.5rem' }}
                     onClick={this.handleEdit}
                   />
                 </CreateModal>
@@ -154,17 +155,17 @@ export default class SinglePost extends Component {
           </div>
           <p>{`created at ${format(
             parseISO(this.props.post.createdAt),
-            "yyyy-MMM-dd | HH:mm"
+            'yyyy-MMM-dd | HH:mm'
           )}`}</p>
           <textarea
             style={{
-              color: "black",
-              resize: "none",
-              outline: "none",
-              border: "none",
-              background: "unset",
-              minHeight: "5vh",
-              maxHeight: "15vh",
+              color: 'black',
+              resize: 'none',
+              outline: 'none',
+              border: 'none',
+              background: 'unset',
+              minHeight: '5vh',
+              maxHeight: '15vh',
             }}
             disabled
             value={this.state.text}
@@ -173,26 +174,26 @@ export default class SinglePost extends Component {
             <Image
               style={{
                 // width: '100%',
-                maxHeight: "30vh",
-                objectFit: "contain",
+                maxHeight: '30vh',
+                objectFit: 'contain',
               }}
               src={this.props.post.image}
             />
           )}
-          <div className="d-flex mt-2">
-            <SButton variant="outline-dark">
+          <div className='d-flex mt-2'>
+            <SButton variant='outline-dark'>
               <AiOutlineLike style={iconStyles} />
               Like
             </SButton>
-            <SButton variant="outline-dark">
+            <SButton variant='outline-dark'>
               <BiMessageRoundedDetail style={iconStyles} />
               Comment
             </SButton>
-            <SButton variant="outline-dark">
+            <SButton variant='outline-dark'>
               <BsArrow90DegRight style={iconStyles} />
               Share
             </SButton>
-            <SButton variant="outline-dark">
+            <SButton variant='outline-dark'>
               <RiSendPlaneFill style={iconStyles} />
               Send
             </SButton>
@@ -202,32 +203,33 @@ export default class SinglePost extends Component {
               value={this.state.comment}
               onChange={this.handleCommentInput}
               // value=""
-              type="text"
-              placeholder="Leave a Comment"
+              type='text'
+              placeholder='Leave a Comment'
             ></Input>
 
-            <button type="submit">Send</button>
+            <button type='submit'>Send</button>
           </form>
           <ListGroup>
             {this.props.post &&
               this.props.post.comments.map((comment) => (
                 <ListGroupItem>
-                  <div className="d-flex align-items-center">
+                  <div className='d-flex align-items-center'>
                     <img
+                      alt='hi'
                       style={{
-                        width: "30px",
-                        height: "30px",
-                        borderRadius: "50%",
+                        width: '30px',
+                        height: '30px',
+                        borderRadius: '50%',
                       }}
                       src={comment.userWhoCommented.image}
-                      className="mr-3"
+                      className='mr-3'
                     ></img>
-                    <div className="d-flex flex-column justify-content-center">
-                      <p style={{ fontSize: "12px" }}>
-                        {comment.userWhoCommented.name}{" "}
+                    <div className='d-flex flex-column justify-content-center'>
+                      <p style={{ fontSize: '12px' }}>
+                        {comment.userWhoCommented.name}{' '}
                         {comment.userWhoCommented.surname}
                       </p>
-                      <p style={{ fontSize: "14px" }}>{comment.comment}</p>
+                      <p style={{ fontSize: '14px' }}>{comment.comment}</p>
                     </div>
                   </div>
                 </ListGroupItem>
@@ -302,9 +304,6 @@ const Input = styled.input`
   }
 `;
 
-const Submit = styled.div`
-  display: block;
-`;
 // render() {
 //   // console.log(this.props.userLogged);
 //   // console.log(this.props.post);
