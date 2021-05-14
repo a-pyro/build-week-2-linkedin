@@ -7,6 +7,7 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import { GrStatusGood } from 'react-icons/gr';
 import { format, parseISO } from 'date-fns';
+import CreateModal from './CreateModal';
 //
 export default class SinglePost extends Component {
   state = {
@@ -77,122 +78,216 @@ export default class SinglePost extends Component {
     return (
       <Col xs={12} className='mt-3 px-0'>
         <Card className='border rounded p-3 px-4 bg-white'>
-          {!this.state.editMode && (
-            <>
-              <div className='mb-3'>
-                <Image
-                  style={{ width: '70px', height: '70px' }}
-                  roundedCircle
-                  src={this.props.post.profile.image}
-                />{' '}
-                <span className='font-weight-bold ml-3'>
-                  {' '}
-                  by{' '}
-                  {this.props.post.profile.name +
-                    ' ' +
-                    this.props.post.profile.surname}
-                </span>
-                <p>{`created at ${format(
-                  parseISO(this.props.post.createdAt),
-                  'yyyy-MMM-dd | HH:mm'
-                )}`}</p>
-              </div>
-              <textarea
-                style={{
-                  color: 'black',
-                  resize: 'none',
-                  outline: 'none',
-                  border: 'none',
-                  background: 'unset',
-                  minHeight: '5vh',
-                  maxHeight: '15vh',
-                }}
-                disabled
-                value={this.state.text}
-              />
-              {this.props.post?.image && (
-                <Image
-                  style={{
-                    // width: '100%',
-                    maxHeight: '30vh',
-                    objectFit: 'contain',
-                  }}
-                  src={this.props.post.image}
-                />
-              )}
-              {this.props.userLogged?._id === this.props.post.profile._id && (
-                <div className='d-flex align-items-center mt-3'>
+          <div className='mb-3 d-flex align-items-center'>
+            <Image
+              style={{ width: '70px', height: '70px' }}
+              roundedCircle
+              src={this.props.post.profile.image}
+            />{' '}
+            <span className='font-weight-bold ml-3'>
+              {' '}
+              by{' '}
+              {this.props.post.profile.name +
+                ' ' +
+                this.props.post.profile.surname}
+            </span>
+            {this.props.userLogged?._id === this.props.post.profile._id && (
+              <div className='d-flex align-items-center  ml-auto'>
+                <div>
                   <BsFillTrashFill
                     onClick={this.handleDeletePost}
                     style={{ cursor: 'pointer', fontSize: '1.3rem' }}
                     className='mr-3'
                   />
-
+                </div>
+                <CreateModal
+                  getPosts={this.props.getPosts}
+                  method='PUT'
+                  userLogged={this.props.userLogged}
+                  post={this.props.post}
+                >
                   <AiTwotoneEdit
                     style={{ cursor: 'pointer', fontSize: '1.5rem' }}
                     onClick={this.handleEdit}
                   />
-                </div>
-              )}
-            </>
-          )}
-          {this.state.editMode && (
-            <>
-              <Image
-                style={{ width: '70px' }}
-                roundedCircle
-                src={this.props.post.profile.image}
-              />{' '}
-              <h6 className='font-weight-bold'>
-                {' '}
-                by{' '}
-                {this.props.post.profile.name +
-                  ' ' +
-                  this.props.post.profile.surname}
-              </h6>
-              <textarea
-                style={{
-                  resize: 'none',
-                  // outline: 'none',
-                  // border: 'none',
-                  // background: 'unset',
-                  minHeight: '5vh',
-                  maxHeight: '15vh',
-                }}
-                onChange={this.handleChange}
-                value={this.state.text}
-                autoFocus
-              />
-              {this.props.post.image && (
-                <Image
-                  style={{
-                    // width: '100%',
-                    maxHeight: '30vh',
-                    objectFit: 'contain',
-                  }}
-                  src={this.props.post.image}
-                />
-              )}
-              <div className='d-flex align-items-center mt-3'>
-                <BsFillTrashFill
-                  onClick={this.handleDeletePost}
-                  style={{ cursor: 'pointer', fontSize: '1.3rem' }}
-                  className='mr-3'
-                />
-
-                <GrStatusGood
-                  style={{
-                    cursor: 'pointer',
-                    fontSize: '1.5rem',
-                    color: 'green',
-                  }}
-                  onClick={this.handleSave}
-                />
+                </CreateModal>
               </div>
-            </>
+            )}
+          </div>
+          <p>{`created at ${format(
+            parseISO(this.props.post.createdAt),
+            'yyyy-MMM-dd | HH:mm'
+          )}`}</p>
+          <textarea
+            style={{
+              color: 'black',
+              resize: 'none',
+              outline: 'none',
+              border: 'none',
+              background: 'unset',
+              minHeight: '5vh',
+              maxHeight: '15vh',
+            }}
+            disabled
+            value={this.state.text}
+          />
+          {this.props.post?.image && (
+            <Image
+              style={{
+                // width: '100%',
+                maxHeight: '30vh',
+                objectFit: 'contain',
+              }}
+              src={this.props.post.image}
+            />
           )}
+          {/* {this.props.userLogged?._id === this.props.post.profile._id && (
+            <div className='d-flex align-items-center mt-3'>
+              <BsFillTrashFill
+                onClick={this.handleDeletePost}
+                style={{ cursor: 'pointer', fontSize: '1.3rem' }}
+                className='mr-3'
+              />
+              <CreateModal
+                getPosts={this.props.getPosts}
+                method='PUT'
+                userLogged={this.props.userLogged}
+                post={this.props.post}
+              >
+                <AiTwotoneEdit
+                  style={{ cursor: 'pointer', fontSize: '1.5rem' }}
+                  onClick={this.handleEdit}
+                />
+              </CreateModal>
+            </div>
+          )} */}
         </Card>
       </Col>
     );
   }
+  // render() {
+  //   // console.log(this.props.userLogged);
+  //   // console.log(this.props.post);
+
+  //   return (
+  //     <Col xs={12} className='mt-3 px-0'>
+  //       <Card className='border rounded p-3 px-4 bg-white'>
+  //         {!this.state.editMode && (
+  //           <>
+  //             <div className='mb-3'>
+  //               <Image
+  //                 style={{ width: '70px', height: '70px' }}
+  //                 roundedCircle
+  //                 src={this.props.post.profile.image}
+  //               />{' '}
+  //               <span className='font-weight-bold ml-3'>
+  //                 {' '}
+  //                 by{' '}
+  //                 {this.props.post.profile.name +
+  //                   ' ' +
+  //                   this.props.post.profile.surname}
+  //               </span>
+  //               <p>{`created at ${format(
+  //                 parseISO(this.props.post.createdAt),
+  //                 'yyyy-MMM-dd | HH:mm'
+  //               )}`}</p>
+  //             </div>
+  //             <textarea
+  //               style={{
+  //                 color: 'black',
+  //                 resize: 'none',
+  //                 outline: 'none',
+  //                 border: 'none',
+  //                 background: 'unset',
+  //                 minHeight: '5vh',
+  //                 maxHeight: '15vh',
+  //               }}
+  //               disabled
+  //               value={this.state.text}
+  //             />
+  //             {this.props.post?.image && (
+  //               <Image
+  //                 style={{
+  //                   // width: '100%',
+  //                   maxHeight: '30vh',
+  //                   objectFit: 'contain',
+  //                 }}
+  //                 src={this.props.post.image}
+  //               />
+  //             )}
+  //             {this.props.userLogged?._id === this.props.post.profile._id && (
+  //               <div className='d-flex align-items-center mt-3'>
+  //                 <BsFillTrashFill
+  //                   onClick={this.handleDeletePost}
+  //                   style={{ cursor: 'pointer', fontSize: '1.3rem' }}
+  //                   className='mr-3'
+  //                 />
+
+  //                 <AiTwotoneEdit
+  //                   style={{ cursor: 'pointer', fontSize: '1.5rem' }}
+  //                   onClick={this.handleEdit}
+  //                 />
+  //               </div>
+  //             )}
+  //           </>
+  //         )}
+  //         {this.state.editMode && (
+  //           <>
+  //             <Image
+  //               style={{ width: '70px' }}
+  //               roundedCircle
+  //               src={this.props.post.profile.image}
+  //             />{' '}
+  //             <h6 className='font-weight-bold'>
+  //               {' '}
+  //               by{' '}
+  //               {this.props.post.profile.name +
+  //                 ' ' +
+  //                 this.props.post.profile.surname}
+  //             </h6>
+  //             <textarea
+  //               style={{
+  //                 resize: 'none',
+  //                 // outline: 'none',
+  //                 // border: 'none',
+  //                 // background: 'unset',
+  //                 minHeight: '5vh',
+  //                 maxHeight: '15vh',
+  //               }}
+  //               onChange={this.handleChange}
+  //               value={this.state.text}
+  //               autoFocus
+  //             />
+  //             {this.props.post.image && (
+  //               <Image
+  //                 style={{
+  //                   // width: '100%',
+  //                   maxHeight: '30vh',
+  //                   objectFit: 'contain',
+  //                 }}
+  //                 src={this.props.post.image}
+  //               />
+  //             )}
+  //             <div className='d-flex align-items-center mt-3'>
+  //               <BsFillTrashFill
+  //                 onClick={this.handleDeletePost}
+  //                 style={{ cursor: 'pointer', fontSize: '1.3rem' }}
+  //                 className='mr-3'
+  //               />
+
+  //               <GrStatusGood
+  //                 style={{
+  //                   cursor: 'pointer',
+  //                   fontSize: '1.5rem',
+  //                   color: 'green',
+  //                 }}
+  //                 onClick={this.handleSave}
+  //               />
+  //             </div>
+  //           </>
+  //         )}
+  //       </Card>
+  //     </Col>
+  //   );
+  // }
 }

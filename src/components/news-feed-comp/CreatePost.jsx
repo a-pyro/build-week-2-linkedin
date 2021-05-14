@@ -18,6 +18,7 @@ export default class CreatePost extends Component {
 
             {/* modal to create a post */}
             <CreateModal
+              method='POST'
               getPosts={this.props.getPosts}
               userLogged={this.props.userLogged}
             >

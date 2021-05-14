@@ -5,7 +5,7 @@ import { GrStatusGood } from 'react-icons/gr';
 
 const CreateModal = (props) => {
   const [show, setShow] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState(props.post?.text ?? '');
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [picture, setPicture] = useState(null);
@@ -57,26 +57,53 @@ const CreateModal = (props) => {
     e.preventDefault();
     setSuccessMsg('');
     setLoading(true);
-    const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts/`, {
-      method: 'POST',
-      body: JSON.stringify({ text, profileId: props.userLogged._id }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    if (props.method === 'POST') {
+      const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/posts/`, {
+        method: 'POST',
+        body: JSON.stringify({ text, profileId: props.userLogged._id }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-    const data = await resp.json();
+      const data = await resp.json();
 
-    if (picture) {
-      await uploadPic(data._id);
-    }
+      if (picture) {
+        await uploadPic(data._id);
+      }
 
-    // console.log(resp);
-    setLoading(false);
-    if (resp.ok) {
-      setSuccessMsg('Congrats! Your post in on da line!');
-      setText('');
-      props.getPosts();
+      // console.log(resp);
+      setLoading(false);
+      if (resp.ok) {
+        setSuccessMsg('Congrats! Your post in on da line!');
+        setText('');
+        props.getPosts();
+      }
+    } else {
+      const resp = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/posts/${props.post._id}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify({ text }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const data = await resp.json();
+
+      if (picture) {
+        await uploadPic(data._id);
+      }
+
+      // console.log(resp);
+      setLoading(false);
+      if (resp.ok) {
+        setSuccessMsg('Congrats! Your post in on da line!');
+        setText('');
+        props.getPosts();
+      }
     }
   };
 
