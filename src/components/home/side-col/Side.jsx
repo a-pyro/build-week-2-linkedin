@@ -11,13 +11,13 @@ const Side = (props) => {
         <EditPublicProfile />
         <AdOffer image={props.user?.image} />
         <PeopleAlsoViewed
-          heading='People Also Viewed'
+          heading='People you may know'
           sliceRange={[0, 5, 5, 15]}
         />
-        <PeopleAlsoViewed
+        {/* <PeopleAlsoViewed
           heading='People you may know'
           sliceRange={[15, 20, 15, 25]}
-        />
+        /> */}
       </aside>
     </Col>
   );
