@@ -65,7 +65,7 @@ export default class NewsFeed extends Component {
     // console.log(this.state.userLogged);
     return (
       <>
-        <Container className='px-4'>
+        <Container>
           {this.props.children}
           <Row>
             <Col md={8} className='mt-3'>

@@ -198,7 +198,7 @@ export default class SinglePost extends Component {
               Send
             </SButton>
           </div>
-          <form onSubmit={this.handleSubmit}>
+          <form className='mb-3' onSubmit={this.handleSubmit}>
             <Input
               value={this.state.comment}
               onChange={this.handleCommentInput}
@@ -207,55 +207,38 @@ export default class SinglePost extends Component {
               placeholder='Leave a Comment'
             ></Input>
 
-            <button type='submit'>Send</button>
+            <button className='btn btn-info rounded-pill' type='submit'>
+              Send
+            </button>
           </form>
-          <ListGroup>
-            {this.props.post &&
-              this.props.post.comments.map((comment) => (
-                <ListGroupItem>
-                  <div className='d-flex align-items-center'>
-                    <img
-                      alt='hi'
-                      style={{
-                        width: '30px',
-                        height: '30px',
-                        borderRadius: '50%',
-                      }}
-                      src={comment.userWhoCommented.image}
-                      className='mr-3'
-                    ></img>
-                    <div className='d-flex flex-column justify-content-center'>
-                      <p style={{ fontSize: '12px' }}>
-                        {comment.userWhoCommented.name}{' '}
-                        {comment.userWhoCommented.surname}
-                      </p>
-                      <p style={{ fontSize: '14px' }}>{comment.comment}</p>
+          {this.props.post.comments.length > 0 && (
+            <ListGroup className='pb-4'>
+              {this.props.post &&
+                this.props.post.comments.map((comment) => (
+                  <ListGroupItem>
+                    <div className='d-flex align-items-center'>
+                      <img
+                        alt='hi'
+                        style={{
+                          width: '30px',
+                          height: '30px',
+                          borderRadius: '50%',
+                        }}
+                        src={comment.userWhoCommented.image}
+                        className='mr-3'
+                      ></img>
+                      <div className='d-flex flex-column justify-content-center'>
+                        <p style={{ fontSize: '12px' }}>
+                          {comment.userWhoCommented.name}{' '}
+                          {comment.userWhoCommented.surname}
+                        </p>
+                        <p style={{ fontSize: '14px' }}>{comment.comment}</p>
+                      </div>
                     </div>
-                  </div>
-                </ListGroupItem>
-              ))}
-          </ListGroup>
-
-          {/* {this.props.userLogged?._id === this.props.post.profile._id && (
-            <div className='d-flex align-items-center mt-3'>
-              <BsFillTrashFill
-                onClick={this.handleDeletePost}
-                style={{ cursor: 'pointer', fontSize: '1.3rem' }}
-                className='mr-3'
-              />
-              <CreateModal
-                getPosts={this.props.getPosts}
-                method='PUT'
-                userLogged={this.props.userLogged}
-                post={this.props.post}
-              >
-                <AiTwotoneEdit
-                  style={{ cursor: 'pointer', fontSize: '1.5rem' }}
-                  onClick={this.handleEdit}
-                />
-              </CreateModal>
-            </div>
-          )} */}
+                  </ListGroupItem>
+                ))}
+            </ListGroup>
+          )}
         </Card>
       </Col>
     );
@@ -303,129 +286,3 @@ const Input = styled.input`
     outline: none;
   }
 `;
-
-// render() {
-//   // console.log(this.props.userLogged);
-//   // console.log(this.props.post);
-
-//   return (
-//     <Col xs={12} className='mt-3 px-0'>
-//       <Card className='border rounded p-3 px-4 bg-white'>
-//         {!this.state.editMode && (
-//           <>
-//             <div className='mb-3'>
-//               <Image
-//                 style={{ width: '70px', height: '70px' }}
-//                 roundedCircle
-//                 src={this.props.post.profile.image}
-//               />{' '}
-//               <span className='font-weight-bold ml-3'>
-//                 {' '}
-//                 by{' '}
-//                 {this.props.post.profile.name +
-//                   ' ' +
-//                   this.props.post.profile.surname}
-//               </span>
-//               <p>{`created at ${format(
-//                 parseISO(this.props.post.createdAt),
-//                 'yyyy-MMM-dd | HH:mm'
-//               )}`}</p>
-//             </div>
-//             <textarea
-//               style={{
-//                 color: 'black',
-//                 resize: 'none',
-//                 outline: 'none',
-//                 border: 'none',
-//                 background: 'unset',
-//                 minHeight: '5vh',
-//                 maxHeight: '15vh',
-//               }}
-//               disabled
-//               value={this.state.text}
-//             />
-//             {this.props.post?.image && (
-//               <Image
-//                 style={{
-//                   // width: '100%',
-//                   maxHeight: '30vh',
-//                   objectFit: 'contain',
-//                 }}
-//                 src={this.props.post.image}
-//               />
-//             )}
-//             {this.props.userLogged?._id === this.props.post.profile._id && (
-//               <div className='d-flex align-items-center mt-3'>
-//                 <BsFillTrashFill
-//                   onClick={this.handleDeletePost}
-//                   style={{ cursor: 'pointer', fontSize: '1.3rem' }}
-//                   className='mr-3'
-//                 />
-
-//                 <AiTwotoneEdit
-//                   style={{ cursor: 'pointer', fontSize: '1.5rem' }}
-//                   onClick={this.handleEdit}
-//                 />
-//               </div>
-//             )}
-//           </>
-//         )}
-//         {this.state.editMode && (
-//           <>
-//             <Image
-//               style={{ width: '70px' }}
-//               roundedCircle
-//               src={this.props.post.profile.image}
-//             />{' '}
-//             <h6 className='font-weight-bold'>
-//               {' '}
-//               by{' '}
-//               {this.props.post.profile.name +
-//                 ' ' +
-//                 this.props.post.profile.surname}
-//             </h6>
-//             <textarea
-//               style={{
-//                 resize: 'none',
-//                 // outline: 'none',
-//                 // border: 'none',
-//                 // background: 'unset',
-//                 minHeight: '5vh',
-//                 maxHeight: '15vh',
-//               }}
-//               onChange={this.handleChange}
-//               value={this.state.text}
-//               autoFocus
-//             />
-//             {this.props.post.image && (
-//               <Image
-//                 style={{
-//                   // width: '100%',
-//                   maxHeight: '30vh',
-//                   objectFit: 'contain',
-//                 }}
-//                 src={this.props.post.image}
-//               />
-//             )}
-//             <div className='d-flex align-items-center mt-3'>
-//               <BsFillTrashFill
-//                 onClick={this.handleDeletePost}
-//                 style={{ cursor: 'pointer', fontSize: '1.3rem' }}
-//                 className='mr-3'
-//               />
-
-//               <GrStatusGood
-//                 style={{
-//                   cursor: 'pointer',
-//                   fontSize: '1.5rem',
-//                   color: 'green',
-//                 }}
-//                 onClick={this.handleSave}
-//               />
-//             </div>
-//           </>
-//         )}
-//       </Card>
-//     </Col>
-//   );
-// }
