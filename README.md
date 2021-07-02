@@ -1,3 +1,9 @@
+Team project built during strive school's build week.
+
+Live DEMO: https://build-week-2-linkedin.vercel.app/
+
+BE REPO: https://github.com/Flynn-S/linkedIn-be-mongo
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
